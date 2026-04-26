@@ -349,13 +349,13 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta-banner" aria-label="Llamado a la acción">
-    <div class="container position-relative" style="z-index:1">
-      <h2>¿Tenés alguna duda sobre tu pedido?</h2>
-      <p style="font-size:1.1rem;margin-bottom:2rem;opacity:.9">Nuestro equipo responde en menos de 2 horas.</p>
-      <a href="/contacto" class="btn-outline-gf">Contactanos</a>
-    </div>
-  </section>
+
+  <x-banner
+   titulo="¿Tenés alguna duda sobre tu pedido?"
+   desc="Nuestro equipo responde en menos de 2 horas."
+   href="/contacto"
+   button-name="Contactanos"
+/>
 
   <!-- ================================================
        FOOTER

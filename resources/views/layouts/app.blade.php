@@ -4,6 +4,13 @@
   ...
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
+<!-- Activación global de tooltips -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltips.forEach(el => new bootstrap.Tooltip(el));
+  });
+</script>
 <body>
 
   
