@@ -153,87 +153,15 @@
   </section>
 
   <!-- ================================================
-       EQUIPO
-  ================================================ -->
-  <section class="section-dark">
-    <div class="container">
-
-      <div class="text-center mb-5">
-        <p class="page-header-eyebrow">Las personas detrás</p>
-        <h2 class="section-title">Nuestro <span>Equipo</span></h2>
-        <hr class="section-divider">
-      </div>
-
-      <div class="row g-4 justify-content-center">
-
-        <!-- Miembro 1 -->
-        <div class="col-sm-6 col-lg-3">
-          <article class="team-card">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80"
-                 alt="Martín Rodríguez, fundador" loading="lazy" />
-            <div class="team-card-body">
-              <h3 class="team-name">Martín Rodríguez</h3>
-              <p class="team-role">Co-Fundador & CEO</p>
-              <p style="color:#777;font-size:.82rem;margin-top:.5rem">Hincha de River, fanático del calcio italiano y la logística.</p>
-            </div>
-          </article>
-        </div>
-
-        <!-- Miembro 2 -->
-        <div class="col-sm-6 col-lg-3">
-          <article class="team-card">
-            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=400&auto=format&fit=crop&q=80"
-                 alt="Laura Gómez, directora comercial" loading="lazy" />
-            <div class="team-card-body">
-              <h3 class="team-name">Laura Gómez</h3>
-              <p class="team-role">Directora Comercial</p>
-              <p style="color:#777;font-size:.82rem;margin-top:.5rem">Especialista en comercio exterior y negociación con proveedores.</p>
-            </div>
-          </article>
-        </div>
-
-        <!-- Miembro 3 -->
-        <div class="col-sm-6 col-lg-3">
-          <article class="team-card">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80"
-                 alt="Diego Peralta, jefe de logística" loading="lazy" />
-            <div class="team-card-body">
-              <h3 class="team-name">Diego Peralta</h3>
-              <p class="team-role">Jefe de Logística</p>
-              <p style="color:#777;font-size:.82rem;margin-top:.5rem">Garantiza que cada pedido llegue en tiempo y forma.</p>
-            </div>
-          </article>
-        </div>
-
-        <!-- Miembro 4 -->
-        <div class="col-sm-6 col-lg-3">
-          <article class="team-card">
-            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop&q=80"
-                 alt="Sofía Torres, atención al cliente" loading="lazy" />
-            <div class="team-card-body">
-              <h3 class="team-name">Sofía Torres</h3>
-              <p class="team-role">Atención al Cliente</p>
-              <p style="color:#777;font-size:.82rem;margin-top:.5rem">La voz amigable que responde todas tus dudas al instante.</p>
-            </div>
-          </article>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================================
        CTA BANNER
   ================================================ -->
-  <section class="cta-banner" aria-label="Llamado a la acción">
-    <div class="container position-relative" style="z-index:1">
-      <h2>Formá parte de nuestra comunidad</h2>
-      <p style="font-size:1.1rem;margin-bottom:2rem;opacity:.9">
-        Más de 15.000 hinchas ya confían en nosotros. Unite al equipo.
-      </p>
-      <a href="/catalogo" class="btn-outline-gf">Ver catálogo</a>
-    </div>
-  </section>
+   <x-banner
+   titulo="Formá parte de nuestra comunidad"
+   desc="Más de 15.000 hinchas ya confían en nosotros. Unite al equipo."
+   href="/catalogo"
+   button-name="Ver catálogo"
+/>
+
 
   <!-- ================================================
        FOOTER

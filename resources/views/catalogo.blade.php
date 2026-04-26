@@ -1,3 +1,117 @@
+@php
+$productos = [
+    [
+        'nombre'  => 'Alemania Titular 2026',
+        'liga'    => 'Selección Alemania',
+        'precio'  => '$129',
+        'imagen'  => asset('Camisetas/alemania.png'),
+        'badge'   => 'Nuevo',
+        'badgeStyle' => '',
+        'precioOld'  => null,
+    ],
+    [
+        'nombre'     => 'Argentina Titular 2026',
+        'liga'       => 'Selección Argentina',
+        'precio'     => '$135',
+        'imagen'     => asset('Camisetas/argentina.png'),
+        'badge'      => 'Oferta',
+        'badgeStyle' => 'background:#f0a500;color:#000',
+        'precioOld'  => '$149',
+    ],
+    [
+        'nombre'     => 'Bélgica Titular 2026',
+        'liga'       => 'Selección Bélgica',
+        'precio'     => '$120',
+        'imagen'     => asset('Camisetas/belgica.png'),
+        'badge'      => null,
+        'badgeStyle' => '',
+        'precioOld'  => null,
+    ],
+    [
+        'nombre'     => 'Brasil Titular 2026',
+        'liga'       => 'Selección Brasil',
+        'precio'     => '$140',
+        'imagen'     => asset('Camisetas/brasil.png'),
+        'badge'      => 'Nuevo',
+        'badgeStyle' => '',
+        'precioOld'  => null,
+    ],
+    [
+        'nombre'     => 'Colombia Titular 2026',
+        'liga'       => 'Selección Colombia',
+        'precio'     => '$115',
+        'imagen'     => asset('Camisetas/colombia.png'),
+        'badge'      => 'Oferta',
+        'badgeStyle' => 'background:#f0a500;color:#000',
+        'precioOld'  => '$135',
+    ],
+    [
+        'nombre'     => 'España Titular 2026',
+        'liga'       => 'Selección España',
+        'precio'     => '$138',
+        'imagen'     => asset('Camisetas/españa.png'),
+        'badge'      => null,
+        'badgeStyle' => '',
+        'precioOld'  => null,
+    ],
+    [
+        'nombre'     => 'Francia Titular 2026',
+        'liga'       => 'Selección Francia',
+        'precio'     => '$145',
+        'imagen'     => asset('Camisetas/francia.png'),
+        'badge'      => 'Nuevo',
+        'badgeStyle' => '',
+        'precioOld'  => null,
+    ],
+    [
+        'nombre'     => 'Inglaterra Titular 2026',
+        'liga'       => 'Selección Inglaterra',
+        'precio'     => '$142',
+        'imagen'     => asset('Camisetas/inglaterra.png'),
+        'badge'      => null,
+        'badgeStyle' => '',
+        'precioOld'  => null,
+    ],
+    [
+        'nombre'     => 'Italia Titular 2026',
+        'liga'       => 'Selección Italia',
+        'precio'     => '$132',
+        'imagen'     => asset('Camisetas/italia.png'),
+        'badge'      => 'Oferta',
+        'badgeStyle' => 'background:#f0a500;color:#000',
+        'precioOld'  => '$148',
+    ],
+    [
+        'nombre'     => 'Japón Titular 2026',
+        'liga'       => 'Selección Japón',
+        'precio'     => '$118',
+        'imagen'     => asset('Camisetas/japon.png'),
+        'badge'      => null,
+        'badgeStyle' => '',
+        'precioOld'  => null,
+    ],
+    [
+        'nombre'     => 'México Titular 2026',
+        'liga'       => 'Selección México',
+        'precio'     => '$122',
+        'imagen'     => asset('Camisetas/mexico.png'),
+        'badge'      => 'Nuevo',
+        'badgeStyle' => '',
+        'precioOld'  => null,
+    ],
+    [
+        'nombre'     => 'Portugal Titular 2026',
+        'liga'       => 'Selección Portugal',
+        'precio'     => '$137',
+        'imagen'     => asset('Camisetas/portugal.png'),
+        'badge'      => 'Oferta',
+        'badgeStyle' => 'background:#f0a500;color:#000',
+        'precioOld'  => '$150',
+    ],
+];
+@endphp
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,7 +138,7 @@
   <header class="page-header">
     <div class="container">
       
-      <p class="page-header-eyebrow mt-2">Temporada 2024/25</p>
+      <p class="page-header-eyebrow mt-2">Temporada actual</p>
       <h1 class="section-title">Catálogo de <span class="text-red">Camisetas</span></h1>
     </div>
   </header>
@@ -32,7 +146,7 @@
   <!-- ================================================
        FILTROS (decorativos, sin funcionalidad)
   ================================================ -->
-  <section class="section-surface py-3">
+ <!--  <section class="section-surface py-3">
     <div class="container">
       <div class="d-flex flex-wrap gap-2 align-items-center">
         <span style="color:var(--color-muted);font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase">Filtrar por:</span>
@@ -43,7 +157,7 @@
         <button class="btn-ver-mas" style="width:auto;padding:.35rem 1rem;font-size:.85rem" type="button">Ofertas</button>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ================================================
        GRID DE PRODUCTOS
@@ -54,223 +168,29 @@
       <!-- Contador de resultados -->
       <div class="d-flex justify-content-between align-items-center mb-4">
         <p style="color:var(--color-muted);font-size:.88rem;margin:0">Mostrando <strong style="color:var(--color-white)">12 productos</strong></p>
-        <p style="color:var(--color-muted);font-size:.82rem;margin:0">Temporada 2024/25</p>
+        <!-- <p style="color:var(--color-muted);font-size:.82rem;margin:0">Temporada 2024/25</p> -->
       </div>
 
       <div class="row g-4">
 
-        <!-- Producto 1 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Selección Argentina Titular 2024" loading="lazy" />
-              <span class="product-badge">Nuevo</span>
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Selección Argentina</p>
-              <h3 class="product-name">Argentina Titular 2024</h3>
-              <div class="product-price">$29.999</div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
+      
+          @foreach($productos as $p)
+          <x-productCard
+          :nombre="$p['nombre']"
+          :liga="$p['liga']"
+          :precio="$p['precio']"
+          :imagen="$p['imagen']"
+          :badge="$p['badge'] ?? null"
+          :precioOld="$p['precioOld'] ?? null"
+          :badgeStyle="$p['badgeStyle'] ?? ''"
+          />
+          @endforeach
+          
 
-        <!-- Producto 2 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Real Madrid Titular 2024/25" loading="lazy" />
-              <span class="product-badge" style="background:#f0a500;color:#000">Oferta</span>
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">La Liga · España</p>
-              <h3 class="product-name">Real Madrid 2024/25</h3>
-              <div class="product-price">
-                <span class="price-old">$34.000</span>$27.499
-              </div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 3 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1516117172878-fd2c41f4a759?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Brasil Titular 2024" loading="lazy" />
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Selección Brasil</p>
-              <h3 class="product-name">Brasil Titular 2024</h3>
-              <div class="product-price">$28.500</div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 4 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Manchester City 2024/25" loading="lazy" />
-              <span class="product-badge">Nuevo</span>
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Premier League · Inglaterra</p>
-              <h3 class="product-name">Manchester City 24/25</h3>
-              <div class="product-price">$31.000</div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 5 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1614632537423-1e6c2e7e0aab?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Barcelona Titular 2024/25" loading="lazy" />
-              <span class="product-badge" style="background:#f0a500;color:#000">Oferta</span>
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">La Liga · España</p>
-              <h3 class="product-name">Barcelona Titular 24/25</h3>
-              <div class="product-price">
-                <span class="price-old">$32.000</span>$26.999
-              </div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 6 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Boca Juniors Titular 2024" loading="lazy" />
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Liga Profesional · Argentina</p>
-              <h3 class="product-name">Boca Juniors Titular 2024</h3>
-              <div class="product-price">$24.500</div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 7 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta River Plate Titular 2024" loading="lazy" />
-              <span class="product-badge">Nuevo</span>
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Liga Profesional · Argentina</p>
-              <h3 class="product-name">River Plate Titular 2024</h3>
-              <div class="product-price">$24.500</div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 8 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Francia Titular 2024" loading="lazy" />
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Selección Francia</p>
-              <h3 class="product-name">Francia Titular 2024</h3>
-              <div class="product-price">$30.000</div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 9 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1509563268479-0f004cf3f58b?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Bayern Munich 2024/25" loading="lazy" />
-              <span class="product-badge" style="background:#f0a500;color:#000">Oferta</span>
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Bundesliga · Alemania</p>
-              <h3 class="product-name">Bayern Munich 24/25</h3>
-              <div class="product-price">
-                <span class="price-old">$33.000</span>$27.999
-              </div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 10 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Portugal Titular 2024" loading="lazy" />
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Selección Portugal</p>
-              <h3 class="product-name">Portugal Titular 2024</h3>
-              <div class="product-price">$29.000</div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 11 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Juventus 2024/25" loading="lazy" />
-              <span class="product-badge">Nuevo</span>
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Serie A · Italia</p>
-              <h3 class="product-name">Juventus 2024/25</h3>
-              <div class="product-price">$28.000</div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Producto 12 -->
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <article class="product-card">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&auto=format&fit=crop&q=80"
-                   alt="Camiseta Argentina Alternativa 2024" loading="lazy" />
-              <span class="product-badge" style="background:#f0a500;color:#000">Oferta</span>
-            </div>
-            <div class="product-card-body">
-              <p class="product-league">Selección Argentina</p>
-              <h3 class="product-name">Argentina Alternativa 2024</h3>
-              <div class="product-price">
-                <span class="price-old">$29.999</span>$25.499
-              </div>
-              <button class="btn-ver-mas" type="button">Ver más</button>
-            </div>
-          </article>
-        </div>
-
-      </div><!-- /row -->
+      </div>
 
       <!-- Paginación decorativa -->
-      <nav class="mt-5 d-flex justify-content-center" aria-label="Paginación">
+      <!-- <nav class="mt-5 d-flex justify-content-center" aria-label="Paginación">
         <ul class="pagination" style="gap:.5rem">
           <li class="page-item">
             <a class="page-link"
@@ -298,20 +218,18 @@
                href="#">»</a>
           </li>
         </ul>
-      </nav>
+      </nav> -->
 
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta-banner" aria-label="Llamado a la acción">
-    <div class="container position-relative" style="z-index:1">
-      <h2>¿No encontrás lo que buscás?</h2>
-      <p style="font-size:1.1rem;margin-bottom:2rem;opacity:.9">Consultanos y te buscamos el modelo específico.</p>
-      <a href="/consultas" class="btn-outline-gf">Hacer una consulta</a>
-    </div>
-  </section>
-
+   <x-banner
+   titulo="¿No encontrás lo que buscás?"
+   desc="Consultanos y te buscamos el modelo específico."
+   href="/consultas"
+   button-name="Hacer una consulta"
+/>
   <!-- ================================================
        FOOTER
   ================================================ -->

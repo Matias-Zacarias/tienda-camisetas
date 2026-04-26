@@ -16,18 +16,7 @@
           </div>
         </div>
 
-        <!-- Navegación -->
-        <!-- <div class="col-sm-6 col-lg-2">
-          <h4 class="footer-title">Navegación</h4>
-          <ul class="footer-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="about.html">Quiénes Somos</a></li>
-            <li><a href="catalogo.html">Catálogo</a></li>
-            <li><a href="comercializacion.html">Comercialización</a></li>
-            <li><a href="consultas.html">Consultas</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-          </ul>
-        </div> -->
+        
 
         <!-- Legal -->
         <div class="col-sm-6 col-lg-2">
