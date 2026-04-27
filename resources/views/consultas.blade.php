@@ -56,7 +56,7 @@
               </h3>
               <div id="faqBody1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body" style="color:#b0b0b0;font-size:.92rem">
-                  Trabajamos con productos de alta calidad que replican con exactitud los modelos oficiales.
+                  Si, todos nuestros productos son originales y de excelente calidad.
                   No comercializamos marcas registradas sin licencia. Todos nuestros productos están claramente
                   descritos y el precio refleja la calidad real del producto.
                 </div>

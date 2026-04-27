@@ -113,8 +113,8 @@
               </div>
               <div>
                 <p class="contact-info-label">Dirección</p>
-                <p class="contact-info-value">Av. Corrientes 1234, Piso 2</p>
-                <p style="color:var(--color-muted);font-size:.85rem;margin:0">CABA, Buenos Aires, Argentina</p>
+                <p class="contact-info-value">Av. Cazadores Correntinos 3412</p>
+                <p style="color:var(--color-muted);font-size:.85rem;margin:0">Corrinetes Capital, Argentina</p>
               </div>
             </div>
 
@@ -173,14 +173,17 @@
     </div>
     <!-- Mapa Google Maps embebido (placeholder con Av. Corrientes, CABA) -->
     <div class="map-wrap" style="border-radius:0;border-left:none;border-right:none">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0168878895345!2d-58.38375842423646!3d-34.60373537295459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac630121623%3A0x53386f2ac88991a9!2sAv.%20Corrientes%201234%2C%20C1043%20CABA!5e0!3m2!1ses!2sar!4v1716998000000!5m2!1ses!2sar"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Ubicación de Goleador FC en Google Maps"
-        aria-label="Mapa de ubicación de Goleador FC">
-      </iframe>
+      <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14156.863298350054!2d-58.79553656931151!3d-27.49366258716002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1777250981428!5m2!1ses-419!2sar" 
+      width="600" 
+      height="450" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Ubicación de Goleador FC en Google Maps"
+      aria-label="Mapa de ubicación de Goleador FC">
+    </iframe>
     </div>
   </section>
 
