@@ -4,15 +4,14 @@
 
         <!-- Marca -->
         <div class="col-lg-4">
-          <span class="footer-brand"><i class="bi bi-dribbble me-2"></i>GOLEADOR<span>FC</span></span>
+          <span class="footer-brand"><i class="bi bi-dribbble me-2"></i>GOLEADOR<span> FC</span></span>
           <p class="footer-desc">
             La tienda de camisetas de fútbol más completa de Argentina. Calidad, variedad y pasión en cada producto.
           </p>
           <div class="footer-social">
-            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-            <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"> <i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://wa.me/3794733401?text=Hola!%20Quiero%20info%20sobre:%0A- Camisetas%0A- Precios%0A- Envíos" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
           </div>
         </div>
 
@@ -23,9 +22,9 @@
           <h4 class="footer-title">Legal</h4>
           <ul class="footer-links">
             <li><a href="/terminos">Términos y Condiciones</a></li>
-            <li><a href="/politica">Política de Privacidad</a></li>
+            <!-- <li><a href="/politica">Política de Privacidad</a></li>
             <li><a href="/garantia">Garantías</a></li>
-            <li><a href="/envios">Política de Envíos</a></li>
+            <li><a href="/envios">Política de Envíos</a></li> -->
           </ul>
         </div>
 
@@ -34,7 +33,7 @@
           <h4 class="footer-title">Contacto</h4>
           <div class="footer-contact-item">
             <i class="bi bi-geo-alt-fill"></i>
-            <span>Av. Corrientes 1234, Buenos Aires, Argentina</span>
+            <span>Av. Cazadores Correntinos 3412, Corrientes Capital, Argentina</span>
           </div>
           <div class="footer-contact-item">
             <i class="bi bi-telephone-fill"></i>
@@ -54,8 +53,8 @@
 
       <!-- Footer bottom -->
       <div class="footer-bottom">
-        <p>© 2025 Goleador FC. Todos los derechos reservados.</p>
-        <p>Hecho con <i class="bi bi-heart-fill text-red"></i> para los hinchas de Argentina.</p>
+        <p>© 2026 Goleador FC. Todos los derechos reservados.</p>
+        <p>Hecho con <i class="bi bi-heart-fill text-red"></i> para todos ustedes.</p>
       </div>
 
     </div>

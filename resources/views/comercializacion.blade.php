@@ -48,7 +48,7 @@
             <h3 class="feature-title">Tarjeta de Crédito</h3>
             <p style="color:#888;font-size:.9rem">
               Visa, Mastercard, American Express y Naranja X.
-              Pagá en hasta <strong style="color:var(--color-white)">12 cuotas sin interés</strong> con bancos seleccionados.
+              Pagá en hasta <strong style="color:var(--color-white)">6 cuotas sin interés</strong> con bancos seleccionados.
             </p>
             <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
               <span style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">VISA</span>
@@ -184,14 +184,14 @@
             <div class="col-sm-6">
               <div class="feature-card h-100">
                 <div class="feature-icon"><i class="bi bi-lightning-charge"></i></div>
-                <h3 class="feature-title">Envío Express CABA</h3>
+                <h3 class="feature-title">Envío Express Corrientes</h3>
                 <p style="color:#888;font-size:.9rem;margin-bottom:.75rem">
-                  Entrega el mismo día o día siguiente dentro de Capital Federal y GBA.
+                  Entrega el mismo día o día siguiente dentro de Corrientes Capital.
                 </p>
                 <ul style="color:#888;font-size:.85rem;padding-left:1.2rem;margin:0">
                   <li>Pedidos antes de las 14 hs</li>
                   <li>Entrega: mismo día hábil</li>
-                  <li>Cargo adicional: $2.500</li>
+                  <li>Cargo adicional: $3</li>
                 </ul>
               </div>
             </div>
@@ -215,20 +215,20 @@
               </thead>
               <tbody>
                 <tr style="border-bottom:1px solid var(--color-border)">
-                  <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">CABA y GBA</td>
-                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$1.800</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">CORRIENTES CAPITAL.</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$3</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--color-border)">
-                  <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Interior provincia Bs.As.</td>
-                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$2.800</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Interior provincia Corrientes.</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$5</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--color-border)">
                   <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Resto del país</td>
-                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$3.500</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$10</td>
                 </tr>
                 <tr>
                   <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Patagonia / NOA / NEA</td>
-                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$4.500</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$15</td>
                 </tr>
               </tbody>
             </table>
@@ -236,7 +236,7 @@
             <div class="mt-3 p-3 rounded" style="background:rgba(217,4,41,0.08);border:1px solid rgba(217,4,41,0.2)">
               <p style="font-size:.82rem;color:#b0b0b0;margin:0">
                 <i class="bi bi-gift-fill text-red me-1"></i>
-                <strong style="color:var(--color-white)">Envío gratis</strong> en compras mayores a $30.000 (excepto express).
+                <strong style="color:var(--color-white)">Envío gratis</strong> en compras mayores a $200 (excepto express).
               </p>
             </div>
           </div>
@@ -309,7 +309,7 @@
             <thead>
               <tr style="border-color:var(--color-border)">
                 <th style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">Servicio</th>
-                <th style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">CABA / GBA</th>
+                <th style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">Corrientes Capital</th>
                 <th style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">Provincia</th>
                 <th style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">Resto del país</th>
               </tr>
@@ -336,8 +336,8 @@
               <tr style="border-color:var(--color-border)">
                 <td style="border-color:var(--color-border)">Retiro en local</td>
                 <td style="border-color:var(--color-border);color:var(--color-red);font-weight:700">24 hs hábiles</td>
-                <td style="border-color:var(--color-border)">N/A</td>
-                <td style="border-color:var(--color-border)">N/A</td>
+                <td style="border-color:var(--color-border)">No dispomible</td>
+                <td style="border-color:var(--color-border)">No disponible</td>
               </tr>
             </tbody>
           </table>

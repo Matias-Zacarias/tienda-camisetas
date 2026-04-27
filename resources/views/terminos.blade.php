@@ -26,7 +26,7 @@
       <p class="page-header-eyebrow mt-2">Documentación legal</p>
       <h1 class="section-title">Términos y <span class="text-red">Condiciones</span></h1>
       <p style="color:var(--color-muted);font-size:.85rem;margin-top:.75rem">
-        Última actualización: 1 de enero de 2025
+        Última actualización: 26 de abril de 2026
       </p>
     </div>
   </header>
@@ -86,7 +86,7 @@
                 temporal o permanentemente, en cualquier momento y sin previo aviso.
               </p>
               <p>
-                Los precios publicados en el sitio están expresados en pesos argentinos (ARS) e incluyen el
+                Los precios publicados en el sitio están expresados en dólares e incluyen el
                 IVA correspondiente. Goleador FC se reserva el derecho de modificar los precios sin previo
                 aviso, aunque los pedidos confirmados mantendrán el precio original.
               </p>
@@ -122,7 +122,7 @@
                 En cualquier momento podés solicitar el acceso, rectificación, supresión u oposición al
                 tratamiento de tus datos personales escribiendo a
                 <strong style="color:var(--color-white)">privacidad@goleadorfc.com.ar</strong>.
-                Respondemos en un plazo máximo de 10 días hábiles.
+                Respondemos en un plazo máximo de 5 días hábiles.
               </p>
 
               <p>
@@ -171,7 +171,7 @@
               <ul>
                 <li>Los pedidos se procesan en un plazo de <strong style="color:var(--color-white)">24 a 48 hs hábiles</strong> luego de confirmado el pago.</li>
                 <li>El costo de envío se calcula según la zona de destino y se informa antes de confirmar la compra.</li>
-                <li>Los envíos superiores a <strong style="color:var(--color-white)">$30.000</strong> son gratuitos (excluye envío express).</li>
+                <li>Los envíos superiores a <strong style="color:var(--color-white)">$200</strong> son gratuitos (excluye envío express).</li>
                 <li>Una vez despachado el pedido, se envía el número de seguimiento al email registrado.</li>
                 <li>En caso de pérdida o extravío por parte de la empresa de correos, Goleador FC gestionará el reclamo correspondiente.</li>
               </ul>
@@ -223,7 +223,7 @@
               </p>
               <ul>
                 <li><strong style="color:var(--color-white)">Email:</strong> legal@goleadorfc.com.ar</li>
-                <li><strong style="color:var(--color-white)">Dirección:</strong> Av. Corrientes 1234, Piso 2, CABA, Argentina</li>
+                <li><strong style="color:var(--color-white)">Dirección:</strong> Av. Cazadores Correntinos 3412, Corrientes Capital, Argentina</li>
                 <li><strong style="color:var(--color-white)">Teléfono:</strong> +54 11 1234-5678</li>
               </ul>
               <p style="font-size:.88rem">
