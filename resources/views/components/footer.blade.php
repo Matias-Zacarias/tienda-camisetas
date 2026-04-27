@@ -17,19 +17,6 @@
         </div>
       </div>
 
-
-
-      <!-- Legal -->
-      <div class="col-sm-6 col-lg-2">
-        <h4 class="footer-title">Legal</h4>
-        <ul class="footer-links">
-          <li><a href="/terminos">Términos y Condiciones</a></li>
-          <!-- <li><a href="/politica">Política de Privacidad</a></li>
-            <li><a href="/garantia">Garantías</a></li>
-            <li><a href="/envios">Política de Envíos</a></li> -->
-        </ul>
-      </div>
-
       <!-- Contacto -->
       <div class="col-lg-4">
         <h4 class="footer-title">Contacto</h4>
@@ -50,6 +37,19 @@
           <span>Lun – Sáb: 10 hs a 20 hs</span>
         </div>
       </div>
+
+
+      <!-- Legal -->
+      <div class="col-sm-6 col-lg-2">
+        <h4 class="footer-title">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="/terminos">Términos y Condiciones</a></li>
+          <!-- <li><a href="/politica">Política de Privacidad</a></li>
+            <li><a href="/garantia">Garantías</a></li>
+            <li><a href="/envios">Política de Envíos</a></li> -->
+        </ul>
+      </div>
+
 
     </div>
 
