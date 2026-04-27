@@ -24,7 +24,7 @@
   <header class="page-header">
     <div class="container">
 
-      <p class="page-header-eyebrow mt-2">Documentación legal</p>
+      <p class="page-header-eyebrow mt-2"></p>
       <h1 class="section-title">Términos y <span class="text-red">Condiciones</span></h1>
       <p style="color:var(--color-muted);font-size:.85rem;margin-top:.75rem">
         Última actualización: 26 de abril de 2026
