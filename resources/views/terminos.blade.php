@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Términos y Condiciones, política de privacidad y garantías — GOLEADOR FC." />
   <title>Términos y Condiciones | GOLEADOR FC</title>
 
+  <link rel="icon" type="image/ico" sizes="64x64" href="{{ asset('favicon.ico') }}">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="/css/estilos.css">
 </head>
+
 <body>
 
-  <!-- ================================================
-       NAVBAR
-  ================================================ -->
-   @include('partials.navbar')
+  <x-navbar />
 
-  <!-- ================================================
+  <!-- 
        PAGE HEADER
-  ================================================ -->
+   -->
   <header class="page-header">
     <div class="container">
-     
+
       <p class="page-header-eyebrow mt-2">Documentación legal</p>
       <h1 class="section-title">Términos y <span class="text-red">Condiciones</span></h1>
       <p style="color:var(--color-muted);font-size:.85rem;margin-top:.75rem">
@@ -31,9 +32,9 @@
     </div>
   </header>
 
-  <!-- ================================================
+  <!-- 
        CONTENIDO LEGAL
-  ================================================ -->
+   -->
   <section class="section-dark">
     <div class="container">
       <div class="row">
@@ -41,16 +42,31 @@
         <!-- Índice lateral -->
         <div class="col-lg-3 mb-5 mb-lg-0">
           <div class="feature-card" style="position:sticky;top:100px">
-            <h4 style="font-family:var(--font-display);font-size:1rem;letter-spacing:.08em;margin-bottom:1rem">Índice</h4>
+            <h4 style="font-family:var(--font-display);font-size:1rem;letter-spacing:.08em;margin-bottom:1rem">Índice
+            </h4>
             <nav>
               <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem">
-                <li><a href="#condiciones" style="color:var(--color-muted);font-size:.88rem;transition:color .2s" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-muted)'">1. Condiciones de Uso</a></li>
-                <li><a href="#privacidad" style="color:var(--color-muted);font-size:.88rem;transition:color .2s" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-muted)'">2. Política de Privacidad</a></li>
-                <li><a href="#garantias" style="color:var(--color-muted);font-size:.88rem;transition:color .2s" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-muted)'">3. Garantías</a></li>
-                <li><a href="#envios-terminos" style="color:var(--color-muted);font-size:.88rem;transition:color .2s" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-muted)'">4. Política de Envíos</a></li>
-                <li><a href="#devoluciones" style="color:var(--color-muted);font-size:.88rem;transition:color .2s" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-muted)'">5. Cambios y Devoluciones</a></li>
-                <li><a href="#propiedad" style="color:var(--color-muted);font-size:.88rem;transition:color .2s" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-muted)'">6. Propiedad Intelectual</a></li>
-                <li><a href="#contacto-legal" style="color:var(--color-muted);font-size:.88rem;transition:color .2s" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-muted)'">7. Contacto Legal</a></li>
+                <li><a href="#condiciones" style="color:var(--color-muted);font-size:.88rem;transition:color .2s"
+                    onmouseover="this.style.color='var(--color-red)'"
+                    onmouseout="this.style.color='var(--color-muted)'">1. Condiciones de Uso</a></li>
+                <li><a href="#privacidad" style="color:var(--color-muted);font-size:.88rem;transition:color .2s"
+                    onmouseover="this.style.color='var(--color-red)'"
+                    onmouseout="this.style.color='var(--color-muted)'">2. Política de Privacidad</a></li>
+                <li><a href="#garantias" style="color:var(--color-muted);font-size:.88rem;transition:color .2s"
+                    onmouseover="this.style.color='var(--color-red)'"
+                    onmouseout="this.style.color='var(--color-muted)'">3. Garantías</a></li>
+                <li><a href="#envios-terminos" style="color:var(--color-muted);font-size:.88rem;transition:color .2s"
+                    onmouseover="this.style.color='var(--color-red)'"
+                    onmouseout="this.style.color='var(--color-muted)'">4. Política de Envíos</a></li>
+                <li><a href="#devoluciones" style="color:var(--color-muted);font-size:.88rem;transition:color .2s"
+                    onmouseover="this.style.color='var(--color-red)'"
+                    onmouseout="this.style.color='var(--color-muted)'">5. Cambios y Devoluciones</a></li>
+                <li><a href="#propiedad" style="color:var(--color-muted);font-size:.88rem;transition:color .2s"
+                    onmouseover="this.style.color='var(--color-red)'"
+                    onmouseout="this.style.color='var(--color-muted)'">6. Propiedad Intelectual</a></li>
+                <li><a href="#contacto-legal" style="color:var(--color-muted);font-size:.88rem;transition:color .2s"
+                    onmouseover="this.style.color='var(--color-red)'"
+                    onmouseout="this.style.color='var(--color-muted)'">7. Contacto Legal</a></li>
               </ul>
             </nav>
           </div>
@@ -72,11 +88,14 @@
             <section id="condiciones">
               <h3><i class="bi bi-file-text me-2"></i>1. Condiciones de Uso</h3>
               <p>
-                El uso de este sitio web está sujeto a las siguientes condiciones. Al navegar por él, el usuario declara:
+                El uso de este sitio web está sujeto a las siguientes condiciones. Al navegar por él, el usuario
+                declara:
               </p>
               <ul>
-                <li>Ser mayor de 18 años o contar con la supervisión de un adulto responsable para realizar compras.</li>
-                <li>Proporcionar datos verídicos y actualizados al momento de crear una cuenta o realizar un pedido.</li>
+                <li>Ser mayor de 18 años o contar con la supervisión de un adulto responsable para realizar compras.
+                </li>
+                <li>Proporcionar datos verídicos y actualizados al momento de crear una cuenta o realizar un pedido.
+                </li>
                 <li>No utilizar el sitio con fines fraudulentos o ilegales.</li>
                 <li>No intentar vulnerar la seguridad del sitio web ni realizar accesos no autorizados.</li>
                 <li>No reproducir, copiar ni explotar el contenido del sitio sin autorización expresa.</li>
@@ -98,10 +117,12 @@
               <p>
                 La privacidad de nuestros usuarios es fundamental. Todos los datos personales recopilados a
                 través de este sitio son tratados de conformidad con la
-                <strong style="color:var(--color-white)">Ley 25.326 de Protección de Datos Personales</strong> de Argentina.
+                <strong style="color:var(--color-white)">Ley 25.326 de Protección de Datos Personales</strong> de
+                Argentina.
               </p>
 
-              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">Datos que recopilamos</h4>
+              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">
+                Datos que recopilamos</h4>
               <ul>
                 <li>Nombre completo, dirección de email y número de teléfono.</li>
                 <li>Dirección de entrega para procesar envíos.</li>
@@ -109,7 +130,8 @@
                 <li>Información de navegación (cookies, IP, dispositivo) para mejorar la experiencia de uso.</li>
               </ul>
 
-              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">Uso de los datos</h4>
+              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">
+                Uso de los datos</h4>
               <ul>
                 <li>Procesar y gestionar pedidos.</li>
                 <li>Enviar confirmaciones de compra y actualizaciones de estado de envío.</li>
@@ -117,7 +139,8 @@
                 <li>Mejorar nuestros productos y servicios.</li>
               </ul>
 
-              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">Tus derechos</h4>
+              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">
+                Tus derechos</h4>
               <p>
                 En cualquier momento podés solicitar el acceso, rectificación, supresión u oposición al
                 tratamiento de tus datos personales escribiendo a
@@ -136,17 +159,21 @@
               <h3><i class="bi bi-patch-check me-2"></i>3. Garantías</h3>
               <p>
                 Todos los productos comercializados por Goleador FC cuentan con garantía de calidad.
-                Nos comprometemos a que cada camiseta enviada cumple con las especificaciones detalladas en su descripción.
+                Nos comprometemos a que cada camiseta enviada cumple con las especificaciones detalladas en su
+                descripción.
               </p>
 
-              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">Alcance de la garantía</h4>
+              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">
+                Alcance de la garantía</h4>
               <ul>
-                <li><strong style="color:var(--color-white)">30 días</strong> de garantía por defectos de fabricación (costuras, estampado, material).</li>
+                <li><strong style="color:var(--color-white)">30 días</strong> de garantía por defectos de fabricación
+                  (costuras, estampado, material).</li>
                 <li>El producto debe presentarse sin signos de uso, lavado ni alteración.</li>
                 <li>Incluye defectos en bordados, serigrafía o fallas en el tejido.</li>
               </ul>
 
-              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">Exclusiones de garantía</h4>
+              <h4 style="font-family:var(--font-body);font-size:1rem;color:var(--color-white);margin:1.25rem 0 .5rem">
+                Exclusiones de garantía</h4>
               <ul>
                 <li>Desgaste normal por uso.</li>
                 <li>Daños causados por mal uso, lavado incorrecto o exposición a productos químicos.</li>
@@ -169,11 +196,15 @@
                 a nuestra operación (feriados, demoras del servicio postal, etc.).
               </p>
               <ul>
-                <li>Los pedidos se procesan en un plazo de <strong style="color:var(--color-white)">24 a 48 hs hábiles</strong> luego de confirmado el pago.</li>
-                <li>El costo de envío se calcula según la zona de destino y se informa antes de confirmar la compra.</li>
-                <li>Los envíos superiores a <strong style="color:var(--color-white)">$200</strong> son gratuitos (excluye envío express).</li>
+                <li>Los pedidos se procesan en un plazo de <strong style="color:var(--color-white)">24 a 48 hs
+                    hábiles</strong> luego de confirmado el pago.</li>
+                <li>El costo de envío se calcula según la zona de destino y se informa antes de confirmar la compra.
+                </li>
+                <li>Los envíos superiores a <strong style="color:var(--color-white)">$200</strong> son gratuitos
+                  (excluye envío express).</li>
                 <li>Una vez despachado el pedido, se envía el número de seguimiento al email registrado.</li>
-                <li>En caso de pérdida o extravío por parte de la empresa de correos, Goleador FC gestionará el reclamo correspondiente.</li>
+                <li>En caso de pérdida o extravío por parte de la empresa de correos, Goleador FC gestionará el reclamo
+                  correspondiente.</li>
               </ul>
             </section>
 
@@ -181,7 +212,8 @@
             <section id="devoluciones">
               <h3><i class="bi bi-arrow-repeat me-2"></i>5. Cambios y Devoluciones</h3>
               <p>
-                Aceptamos cambios y devoluciones dentro de los <strong style="color:var(--color-white)">10 días corridos</strong>
+                Aceptamos cambios y devoluciones dentro de los <strong style="color:var(--color-white)">10 días
+                  corridos</strong>
                 desde la recepción del producto, siempre que se cumplan las siguientes condiciones:
               </p>
               <ul>
@@ -190,7 +222,8 @@
                 <li>Se debe presentar el comprobante de compra (número de pedido).</li>
               </ul>
               <p>
-                Los <strong style="color:var(--color-white)">cambios de talle</strong> están disponibles sujetos a stock.
+                Los <strong style="color:var(--color-white)">cambios de talle</strong> están disponibles sujetos a
+                stock.
                 El costo del envío de devolución está a cargo del comprador, salvo cuando el motivo sea un
                 defecto de fabricación o un error en el pedido de nuestra parte.
               </p>
@@ -223,7 +256,8 @@
               </p>
               <ul>
                 <li><strong style="color:var(--color-white)">Email:</strong> legal@goleadorfc.com.ar</li>
-                <li><strong style="color:var(--color-white)">Dirección:</strong> Av. Cazadores Correntinos 3412, Corrientes Capital, Argentina</li>
+                <li><strong style="color:var(--color-white)">Dirección:</strong> Av. Cazadores Correntinos 3412,
+                  Corrientes Capital, Argentina</li>
                 <li><strong style="color:var(--color-white)">Teléfono:</strong> +54 11 1234-5678</li>
               </ul>
               <p style="font-size:.88rem">
@@ -240,11 +274,9 @@
     </div>
   </section>
 
-  <!-- ================================================
-       FOOTER
-  ================================================ -->
-   @include('partials.footer')
+  <x-footer />
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

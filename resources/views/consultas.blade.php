@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Hacé tu consulta a GOLEADOR FC sobre productos, tallas, disponibilidad y más." />
   <title>Consultas | GOLEADOR FC</title>
 
+  <link rel="icon" type="image/ico" sizes="64x64" href="{{ asset('favicon.ico') }}">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="/css/estilos.css">
 </head>
+
 <body>
 
-  <!-- ================================================
-       NAVBAR
-  ================================================ -->
-  @include('partials.navbar')
+  <x-navbar />
 
-  <!-- ================================================
+  <!-- 
        PAGE HEADER
-  ================================================ -->
+   -->
   <header class="page-header">
     <div class="container">
-      
-      
+
+
       <p class="page-header-eyebrow mt-2">Te respondemos en el día</p>
       <h1 class="section-title">Hacé tu <span class="text-red">Consulta</span></h1>
     </div>
   </header>
 
-  <!-- ================================================
+  <!-- 
        CONSULTAS RÁPIDAS (FAQ)
-  ================================================ -->
+   -->
   <section class="section-surface">
     <div class="container">
 
@@ -46,11 +47,13 @@
         <div class="col-lg-8">
           <div class="accordion" id="faqAccordion">
 
-            <div class="accordion-item" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
+            <div class="accordion-item"
+              style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
               <h3 class="accordion-header" id="faq1">
                 <button class="accordion-button collapsed"
-                        style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
-                        type="button" data-bs-toggle="collapse" data-bs-target="#faqBody1" aria-expanded="false" aria-controls="faqBody1">
+                  style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
+                  type="button" data-bs-toggle="collapse" data-bs-target="#faqBody1" aria-expanded="false"
+                  aria-controls="faqBody1">
                   ¿Las camisetas son originales?
                 </button>
               </h3>
@@ -63,11 +66,13 @@
               </div>
             </div>
 
-            <div class="accordion-item" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
+            <div class="accordion-item"
+              style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
               <h3 class="accordion-header" id="faq2">
                 <button class="accordion-button collapsed"
-                        style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
-                        type="button" data-bs-toggle="collapse" data-bs-target="#faqBody2" aria-expanded="false" aria-controls="faqBody2">
+                  style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
+                  type="button" data-bs-toggle="collapse" data-bs-target="#faqBody2" aria-expanded="false"
+                  aria-controls="faqBody2">
                   ¿Puedo pedir estampado personalizado con nombre y número?
                 </button>
               </h3>
@@ -80,11 +85,13 @@
               </div>
             </div>
 
-            <div class="accordion-item" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
+            <div class="accordion-item"
+              style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
               <h3 class="accordion-header" id="faq3">
                 <button class="accordion-button collapsed"
-                        style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
-                        type="button" data-bs-toggle="collapse" data-bs-target="#faqBody3" aria-expanded="false" aria-controls="faqBody3">
+                  style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
+                  type="button" data-bs-toggle="collapse" data-bs-target="#faqBody3" aria-expanded="false"
+                  aria-controls="faqBody3">
                   ¿Cómo sé qué talle elegir?
                 </button>
               </h3>
@@ -97,11 +104,13 @@
               </div>
             </div>
 
-            <div class="accordion-item" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
+            <div class="accordion-item"
+              style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
               <h3 class="accordion-header" id="faq4">
                 <button class="accordion-button collapsed"
-                        style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
-                        type="button" data-bs-toggle="collapse" data-bs-target="#faqBody4" aria-expanded="false" aria-controls="faqBody4">
+                  style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
+                  type="button" data-bs-toggle="collapse" data-bs-target="#faqBody4" aria-expanded="false"
+                  aria-controls="faqBody4">
                   ¿Hacen pedidos al por mayor o para empresas?
                 </button>
               </h3>
@@ -114,11 +123,13 @@
               </div>
             </div>
 
-            <div class="accordion-item" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
+            <div class="accordion-item"
+              style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)!important;margin-bottom:.75rem;overflow:hidden">
               <h3 class="accordion-header" id="faq5">
                 <button class="accordion-button collapsed"
-                        style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
-                        type="button" data-bs-toggle="collapse" data-bs-target="#faqBody5" aria-expanded="false" aria-controls="faqBody5">
+                  style="background:var(--color-surface);color:var(--color-white);font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;border:none;box-shadow:none"
+                  type="button" data-bs-toggle="collapse" data-bs-target="#faqBody5" aria-expanded="false"
+                  aria-controls="faqBody5">
                   ¿Cómo rastreo mi pedido?
                 </button>
               </h3>
@@ -138,9 +149,9 @@
     </div>
   </section>
 
-  <!-- ================================================
+  <!-- 
        FORMULARIO DE CONSULTA
-  ================================================ -->
+   -->
   <section class="section-dark" id="formulario">
     <div class="container">
       <div class="row justify-content-center">
@@ -155,81 +166,26 @@
             </p>
           </div>
 
-          <div class="feature-card">
-            <form action="#" method="POST" novalidate>
 
-              <div class="row g-4">
+          <x-formulario />
 
-                <div class="col-sm-6">
-                  <label class="form-label-gf" for="nombre">Nombre *</label>
-                  <input class="form-control-gf" type="text" id="nombre" name="nombre"
-                         placeholder="Tu nombre completo" autocomplete="name" required />
-                </div>
-
-                <div class="col-sm-6">
-                  <label class="form-label-gf" for="email">Email *</label>
-                  <input class="form-control-gf" type="email" id="email" name="email"
-                         placeholder="tu@email.com" autocomplete="email" required />
-                </div>
-
-                <div class="col-12">
-                  <label class="form-label-gf" for="tipo">Tipo de consulta</label>
-                  <select class="form-control-gf" id="tipo" name="tipo">
-                    <option value="" disabled selected>¿Sobre qué querés consultar?</option>
-                    <option value="producto">Disponibilidad de producto</option>
-                    <option value="talle">Guía de talles</option>
-                    <option value="personalizado">Camiseta personalizada</option>
-                    <option value="mayorista">Pedido mayorista</option>
-                    <option value="pedido">Estado de mi pedido</option>
-                    <option value="cambio">Cambio o devolución</option>
-                    <option value="otro">Otro</option>
-                  </select>
-                </div>
-
-                <div class="col-12">
-                  <label class="form-label-gf" for="mensaje">Mensaje *</label>
-                  <textarea class="form-control-gf" id="mensaje" name="mensaje"
-                            placeholder="Describí tu consulta con el mayor detalle posible. Si preguntás por un producto específico, indicá el nombre, modelo y talle que buscás." required></textarea>
-                </div>
-
-                <!-- Canales alternativos -->
-                <div class="col-12">
-                  <div class="p-3 rounded" style="background:var(--color-surface2);border:1px solid var(--color-border)">
-                    <p style="font-size:.82rem;color:var(--color-muted);margin-bottom:.5rem">
-                      <i class="bi bi-lightning-charge-fill text-red me-1"></i>
-                      <strong style="color:var(--color-white)">¿Necesitás respuesta inmediata?</strong>
-                    </p>
-                    <p style="font-size:.82rem;color:var(--color-muted);margin:0">
-                      Escribinos por WhatsApp al
-                      <strong style="color:var(--color-white)">+54 9 11 2345-6789</strong>
-                      y te respondemos al instante en horario comercial.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <button type="submit" class="btn-primary-gf w-100" style="text-align:center;padding:1rem">
-                    <i class="bi bi-send-fill me-2"></i>Enviar consulta
-                  </button>
-                </div>
-
-              </div>
-            </form>
-          </div>
 
           <!-- Tiempo de respuesta -->
           <div class="row g-3 mt-3">
             <div class="col-4 text-center">
               <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--color-red)">2 hs</div>
-              <div style="font-size:.78rem;color:var(--color-muted);text-transform:uppercase;letter-spacing:.1em">Por WhatsApp</div>
+              <div style="font-size:.78rem;color:var(--color-muted);text-transform:uppercase;letter-spacing:.1em">Por
+                WhatsApp</div>
             </div>
             <div class="col-4 text-center">
               <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--color-red)">24 hs</div>
-              <div style="font-size:.78rem;color:var(--color-muted);text-transform:uppercase;letter-spacing:.1em">Por Email / Form</div>
+              <div style="font-size:.78rem;color:var(--color-muted);text-transform:uppercase;letter-spacing:.1em">Por
+                Email / Form</div>
             </div>
             <div class="col-4 text-center">
               <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--color-red)">5★</div>
-              <div style="font-size:.78rem;color:var(--color-muted);text-transform:uppercase;letter-spacing:.1em">Atención al cliente</div>
+              <div style="font-size:.78rem;color:var(--color-muted);text-transform:uppercase;letter-spacing:.1em">
+                Atención al cliente</div>
             </div>
           </div>
 
@@ -238,11 +194,89 @@
     </div>
   </section>
 
-  <!-- ================================================
+  <!-- 
        FOOTER
-  ================================================ -->
-  @include('partials.footer')
+   -->
+  <x-footer />
+  <script>
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
 
+    // Reglas de validación
+    const rules = {
+      nombre: { required: true, label: 'El nombre es obligatorio' },
+      apellido: { required: true, label: 'El apellido es obligatorio' },
+      email: { required: true, label: 'El email es obligatorio', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMsg: 'Ingresá un email válido' },
+      asunto: { required: true, label: 'Seleccioná un asunto' },
+      mensaje: { required: true, label: 'El mensaje es obligatorio' },
+    };
+
+    function validateField(name, value) {
+      const rule = rules[name];
+      if (!rule) return null;
+      if (rule.required && !value.trim()) return rule.label;
+      if (rule.pattern && value && !rule.pattern.test(value)) return rule.patternMsg;
+      return null;
+    }
+
+    function showError(name, msg) {
+      const el = document.querySelector(`[data-field="${name}"]`);
+      const input = document.getElementById(name);
+      if (el) el.textContent = msg || '';
+      if (input) input.classList.toggle('is-invalid', !!msg);
+    }
+
+    function resetForm() {
+      form.reset();
+      // Limpiar errores visuales
+      document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+      document.querySelectorAll('.form-control-gf').forEach(el => el.classList.remove('is-invalid'));
+      // Mostrar formulario y ocultar éxito
+      success.style.display = 'none';
+      form.style.display = 'block';
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      let valid = true;
+
+      // Validar cada campo con regla
+      Object.keys(rules).forEach(name => {
+        const input = document.getElementById(name);
+        if (!input) return;
+        const error = validateField(name, input.value);
+        showError(name, error);
+        if (error) valid = false;
+      });
+
+      if (!valid) return;
+
+      // Todo OK → ocultar form y mostrar éxito
+      form.style.display = 'none';
+      success.style.display = 'block';
+
+      // Scroll suave al mensaje
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // Validación en tiempo real al salir del campo
+    Object.keys(rules).forEach(name => {
+      const input = document.getElementById(name);
+      if (!input) return;
+      input.addEventListener('blur', () => {
+        const error = validateField(name, input.value);
+        showError(name, error);
+      });
+      input.addEventListener('input', () => {
+        if (input.classList.contains('is-invalid')) {
+          const error = validateField(name, input.value);
+          showError(name, error);
+        }
+      });
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
