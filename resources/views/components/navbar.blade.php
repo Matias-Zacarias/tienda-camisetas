@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-gf fixed-top" aria-label="Navegación principal">  
+<nav class="navbar navbar-expand-lg navbar-gf fixed-top" aria-label="Navegación principal">
   <div class="container">
 
     <!-- Marca -->
