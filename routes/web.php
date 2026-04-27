@@ -31,5 +31,3 @@ Route::get('/terminos', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 });
-
-Route::post('/contacto', [ContactoController::class, 'procesar']);
