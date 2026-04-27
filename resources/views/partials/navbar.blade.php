@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-gf" aria-label="Navegación principal">
+<nav class="navbar navbar-expand-lg navbar-gf fixed-top" aria-label="Navegación principal">  
   <div class="container">
 
     <!-- Marca -->
-    <a class="navbar-brand-gf" href="index.html">
+    <div class="navbar-brand-gf">
       <i class="bi bi-dribbble"></i>
       GOLEADOR<span class="brand-accent">FC</span>
-    </a>
+    </div>
 
     <!-- Toggler mobile -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"

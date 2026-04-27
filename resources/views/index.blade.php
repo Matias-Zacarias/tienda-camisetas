@@ -88,7 +88,7 @@ $productos = [
           </p>
 
           <div class="mb-4">
-            <span class="hero-badge">Envío gratis</span>
+            <span class="hero-badge">Envíos a partir de $3</span>
             <span class="hero-badge">Pago en cuotas</span>
             <span class="hero-badge">Stock permanente</span>
           </div>
