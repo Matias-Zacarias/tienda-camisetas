@@ -1,73 +1,65 @@
 @php
-$productos = [
-  [
-        'nombre'     => 'Argentina Titular 2026',
-        'liga'       => 'Selección Argentina',
-        'precio'     => '$135',
-        'imagen'     => asset('Camisetas/argentina.png'),
-        'badge'      => 'Oferta',
-        'badgeStyle' => 'background:#f0a500;color:#000',
-        'precioOld'  => '$149',
-  ],
-  [
-        'nombre'     => 'España Titular 2026',
-        'liga'       => 'Selección España',
-        'precio'     => '$138',
-        'imagen'     => asset('Camisetas/españa.png'),
-        'badge'      => null,
-        'badgeStyle' => '',
-        'precioOld'  => null,
-  ],
-  [
-        'nombre'     => 'Brasil Titular 2026',
-        'liga'       => 'Selección Brasil',
-        'precio'     => '$140',
-        'imagen'     => asset('Camisetas/brasil.png'),
-        'badge'      => 'Nuevo',
-        'badgeStyle' => '',
-        'precioOld'  => null,
-  ],
-  [
-        'nombre'     => 'Francia Titular 2026',
-        'liga'       => 'Selección Francia',
-        'precio'     => '$145',
-        'imagen'     => asset('Camisetas/francia.png'),
-        'badge'      => 'Nuevo',
-        'badgeStyle' => '',
-        'precioOld'  => null,
-  ],
-]
+  $productos = [
+    [
+      'nombre' => 'Argentina Titular 2026',
+      'liga' => 'Selección Argentina',
+      'precio' => '$135',
+      'imagen' => asset('Camisetas/argentina.png'),
+      'badge' => 'Oferta',
+      'badgeStyle' => 'background:#f0a500;color:#000',
+      'precioOld' => '$149',
+    ],
+    [
+      'nombre' => 'España Titular 2026',
+      'liga' => 'Selección España',
+      'precio' => '$138',
+      'imagen' => asset('Camisetas/españa.png'),
+      'badge' => null,
+      'badgeStyle' => '',
+      'precioOld' => null,
+    ],
+    [
+      'nombre' => 'Brasil Titular 2026',
+      'liga' => 'Selección Brasil',
+      'precio' => '$140',
+      'imagen' => asset('Camisetas/brasil.png'),
+      'badge' => 'Nuevo',
+      'badgeStyle' => '',
+      'precioOld' => null,
+    ],
+    [
+      'nombre' => 'Francia Titular 2026',
+      'liga' => 'Selección Francia',
+      'precio' => '$145',
+      'imagen' => asset('Camisetas/francia.png'),
+      'badge' => 'Nuevo',
+      'badgeStyle' => '',
+      'precioOld' => null,
+    ],
+  ]
 @endphp
-
 
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="GOLEADOR FC — La tienda online de camisetas de fútbol oficiales y alternativas." />
   <title>GOLEADOR FC | Tienda de Camisetas de Fútbol</title>
-
-
-  <!-- Bootstrap 5 CSS -->
+  <link rel="icon" type="image/ico" sizes="64x64" href="{{ asset('favicon.ico') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <!-- Estilos personalizados -->
+
   <link rel="stylesheet" href="/css/estilos.css">
 
 </head>
+
 <body>
 
-  <!-- ================================================
-       NAVBAR
-  ================================================ -->
-  @include('partials.navbar')
-
-  <!-- ================================================
-       HERO
-  ================================================ -->
+  <x-navbar />
+  <!--  HERO -->
   <section class="hero" aria-label="Sección principal">
     <div class="hero-bg" role="img" aria-label="Estadio de fútbol"></div>
 
@@ -119,16 +111,12 @@ $productos = [
     </div>
   </section>
 
-  <!-- ================================================
-       PRESENTACIÓN
-  ================================================ -->
+  <!--  PRESENTACIÓN-->
   <section class="section-surface">
     <div class="container">
       <div class="row align-items-center g-5">
 
-      <!--  -->
-
-        <div class="col-lg-6">
+        <!-- <div class="col-lg-6">
           <p class="page-header-eyebrow">Sobre nosotros</p>
           <h2 class="section-title mb-3">La tienda de los <span>verdaderos hinchas</span></h2>
           <hr class="section-divider left">
@@ -141,9 +129,27 @@ $productos = [
             Cada camiseta pasa por un control de calidad antes de llegar a tus manos.
           </p>
           <a href="/about" class="btn-outline-gf">Conocé nuestra historia</a>
+        </div> -->
+
+        <div class="col-lg-6 reveal">
+          <p class="page-header-eyebrow">Sobre nosotros</p>
+          <h2 class="section-title mb-3">La tienda de los <span>verdaderos hinchas</span></h2>
+          <hr class="section-divider left">
+
+          <p style="color:#b0b0b0">
+            Desde 2015 somos la referencia en venta de camisetas de selecciones de fútbol en Argentina. Trabajamos con
+            los mejores proveedores para ofrecerte productos de calidad superior.
+          </p>
+
+          <p style="color:#b0b0b0" class="mb-4">
+            Nuestro compromiso es simple: calidad real, precio justo y atención personalizada.
+            Cada camiseta pasa por un control de calidad antes de llegar a tus manos.
+          </p>
+
+          <a href="/about" class="btn-outline-gf">Conocé nuestra historia</a>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 reveal2">
           <div class="row g-3">
             <!-- tarjetas de propuesta de valor -->
             <div class="col-6">
@@ -181,33 +187,21 @@ $productos = [
     </div>
   </section>
 
-  <!-- ================================================
-       PRODUCTOS DESTACADOS
-  ================================================ -->
+  <!--  PRODUCTOS DESTACADOS -->
   <section class="section-dark">
     <div class="container">
 
       <div class="text-center mb-5">
-        <!-- <p class="page-header-eyebrow">Temporada 2024/25</p> -->
         <h2 class="section-title">Productos <span>Destacados</span></h2>
         <hr class="section-divider">
       </div>
 
       <div class="row g-4">
 
-        
-          @foreach($productos as $p)
-          <x-productCard
-          :nombre="$p['nombre']"
-          :liga="$p['liga']"
-          :precio="$p['precio']"
-          :imagen="$p['imagen']"
-          :badge="$p['badge'] ?? null"
-          :precioOld="$p['precioOld'] ?? null"
-          :badgeStyle="$p['badgeStyle'] ?? ''"
-          />
-          @endforeach
-          
+        @foreach($productos as $p)
+          <x-productCard :nombre="$p['nombre']" :liga="$p['liga']" :precio="$p['precio']" :imagen="$p['imagen']"
+            :badge="$p['badge'] ?? null" :precioOld="$p['precioOld'] ?? null" :badgeStyle="$p['badgeStyle'] ?? ''" />
+        @endforeach
 
       </div>
 
@@ -219,23 +213,32 @@ $productos = [
     </div>
   </section>
 
-  <!-- ================================================
-       BANNER CTA
-  ================================================ -->
+  <!-- BANNER  -->
 
-  <x-banner
-   titulo="¿No encontrás tu camiseta?"
-   desc="Hacenos una consulta y buscamos el modelo que necesitás."
-   href="/consultas"
-   button-name="Consultar ahora"
-/>
+  <x-banner titulo="¿No encontrás tu camiseta?" desc="Hacenos una consulta y buscamos el modelo que necesitás."
+    href="/consultas" button-name="Consultar ahora" />
 
-  <!-- ================================================
-       FOOTER
-  ================================================ -->
-  @include('partials.footer')
+
+  <x-footer />
+
+  <script>
+    const elements = document.querySelectorAll('.reveal, .reveal2');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    elements.forEach(el => observer.observe(el));
+  </script>
 
   <!-- Bootstrap 5 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -16,16 +16,11 @@
         {{ $precio }}
       </div>
       <div class="btn-wrapper">
-      <button
-  class="btn-ver-mas"
-  type="button"
-  
-  disabled
->
-  Ver más
-</button>
-<span class="btn-tooltip">Disponible próximamente</span>
-</div>
+        <button class="btn-ver-mas" type="button" disabled>
+          Ver más
+        </button>
+        <span class="btn-tooltip">Disponible próximamente</span>
+      </div>
     </div>
   </article>
 </div>

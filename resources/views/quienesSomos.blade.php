@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Conocé la historia y el equipo detrás de GOLEADOR FC." />
   <title>Quiénes Somos | GOLEADOR FC</title>
 
+  <link rel="icon" type="image/ico" sizes="64x64" href="{{ asset('favicon.ico') }}">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net /npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
   <link rel="stylesheet" href="/css/estilos.css">
 </head>
+
 <body>
 
-  <!-- ================================================
-       NAVBAR
-  ================================================ -->
-  @include('partials.navbar')
+  <x-navbar />
 
-  <!-- ================================================
-       PAGE HEADER
-  ================================================ -->
+  <!--  PAGE HEADER -->
   <header class="page-header">
     <div class="container">
-      
       <p class="page-header-eyebrow mt-2">Nuestra empresa</p>
       <h1 class="section-title">Quiénes <span class="text-red">Somos</span></h1>
     </div>
   </header>
 
-  <!-- ================================================
-       HISTORIA
-  ================================================ -->
+  <!-- HISTORIA-->
   <section class="section-dark">
     <div class="container">
       <div class="row align-items-center g-5">
@@ -64,31 +60,36 @@
             <div class="timeline-item">
               <div class="timeline-year">2015</div>
               <h4 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:.3rem">Los comienzos</h4>
-              <p class="timeline-text">Nacemos como emprendimiento familiar en el barrio Laguna Seca, Corrientes, Capital. Primeras 50 ventas por Instagram.</p>
+              <p class="timeline-text">Nacemos como emprendimiento familiar en el barrio Laguna Seca, Corrientes,
+                Capital. Primeras 50 ventas por Instagram.</p>
             </div>
 
             <div class="timeline-item">
               <div class="timeline-year">2017</div>
               <h4 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:.3rem">Primer local</h4>
-              <p class="timeline-text">Inauguramos nuestro primer local en Av. Cazadores Correntinos. Ampliamos el catálogo agregando más modelos.</p>
+              <p class="timeline-text">Inauguramos nuestro primer local en Av. Cazadores Correntinos. Ampliamos el
+                catálogo agregando más modelos.</p>
             </div>
 
             <div class="timeline-item">
               <div class="timeline-year">2019</div>
               <h4 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:.3rem">Expansión nacional</h4>
-              <p class="timeline-text">Lanzamos la tienda online y comenzamos envíos a todo el país. Llegamos a 5.000 clientes.</p>
+              <p class="timeline-text">Lanzamos la tienda online y comenzamos envíos a todo el país. Llegamos a 5.000
+                clientes.</p>
             </div>
 
             <div class="timeline-item">
               <div class="timeline-year">2022</div>
               <h4 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:.3rem">Boom post-Mundial</h4>
-              <p class="timeline-text">Tras el Mundial de Qatar, multiplicamos las ventas x4 y superamos los 10.000 clientes registrados.</p>
+              <p class="timeline-text">Tras el Mundial de Qatar, multiplicamos las ventas x4 y superamos los 10.000
+                clientes registrados.</p>
             </div>
 
             <div class="timeline-item">
               <div class="timeline-year">2026</div>
               <h4 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:.3rem">Hoy</h4>
-              <p class="timeline-text">+15.000 clientes, nueva plataforma online y expansión a mercados de Latinoamérica.</p>
+              <p class="timeline-text">+15.000 clientes, nueva plataforma online y expansión a mercados de
+                Latinoamérica.</p>
             </div>
 
           </div>
@@ -98,9 +99,7 @@
     </div>
   </section>
 
-  <!-- ================================================
-       OBJETIVOS / MISIÓN-VISIÓN
-  ================================================ -->
+  <!--  OBJETIVOS / MISIÓN-VISIÓN -->
   <section class="section-surface">
     <div class="container">
 
@@ -152,22 +151,14 @@
     </div>
   </section>
 
-  <!-- ================================================
-       CTA BANNER
-  ================================================ -->
-   <x-banner
-   titulo="Formá parte de nuestra comunidad"
-   desc="Más de 15.000 usuarios ya confían en nosotros. Unite al equipo."
-   href="/catalogo"
-   button-name="Ver catálogo"
-/>
+  <!-- BANNER -->
+  <x-banner titulo="Formá parte de nuestra comunidad"
+    desc="Más de 15.000 usuarios ya confían en nosotros. Unite al equipo." href="/catalogo"
+    button-name="Ver catálogo" />
 
-
-  <!-- ================================================
-       FOOTER
-  ================================================ -->
-   @include('partials.footer')
+  <x-footer />
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

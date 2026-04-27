@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Métodos de pago, formas de envío y tiempos de entrega — GOLEADOR FC." />
   <title>Comercialización | GOLEADOR FC</title>
 
+  <link rel="icon" type="image/ico" sizes="64x64" href="{{ asset('favicon.ico') }}">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="/css/estilos.css">
 </head>
+
 <body>
 
-  <!-- ================================================
-       NAVBAR
-  ================================================ -->
-  @include('partials.navbar')
+  <x-navbar />
 
-  <!-- ================================================
+  <!-- 
        PAGE HEADER
-  ================================================ -->
+   -->
   <header class="page-header">
     <div class="container">
-    
+
       <p class="page-header-eyebrow mt-2">Comprá con confianza</p>
       <h1 class="section-title">Cómo <span class="text-red">Comprarnos</span></h1>
     </div>
   </header>
 
-  <!-- ================================================
+  <!-- 
        MÉTODOS DE PAGO
-  ================================================ -->
+   -->
   <section class="section-dark" id="pagos">
     <div class="container">
 
@@ -48,12 +49,16 @@
             <h3 class="feature-title">Tarjeta de Crédito</h3>
             <p style="color:#888;font-size:.9rem">
               Visa, Mastercard, American Express y Naranja X.
-              Pagá en hasta <strong style="color:var(--color-white)">6 cuotas sin interés</strong> con bancos seleccionados.
+              Pagá en hasta <strong style="color:var(--color-white)">6 cuotas sin interés</strong> con bancos
+              seleccionados.
             </p>
             <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
-              <span style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">VISA</span>
-              <span style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">MC</span>
-              <span style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">AMEX</span>
+              <span
+                style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">VISA</span>
+              <span
+                style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">MC</span>
+              <span
+                style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">AMEX</span>
             </div>
           </div>
         </div>
@@ -67,8 +72,11 @@
               Sin cargos adicionales, <strong style="color:var(--color-white)">pago en una sola cuota</strong>.
             </p>
             <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
-              <span style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">VISA Débito</span>
-              <span style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">Maestro</span>
+              <span
+                style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">VISA
+                Débito</span>
+              <span
+                style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">Maestro</span>
             </div>
           </div>
         </div>
@@ -93,8 +101,10 @@
               <strong style="color:var(--color-white)">Acreditación inmediata</strong>.
             </p>
             <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
-              <span style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">MercadoPago</span>
-              <span style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">Ualá</span>
+              <span
+                style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">MercadoPago</span>
+              <span
+                style="background:var(--color-surface2);border:1px solid var(--color-border);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;color:var(--color-muted)">Ualá</span>
             </div>
           </div>
         </div>
@@ -102,8 +112,7 @@
       </div>
 
       <!-- Alerta cuotas -->
-      <div class="mt-4 p-4 rounded"
-           style="background:rgba(217,4,41,0.08);border:1px solid rgba(217,4,41,0.25)">
+      <div class="mt-4 p-4 rounded" style="background:rgba(217,4,41,0.08);border:1px solid rgba(217,4,41,0.25)">
         <div class="d-flex gap-3 align-items-start">
           <i class="bi bi-info-circle-fill text-red" style="font-size:1.3rem;flex-shrink:0;margin-top:.15rem"></i>
           <div>
@@ -119,9 +128,9 @@
     </div>
   </section>
 
-  <!-- ================================================
+  <!-- 
        FORMAS DE ENVÍO
-  ================================================ -->
+   -->
   <section class="section-surface" id="envios">
     <div class="container">
 
@@ -209,26 +218,34 @@
             <table style="width:100%;border-collapse:collapse">
               <thead>
                 <tr style="border-bottom:1px solid var(--color-border)">
-                  <th style="padding:.5rem 0;font-size:.8rem;color:var(--color-muted);text-align:left;font-weight:600;letter-spacing:.08em;text-transform:uppercase">Zona</th>
-                  <th style="padding:.5rem 0;font-size:.8rem;color:var(--color-muted);text-align:right;font-weight:600;letter-spacing:.08em;text-transform:uppercase">Costo</th>
+                  <th
+                    style="padding:.5rem 0;font-size:.8rem;color:var(--color-muted);text-align:left;font-weight:600;letter-spacing:.08em;text-transform:uppercase">
+                    Zona</th>
+                  <th
+                    style="padding:.5rem 0;font-size:.8rem;color:var(--color-muted);text-align:right;font-weight:600;letter-spacing:.08em;text-transform:uppercase">
+                    Costo</th>
                 </tr>
               </thead>
               <tbody>
                 <tr style="border-bottom:1px solid var(--color-border)">
                   <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">CORRIENTES CAPITAL.</td>
-                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$3</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$3
+                  </td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--color-border)">
                   <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Interior provincia Corrientes.</td>
-                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$5</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$5
+                  </td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--color-border)">
                   <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Resto del país</td>
-                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$10</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">
+                    $10</td>
                 </tr>
                 <tr>
                   <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Patagonia / NOA / NEA</td>
-                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">$15</td>
+                  <td style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">
+                    $15</td>
                 </tr>
               </tbody>
             </table>
@@ -236,7 +253,8 @@
             <div class="mt-3 p-3 rounded" style="background:rgba(217,4,41,0.08);border:1px solid rgba(217,4,41,0.2)">
               <p style="font-size:.82rem;color:#b0b0b0;margin:0">
                 <i class="bi bi-gift-fill text-red me-1"></i>
-                <strong style="color:var(--color-white)">Envío gratis</strong> en compras mayores a $200 (excepto express).
+                <strong style="color:var(--color-white)">Envío gratis</strong> en compras mayores a $200 (excepto
+                express).
               </p>
             </div>
           </div>
@@ -246,9 +264,9 @@
     </div>
   </section>
 
-  <!-- ================================================
+  <!-- 
        TIEMPOS DE ENTREGA
-  ================================================ -->
+   -->
   <section class="section-dark" id="tiempos">
     <div class="container">
 
@@ -308,10 +326,18 @@
           <table class="table" style="color:#b0b0b0;border-color:var(--color-border)">
             <thead>
               <tr style="border-color:var(--color-border)">
-                <th style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">Servicio</th>
-                <th style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">Corrientes Capital</th>
-                <th style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">Provincia</th>
-                <th style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">Resto del país</th>
+                <th
+                  style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">
+                  Servicio</th>
+                <th
+                  style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">
+                  Corrientes Capital</th>
+                <th
+                  style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">
+                  Provincia</th>
+                <th
+                  style="color:var(--color-muted);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-color:var(--color-border)">
+                  Resto del país</th>
               </tr>
             </thead>
             <tbody>
@@ -323,7 +349,8 @@
               </tr>
               <tr style="border-color:var(--color-border)">
                 <td style="border-color:var(--color-border)">OCA</td>
-                <td style="border-color:var(--color-border);color:var(--color-red);font-weight:700">1–2 días hábiles</td>
+                <td style="border-color:var(--color-border);color:var(--color-red);font-weight:700">1–2 días hábiles
+                </td>
                 <td style="border-color:var(--color-border)">2–4 días hábiles</td>
                 <td style="border-color:var(--color-border)">4–7 días hábiles</td>
               </tr>
@@ -342,26 +369,21 @@
             </tbody>
           </table>
         </div>
-        <p style="color:#666;font-size:.8rem;margin:0"><i class="bi bi-info-circle me-1"></i>Los tiempos son estimados y pueden variar por condiciones del servicio postal. Días hábiles no incluyen sábados, domingos ni feriados.</p>
+        <p style="color:#666;font-size:.8rem;margin:0"><i class="bi bi-info-circle me-1"></i>Los tiempos son estimados y
+          pueden variar por condiciones del servicio postal. Días hábiles no incluyen sábados, domingos ni feriados.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- BANNER -->
 
-  <x-banner
-   titulo="¿Tenés alguna duda sobre tu pedido?"
-   desc="Nuestro equipo responde en menos de 2 horas."
-   href="/contacto"
-   button-name="Contactanos"
-/>
+  <x-banner titulo="¿Tenés alguna duda sobre tu pedido?" desc="Nuestro equipo responde en menos de 2 horas."
+    href="/contacto" button-name="Contactanos" />
 
-  <!-- ================================================
-       FOOTER
-  ================================================ -->
-   @include('partials.footer')
+  <x-footer />
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
