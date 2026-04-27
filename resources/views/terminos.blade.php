@@ -41,7 +41,7 @@
 
         <!-- Índice lateral -->
         <div class="col-lg-3 mb-5 mb-lg-0">
-          <div class="feature-card" style="position:sticky;top:100px">
+          <div class="feature-card-form" style="position:sticky;top:100px">
             <h4 style="font-family:var(--font-display);font-size:1rem;letter-spacing:.08em;margin-bottom:1rem">Índice
             </h4>
             <nav>
