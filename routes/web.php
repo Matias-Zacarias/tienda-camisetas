@@ -31,3 +31,7 @@ Route::get('/terminos', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 });
+
+Route::get('/panel-admin', function () {
+    return view('panelAdmin');
+});

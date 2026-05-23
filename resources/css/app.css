@@ -1,1 +1,78 @@
-/* app.css — sin Tailwind */
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+
+/* ============================================================
+   GOLEADOR FC - Tienda de Camisetas de Fútbol
+   Archivo: styles.css
+   Descripción: Estilos personalizados (se carga sobre Bootstrap 5)
+   ============================================================ */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:wght@300;400;600;700;900&display=swap');
+
+/* ---------- Variables CSS ---------- */
+:root {
+  --color-bg:        #0D0D0D;
+  --color-surface:   #1A1A1A;
+  --color-surface2:  #242424;
+  --color-red:       #D90429;
+  --color-red-dark:  #a80320;
+  --color-white:     #F2F2F2;
+  --color-muted:     #888888;
+  --color-border:    #2E2E2E;
+
+  --font-display:    'Bebas Neue', sans-serif;
+  --font-body:       'Nunito Sans', sans-serif;
+
+  --radius:          6px;
+  --radius-lg:       12px;
+  --transition:      0.25s ease;
+  --shadow-card:     0 4px 24px rgba(0,0,0,0.45);
+  --shadow-red:      0 4px 20px rgba(217,4,41,0.35);
+}
+
+/* ---------- Reset / Base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-white);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  color: var(--color-white);
+}
+
+a {
+  color: var(--color-red);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--color-white); }
+
+img { max-width: 100%; height: auto; }
+
+/* ---------- Utilidades ---------- */
+.text-red   { color: var(--color-red) !important; }
+.bg-surface { background-color: var(--color-surface) !important; }
+.bg-surface2{ background-color: var(--color-surface2) !important; }
+.border-red { border-color: var(--color-red) !important; }
