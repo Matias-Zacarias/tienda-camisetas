@@ -77,3 +77,8 @@ Esto va a proteger que no cualquier usuario pueda eliminar productos o modificar
 Dejar de exponer el token de reset de session
 POST /forgot-password
 POST /reset-password
+
+cambiar en .env (no vamos a guardar sesiones en base de datos porque usamos token)
+SESSION_DRIVER=file
+CACHE_STORE=file
+QUEUE_CONNECTION=database
