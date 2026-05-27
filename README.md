@@ -82,3 +82,6 @@ cambiar en .env (no vamos a guardar sesiones en base de datos porque usamos toke
 SESSION_DRIVER=file
 CACHE_STORE=file
 QUEUE_CONNECTION=database
+
+activar worker para que soporte carga pesada 
+php artisan queue:work
