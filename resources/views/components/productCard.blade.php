@@ -16,10 +16,15 @@
         {{ $precio }}
       </div>
       <div class="btn-wrapper">
-        <button class="btn-ver-mas" type="button" disabled>
-          Ver más
+        <!-- <span class="btn-tooltip">Disponible próximamente</span> -->
+        <button class="btn-ver-mas" type="button" onclick="addToCart({
+      nombre: '{{ $nombre }}',
+      liga:   '{{ $liga }}',
+      precio: '{{ $precio }}',
+      imagen: '{{ $imagen }}'
+    })">
+          <i class="bi bi-bag-plus me-1"></i> Agregar
         </button>
-        <span class="btn-tooltip">Disponible próximamente</span>
       </div>
     </div>
   </article>
