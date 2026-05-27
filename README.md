@@ -56,3 +56,24 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Instrucciones de sanctum para token
+
+Esto permite que los datos del usuario viajen en un token generado por sanctum que da mas seguridad al sistema
+para que no pueda ser falsificado el tipo de usuario
+
+Ejecutar: 
+-composer require laravel/sanctum
+-php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+
+El primer usuario admin deberia ser creado manualmente.
+
+Crea el middleware para verificar si es administrador
+php artisan make:middleware AdminMiddleware, nos creo la carpeta en http
+Esto va a proteger que no cualquier usuario pueda eliminar productos o modificar cosas sensibles 
+
+
+Dejar de exponer el token de reset de session
+POST /forgot-password
+POST /reset-password

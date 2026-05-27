@@ -256,16 +256,24 @@
                     );
 
                     console.log('localStorage', localStorage);
-                    
+
 
                     loginForm.reset();
 
                     // Redirección
-                    /* setTimeout(() => {
+                    setTimeout(() => {
 
-                        window.location.href = '/';
+                        if (data.user.role === 'admin') {
 
-                    }, 1500); */
+                            window.location.href = '/panel-admin';
+
+                        } else {
+
+                            window.location.href = '/';
+
+                        }
+
+                    }, 1500);
 
                 } catch (error) {
 

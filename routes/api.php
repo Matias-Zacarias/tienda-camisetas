@@ -13,45 +13,102 @@ use App\Http\Controllers\CarritoItemController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PasswordResetTokenController;
 
-Route::post('/register', [AuthController::class, 'register']);
+/*
+|--------------------------------------------------------------------------
+| AUTH
+|--------------------------------------------------------------------------
+*/
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [
+    AuthController::class,
+    'register'
+]);
 
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/login', [
+    AuthController::class,
+    'login'
+]);
 
-Route::apiResource('users', UserController::class);
+/*
+|--------------------------------------------------------------------------
+| RUTAS PUBLICAS
+|--------------------------------------------------------------------------
+*/
 
-Route::apiResource('products', ProductController::class);
+// catálogo
 
-Route::apiResource('talles', TalleController::class);
+Route::get('/products', [
+    ProductController::class,
+    'index'
+]);
 
-Route::apiResource(
-    'encabezados-pedidos',
-    EncabezadoPedidoController::class
-);
+Route::get('/products/{id}', [
+    ProductController::class,
+    'show'
+]);
 
-Route::apiResource(
-    'detalles-pedidos',
-    DetallePedidoController::class
-);
+// talles
 
+Route::get('/talles', [
+    TalleController::class,
+    'index'
+]);
 
-Route::apiResource(
-    'carritos',
-    CarritoController::class
-);
+Route::get('/talles/{id}', [
+    TalleController::class,
+    'show'
+]);
 
-Route::apiResource(
-    'carrito-items',
-    CarritoItemController::class
-);
+/*
+|--------------------------------------------------------------------------
+| RUTAS PROTEGIDAS
+|--------------------------------------------------------------------------
+*/
 
-Route::apiResource(
-    'password-reset-tokens',
-    PasswordResetTokenController::class
-);
+Route::middleware('auth:sanctum')
+    ->group(function () {
 
-Route::apiResource(
-    'sessions',
-    SessionController::class
-);
+        Route::post('/logout', [
+            AuthController::class,
+            'logout'
+        ]);
+
+        Route::apiResource(
+            'encabezados-pedidos',
+            EncabezadoPedidoController::class
+        );
+
+        Route::apiResource(
+            'detalles-pedidos',
+            DetallePedidoController::class
+        );
+
+        Route::apiResource(
+            'carritos',
+            CarritoController::class
+        );
+
+        Route::apiResource(
+            'carrito-items',
+            CarritoItemController::class
+        );
+
+        Route::apiResource(
+            'password-reset-tokens',
+            PasswordResetTokenController::class
+        );
+
+    });
+
+Route::middleware(['auth:sanctum', 'admin'])
+    ->group(function () {
+        // Rutas que solo los administradores pueden acceder
+    
+        Route::apiResource('products', ProductController::class)
+            ->except(['index', 'show']);
+
+        Route::apiResource('talles', TalleController::class)
+            ->except(['index', 'show']);
+
+        Route::apiResource('users', UserController::class);
+    });
