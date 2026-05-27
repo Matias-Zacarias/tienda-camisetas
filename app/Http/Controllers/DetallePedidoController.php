@@ -8,76 +8,115 @@ use Illuminate\Http\Request;
 class DetallePedidoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar todos los detalles
      */
     public function index()
     {
         return response()->json(
-            DetallePedido::with(['pedido', 'producto'])
-                ->latest()
-                ->get()
+
+            DetallePedido::with([
+                'pedido',
+                'product',
+                'talle'
+            ])
+            ->latest()
+            ->get()
+
         );
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crear detalle de pedido
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'pedido_id'       => 'required|exists:encabezados_pedidos,id',
-            'product_id'      => 'required|exists:products,id',
+
+            'pedido_id' => 'required|exists:encabezados_pedidos,id',
+
+            'product_id' => 'nullable|exists:products,id',
+
+            'talle_id' => 'nullable|exists:talle,id',
+
             'producto_nombre' => 'required|string|max:255',
+
+            'talle_nombre' => 'nullable|string|max:255',
+
             'precio_unitario' => 'required|numeric|min:0',
-            'cantidad'        => 'required|integer|min:1',
-            'subtotal'        => 'required|numeric|min:0',
+
+            'cantidad' => 'required|integer|min:1',
+
+            'subtotal' => 'required|numeric|min:0',
         ]);
 
         $detalle = DetallePedido::create($validated);
 
         return response()->json([
             'message' => 'Detalle de pedido creado correctamente',
-            'data' => $detalle
+
+            'data' => $detalle->load([
+                'pedido',
+                'product',
+                'talle'
+            ])
         ], 201);
     }
 
     /**
-     * Display the specified resource.
+     * Mostrar detalle específico
      */
     public function show(string $id)
     {
-        $detalle = DetallePedido::with(['pedido', 'producto'])
-            ->findOrFail($id);
+        $detalle = DetallePedido::with([
+            'pedido',
+            'product',
+            'talle'
+        ])->findOrFail($id);
 
         return response()->json($detalle);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar detalle
      */
     public function update(Request $request, string $id)
     {
         $detalle = DetallePedido::findOrFail($id);
 
         $validated = $request->validate([
-            'pedido_id'       => 'sometimes|required|exists:encabezados_pedidos,id',
-            'product_id'      => 'sometimes|required|exists:products,id',
+
+            'pedido_id' => 'sometimes|required|exists:encabezados_pedidos,id',
+
+            'product_id' => 'nullable|exists:products,id',
+
+            'talle_id' => 'nullable|exists:talle,id',
+
             'producto_nombre' => 'sometimes|required|string|max:255',
+
+            'talle_nombre' => 'nullable|string|max:255',
+
             'precio_unitario' => 'sometimes|required|numeric|min:0',
-            'cantidad'        => 'sometimes|required|integer|min:1',
-            'subtotal'        => 'sometimes|required|numeric|min:0',
+
+            'cantidad' => 'sometimes|required|integer|min:1',
+
+            'subtotal' => 'sometimes|required|numeric|min:0',
         ]);
 
         $detalle->update($validated);
 
         return response()->json([
             'message' => 'Detalle de pedido actualizado correctamente',
-            'data' => $detalle
+
+            'data' => $detalle->load([
+                'pedido',
+                'product',
+                'talle'
+            ])
         ]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar detalle
      */
     public function destroy(string $id)
     {

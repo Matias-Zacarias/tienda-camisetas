@@ -6,36 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class DetallePedido extends Model
+class CarritoItem extends Model
 {
     use HasFactory;
 
-    protected $table = 'detalles_pedidos';
+    protected $table = 'carrito_items';
 
     protected $fillable = [
-        'pedido_id',
+        'carrito_id',
         'product_id',
         'talle_id',
-        'producto_nombre',
-        'talle_nombre',
-        'precio_unitario',
         'cantidad',
-        'subtotal',
     ];
 
     protected $casts = [
-        'precio_unitario' => 'decimal:2',
-        'subtotal' => 'decimal:2',
         'cantidad' => 'integer',
     ];
 
     // RELACIONES
 
-    public function pedido(): BelongsTo
+    public function carrito(): BelongsTo
     {
         return $this->belongsTo(
-            EncabezadoPedido::class,
-            'pedido_id'
+            Carrito::class,
+            'carrito_id'
         );
     }
 

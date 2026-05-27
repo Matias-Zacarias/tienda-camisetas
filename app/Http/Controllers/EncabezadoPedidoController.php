@@ -8,81 +8,120 @@ use Illuminate\Http\Request;
 class EncabezadoPedidoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar todos los pedidos
      */
     public function index()
     {
         return response()->json(
-            EncabezadoPedido::with('detalles')
-                ->latest()
-                ->get()
+
+            EncabezadoPedido::with([
+                'user',
+                'detalles.product',
+                'detalles.talle'
+            ])
+            ->latest()
+            ->get()
+
         );
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crear pedido
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'cliente_nombre'   => 'required|string|max:255',
-            'cliente_email'    => 'required|email|max:255',
+
+            'user_id' => 'nullable|exists:users,id',
+
             'cliente_telefono' => 'nullable|string|max:50',
-            'direccion_envio'  => 'required|string|max:500',
-            'metodo_pago'      => 'required|string|max:100',
-            'estado'           => 'nullable|string|max:50',
-            'subtotal'         => 'required|numeric|min:0',
-            'total'            => 'required|numeric|min:0',
-            'observaciones'    => 'nullable|string',
+
+            'direccion_envio' => 'required|string|max:500',
+
+            'metodo_pago' => 'nullable|string|max:100',
+
+            'estado' => 'nullable|string|max:50',
+
+            'subtotal' => 'required|numeric|min:0',
+
+            'total' => 'required|numeric|min:0',
+
+            'observaciones' => 'nullable|string',
         ]);
 
-        $pedido = EncabezadoPedido::create($validated);
+        $pedido = EncabezadoPedido::create([
+
+            ...$validated,
+
+            'estado' => $validated['estado'] ?? 'pendiente',
+        ]);
 
         return response()->json([
             'message' => 'Pedido creado correctamente',
-            'data' => $pedido
+
+            'data' => $pedido->load([
+                'user',
+                'detalles.product',
+                'detalles.talle'
+            ])
         ], 201);
     }
 
     /**
-     * Display the specified resource.
+     * Mostrar un pedido
      */
     public function show(string $id)
     {
-        $pedido = EncabezadoPedido::with('detalles')->findOrFail($id);
+        $pedido = EncabezadoPedido::with([
+            'user',
+            'detalles.product',
+            'detalles.talle'
+        ])->findOrFail($id);
 
         return response()->json($pedido);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar pedido
      */
     public function update(Request $request, string $id)
     {
         $pedido = EncabezadoPedido::findOrFail($id);
 
         $validated = $request->validate([
-            'cliente_nombre'   => 'sometimes|required|string|max:255',
-            'cliente_email'    => 'sometimes|required|email|max:255',
+
+            'user_id' => 'nullable|exists:users,id',
+
             'cliente_telefono' => 'nullable|string|max:50',
-            'direccion_envio'  => 'sometimes|required|string|max:500',
-            'metodo_pago'      => 'sometimes|required|string|max:100',
-            'estado'           => 'nullable|string|max:50',
-            'subtotal'         => 'sometimes|required|numeric|min:0',
-            'total'            => 'sometimes|required|numeric|min:0',
-            'observaciones'    => 'nullable|string',
+
+            'direccion_envio' => 'sometimes|required|string|max:500',
+
+            'metodo_pago' => 'nullable|string|max:100',
+
+            'estado' => 'nullable|string|max:50',
+
+            'subtotal' => 'sometimes|required|numeric|min:0',
+
+            'total' => 'sometimes|required|numeric|min:0',
+
+            'observaciones' => 'nullable|string',
         ]);
 
         $pedido->update($validated);
 
         return response()->json([
             'message' => 'Pedido actualizado correctamente',
-            'data' => $pedido
+
+            'data' => $pedido->load([
+                'user',
+                'detalles.product',
+                'detalles.talle'
+            ])
         ]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar pedido
      */
     public function destroy(string $id)
     {

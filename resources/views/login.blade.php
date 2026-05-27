@@ -19,7 +19,7 @@
         <!-- Logo -->
         <div class="login-logo">
             <span class="logo-text">GOLEADOR <span class="logo-accent">FC</span></span>
-            <span class="logo-subtitle">Tu Pasión, Tu Camiseta</span>
+
         </div>
 
         <!-- Card principal -->
@@ -42,9 +42,9 @@
 
         <!-- Footer -->
         <div class="login-footer">
-            <p>¿Necesitas ayuda? <a href="#">Contáctanos</a></p>
+            <p>¿Necesitas ayuda? <a href="/contacto">Contáctanos</a></p>
             <p style="margin-top: 0.5rem;">
-                <a href="#">Volver al inicio</a>
+                <a href="/">Volver al inicio</a>
             </p>
         </div>
     </div>
@@ -166,11 +166,14 @@
         // ========== Login Form ==========
         const loginForm = document.getElementById('loginForm');
 
-        loginForm.addEventListener('submit', (e) => {
+        loginForm.addEventListener('submit', async (e) => {
+
             e.preventDefault();
 
             const email = document.getElementById('loginEmail');
+
             const password = document.getElementById('loginPassword');
+
             let isValid = true;
 
             // Limpiar errores previos
@@ -179,40 +182,104 @@
 
             // Validar email
             if (!email.value.trim()) {
+
                 showError(email, 'El email es requerido');
+
                 isValid = false;
+
             } else if (!validateEmail(email.value.trim())) {
+
                 showError(email, 'Por favor ingresa un email válido');
+
                 isValid = false;
             }
 
             // Validar contraseña
             if (!password.value) {
+
                 showError(password, 'La contraseña es requerida');
+
                 isValid = false;
             }
 
             if (isValid) {
-                // Simular loading
+
                 const submitBtn = loginForm.querySelector('.btn-submit');
+
                 submitBtn.classList.add('loading');
 
-                setTimeout(() => {
-                    submitBtn.classList.remove('loading');
-                    showSuccess('¡Inicio de sesión exitoso! Redirigiendo...');
+                try {
 
-                    // Aquí iría la lógica real de login
-                    setTimeout(() => {
-                        // window.location.href = 'index.html';
-                        console.log('Login exitoso:', {
+                    const response = await fetch('/api/login', {
+
+                        method: 'POST',
+
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+
+                        body: JSON.stringify({
+
                             email: email.value,
+
                             password: password.value
-                        });
-                    }, 1500);
-                }, 1500);
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    console.log(data);
+
+                    // ERROR BACKEND
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.message || 'Error al iniciar sesión'
+                        );
+                    }
+
+                    // Guardar token
+                    localStorage.setItem(
+                        'token',
+                        data.token
+                    );
+
+                    // Guardar usuario
+                    localStorage.setItem(
+                        'user',
+                        JSON.stringify(data.user)
+                    );
+
+                    showSuccess(
+                        '¡Inicio de sesión exitoso!'
+                    );
+
+                    console.log('localStorage', localStorage);
+                    
+
+                    loginForm.reset();
+
+                    // Redirección
+                    /* setTimeout(() => {
+
+                        window.location.href = '/';
+
+                    }, 1500); */
+
+                } catch (error) {
+
+                    console.log(error);
+
+                    showError(email, error.message);
+
+
+                } finally {
+
+                    submitBtn.classList.remove('loading');
+                }
             }
         });
-
         // ========== Register Form ==========
         const registerForm = document.getElementById('registerForm');
 

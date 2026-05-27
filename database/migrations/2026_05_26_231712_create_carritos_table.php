@@ -11,20 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('talle', function (Blueprint $table) {
+        Schema::create('carritos', function (Blueprint $table) {
 
             $table->id();
 
-            // Relación con products
-            $table->foreignId('product_id')
+            // Usuario dueño del carrito
+            $table->foreignId('user_id')
+                ->nullable()
                 ->constrained()
-                ->onDelete('cascade');
-
-            // Nombre del talle
-            $table->string('name');
-
-            // Stock disponible
-            $table->integer('stock')->default(0);
+                ->nullOnDelete();
 
             $table->timestamps();
         });
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('talle');
+        Schema::dropIfExists('carritos');
     }
 };

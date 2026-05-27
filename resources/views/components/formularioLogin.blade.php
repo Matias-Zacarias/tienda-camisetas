@@ -29,7 +29,7 @@
         <a href="#" class="form-link">¿Olvidaste tu contraseña?</a>
     </div>
 
-    <div class="divider">
+    <!-- <div class="divider">
         <span>O continúa con</span>
     </div>
 
@@ -42,5 +42,5 @@
             <i class="fab fa-facebook-f"></i>
             Facebook
         </button>
-    </div>
+    </div> -->
 </form>

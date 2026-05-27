@@ -55,11 +55,11 @@
 
     <button type="submit" class="btn-submit">Crear Cuenta</button>
 
-    <div class="divider">
+   <!--  <div class="divider">
         <span>O regístrate con</span>
-    </div>
+    </div> -->
 
-    <div class="social-buttons">
+    <!-- <div class="social-buttons">
         <button type="button" class="btn-social">
             <i class="fab fa-google"></i>
             Google
@@ -68,5 +68,5 @@
             <i class="fab fa-facebook-f"></i>
             Facebook
         </button>
-    </div>
+    </div> -->
 </form>
