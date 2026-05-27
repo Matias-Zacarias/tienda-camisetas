@@ -13,126 +13,136 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::latest()->get();
+        return Product::with('talles')
+            ->latest()
+            ->get();
     }
 
     /**
      * Crear producto
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'short_description' => 'nullable|string|max:500',
-        'price' => 'required|numeric',
-        'discount_price' => 'nullable|numeric',
-        'stock' => 'required|integer',
-        'sku' => 'nullable|string|max:100',
-        'category' => 'nullable|string|max:100',
-        'brand' => 'nullable|string|max:100',
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
 
-        // imagen principal string
-        'image' => 'nullable|string',
+            'slug' => 'nullable|string|max:255|unique:products,slug',
 
-        // galería array de strings
-        'gallery' => 'nullable|array',
-        'gallery.*' => 'string',
-    ]);
+            'description' => 'nullable|string',
 
-    $product = Product::create([
+            'short_description' => 'nullable|string|max:500',
 
-        'name' => $request->name,
+            'price' => 'required|numeric',
 
-        'slug' => $request->slug
-            ? Str::slug($request->slug)
-            : Str::slug($request->name),
+            'discount_price' => 'nullable|numeric',
 
-        'description' => $request->description,
+            'category' => 'nullable|string|max:100',
 
-        'short_description' => $request->short_description,
+            'brand' => 'nullable|string|max:100',
 
-        'price' => $request->price,
+            'image' => 'nullable|string',
 
-        'discount_price' => $request->discount_price,
+            'gallery' => 'nullable|array',
 
-        'stock' => $request->stock,
+            'gallery.*' => 'string',
 
-        'sku' => $request->sku,
+            'is_active' => 'boolean',
 
-        // string
-        'image' => $request->image,
+            'is_featured' => 'boolean',
+        ]);
 
-        // array de strings
-        'gallery' => $request->gallery ?? [],
+        // Generar slug automáticamente
+        $validated['slug'] = isset($validated['slug'])
+            ? Str::slug($validated['slug'])
+            : Str::slug($validated['name']);
 
-        'category' => $request->category,
+        $product = Product::create([
+            ...$validated,
 
-        'brand' => $request->brand,
+            'gallery' => $validated['gallery'] ?? [],
 
-        'is_active' => $request->is_active ?? true,
+            'is_active' => $validated['is_active'] ?? true,
 
-        'is_featured' => $request->is_featured ?? false,
-    ]);
+            'is_featured' => $validated['is_featured'] ?? false,
+        ]);
 
-    return response()->json([
-        'message' => 'Producto creado',
-        'product' => $product
-    ], 201);
-}
+        return response()->json([
+            'message' => 'Producto creado',
+            'product' => $product->load('talles')
+        ], 201);
+    }
 
     /**
      * Mostrar producto
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        return Product::findOrFail($id);
+        return Product::with('talles')
+            ->where('slug', $slug)
+            ->firstOrFail();
     }
 
     /**
      * Actualizar producto
      */
     public function update(Request $request, string $id)
-{
-    $product = Product::findOrFail($id);
+    {
+        $product = Product::findOrFail($id);
 
-    $validated = $request->validate([
-        'name' => 'sometimes|string|max:255',
-        'description' => 'nullable|string',
-        'short_description' => 'nullable|string|max:500',
-        'price' => 'sometimes|numeric',
-        'discount_price' => 'nullable|numeric',
-        'stock' => 'sometimes|integer',
-        'sku' => 'nullable|string|max:100',
-        'category' => 'nullable|string|max:100',
-        'brand' => 'nullable|string|max:100',
+        $validated = $request->validate([
+            'name' => 'sometimes|string|max:255',
 
-        'image' => 'nullable|string',
+            'slug' => 'nullable|string|max:255|unique:products,slug,' . $product->id,
 
-        'gallery' => 'nullable|array',
-        'gallery.*' => 'string',
+            'description' => 'nullable|string',
 
-        'is_active' => 'boolean',
-        'is_featured' => 'boolean',
-    ]);
+            'short_description' => 'nullable|string|max:500',
 
-    if (isset($validated['slug'])) {
-        $validated['slug'] = Str::slug($validated['slug']);
+            'price' => 'sometimes|numeric',
+
+            'discount_price' => 'nullable|numeric',
+
+            'category' => 'nullable|string|max:100',
+
+            'brand' => 'nullable|string|max:100',
+
+            'image' => 'nullable|string',
+
+            'gallery' => 'nullable|array',
+
+            'gallery.*' => 'string',
+
+            'is_active' => 'boolean',
+
+            'is_featured' => 'boolean',
+        ]);
+
+        // Slug opcional
+        if (isset($validated['slug'])) {
+
+            $validated['slug'] = Str::slug($validated['slug']);
+
+        } elseif (isset($validated['name'])) {
+
+            $validated['slug'] = Str::slug($validated['name']);
+        }
+
+        $product->update($validated);
+
+        return response()->json([
+            'message' => 'Producto actualizado',
+            'product' => $product->load('talles')
+        ]);
     }
 
-    $product->update($validated);
-
-    return response()->json([
-        'message' => 'Producto actualizado',
-        'product' => $product
-    ]);
-}
     /**
      * Eliminar producto
      */
     public function destroy(string $id)
     {
-        Product::destroy($id);
+        $product = Product::findOrFail($id);
+
+        $product->delete();
 
         return response()->json([
             'message' => 'Producto eliminado'

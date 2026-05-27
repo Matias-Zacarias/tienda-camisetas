@@ -16,8 +16,6 @@ class Product extends Model
         'short_description',
         'price',
         'discount_price',
-        'stock',
-        'sku',
         'image',
         'gallery',
         'category',
@@ -33,4 +31,16 @@ class Product extends Model
         'is_active' => 'boolean',
         'is_featured' => 'boolean',
     ];
+
+    // RELACIONES
+
+    public function talles()
+    {
+        return $this->hasMany(Talle::class);
+    }
+
+    public function detallesPedidos()
+    {
+        return $this->hasMany(DetallePedido::class);
+    }
 }

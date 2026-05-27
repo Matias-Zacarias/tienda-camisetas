@@ -11,9 +11,11 @@ return new class extends Migration
         Schema::create('encabezados_pedidos', function (Blueprint $table) {
             $table->id();
 
-            $table->string('cliente_nombre');
+            $table->foreignId('user_id')
+        ->nullable()
+        ->constrained()
+        ->nullOnDelete();
 
-            $table->string('cliente_email');
 
             $table->string('cliente_telefono')->nullable();
 

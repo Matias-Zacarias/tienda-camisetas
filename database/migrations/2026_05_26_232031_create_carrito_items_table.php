@@ -6,45 +6,45 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('detalles_pedidos', function (Blueprint $table) {
+        Schema::create('carrito_items', function (Blueprint $table) {
 
             $table->id();
 
-            $table->foreignId('pedido_id')
-                ->constrained('encabezados_pedidos')
+            // Relación con carrito
+            $table->foreignId('carrito_id')
+                ->constrained('carritos')
                 ->onDelete('cascade');
 
+            // Producto
             $table->foreignId('product_id')
                 ->nullable()
                 ->constrained('products')
                 ->nullOnDelete();
 
-            // NUEVO
+            // Talle
             $table->foreignId('talle_id')
                 ->nullable()
-                ->constrained('talles')
+                ->constrained('talle')
                 ->nullOnDelete();
 
-            // Snapshot histórico
-            $table->string('producto_nombre');
-
-            // Snapshot del talle
-            $table->string('talle_nombre')->nullable();
-
-            $table->decimal('precio_unitario', 10, 2);
-
-            $table->integer('cantidad');
-
-            $table->decimal('subtotal', 10, 2);
+            // Cantidad del producto
+            $table->integer('cantidad')
+                ->default(1);
 
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('detalles_pedidos');
+        Schema::dropIfExists('carrito_items');
     }
 };

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class EncabezadoPedido extends Model
 {
@@ -12,8 +14,7 @@ class EncabezadoPedido extends Model
     protected $table = 'encabezados_pedidos';
 
     protected $fillable = [
-        'cliente_nombre',
-        'cliente_email',
+        'user_id',
         'cliente_telefono',
         'direccion_envio',
         'metodo_pago',
@@ -28,7 +29,14 @@ class EncabezadoPedido extends Model
         'total' => 'decimal:2',
     ];
 
-    public function detalles()
+    // RELACIONES
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function detalles(): HasMany
     {
         return $this->hasMany(DetallePedido::class, 'pedido_id');
     }
