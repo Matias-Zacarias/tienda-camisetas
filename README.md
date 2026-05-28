@@ -67,6 +67,8 @@ Ejecutar:
 -composer require laravel/sanctum
 -php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
 
+-php artisan migrate:fresh
+
 El primer usuario admin deberia ser creado manualmente.
 
 Crea el middleware para verificar si es administrador
@@ -85,3 +87,38 @@ QUEUE_CONNECTION=database
 
 activar worker para que soporte carga pesada 
 php artisan queue:work
+
+
+PARA EJECUTAR COMANDOS SQL 
+php artisan tinker
+
+COMANDO PARA CREAR PRIMER USUARIO
+\App\Models\User::create([
+    'name' => 'Matias Admin',
+    'email' => 'admin@test.com',
+    'password' => '123456',
+    'role' => 'admin'
+]);
+
+preguntar por si tener varios layout
+preguntar por login que redirige segun usuario
+
+preguntar por si se puede comprar sin registro
+preguntar por usar sanctum y el middleware 
+
+preguntar por readme 
+
+preguntar por crear el primer usuario mediante comando 
+
+preguntar por cambiar la contraseña enviando un mail por n8n
+
+
+eliminar tabla de carrito
+
+para comprar hay que estar registrado
+
+falta boton de logout
+
+vista para ver mis pedidos 
+
+una vista que sea una especie de resumen del pedido y ahi confimar el pedido
