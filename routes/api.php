@@ -8,16 +8,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TalleController;
 use App\Http\Controllers\EncabezadoPedidoController;
 use App\Http\Controllers\DetallePedidoController;
-use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CarritoItemController;
-use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PasswordResetTokenController;
 
-/*
-|--------------------------------------------------------------------------
-| AUTH
-|--------------------------------------------------------------------------
-*/
 
 Route::post('/register', [
     AuthController::class,
@@ -81,11 +74,6 @@ Route::middleware('auth:sanctum')
         Route::apiResource(
             'detalles-pedidos',
             DetallePedidoController::class
-        );
-
-        Route::apiResource(
-            'carritos',
-            CarritoController::class
         );
 
         Route::apiResource(

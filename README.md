@@ -100,25 +100,24 @@ COMANDO PARA CREAR PRIMER USUARIO
     'role' => 'admin'
 ]);
 
-preguntar por si tener varios layout
-preguntar por login que redirige segun usuario
-
-preguntar por si se puede comprar sin registro
-preguntar por usar sanctum y el middleware 
-
-preguntar por readme 
-
-preguntar por crear el primer usuario mediante comando 
-
-preguntar por cambiar la contraseña enviando un mail por n8n
-
-
-eliminar tabla de carrito
-
-para comprar hay que estar registrado
+no se puede comprar sin registro
 
 falta boton de logout
 
 vista para ver mis pedidos 
 
+vista para ver el detalle
+
 una vista que sea una especie de resumen del pedido y ahi confimar el pedido
+
+implementar cloudinary para cargar productos
+
+ver de bajar los modulos de que ocupemos de bootstrap
+
+ver de como destacar mas la marca
+
+no se puede ver el carrito si no estas logueado ni logout
+
+si no estas logueado y queres comprar que te mande a registrar
+
+si estas logueado no podes ver contacto

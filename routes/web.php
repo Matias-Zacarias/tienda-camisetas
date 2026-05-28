@@ -1,7 +1,6 @@
 <?php
 
 
-use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,10 +31,35 @@ Route::get('/contacto', function () {
     return view('contacto');
 });
 
-Route::get('/panel-admin', function () {
-    return view('panelAdmin');
-});
-
 Route::get('/login', function () {
     return view('login');
+});
+
+Route::get('/panel-admin', function () {
+    return view('dashboardAdmin');
+});
+
+Route::get('/panel-admin-productos', function () {
+    return view('productAdmin');
+});
+
+Route::get('/panel-admin-pedidos', function () {
+    return view('ordenAdmin');
+});
+
+Route::get('/panel-admin-usuarios', function () {
+    return view('userAdmin');
+});
+
+Route::get('/panel-admin-consultas', function () {
+    return view('mensajesAdmin');
+});
+
+Route::get('/panel-admin-stock', function () {
+    return view('stockAdmin');
+});
+
+
+Route::get('/panel-admin-estadisticas', function () {
+    return view('statsAdmin');
 });
