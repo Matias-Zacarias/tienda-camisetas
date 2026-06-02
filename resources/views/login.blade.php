@@ -292,8 +292,6 @@
             }
         });
         // ========== Register Form ==========
-        const registerForm = document.getElementById('registerForm');
-
         registerForm.addEventListener('submit', async (e) => {
 
             e.preventDefault();
@@ -301,56 +299,108 @@
             const name = document.getElementById('registerName');
             const email = document.getElementById('registerEmail');
             const password = document.getElementById('registerPassword');
+            const confirmPassword = document.getElementById('confirmPassword');
 
             let isValid = true;
 
-            // validaciones...
+            // Limpiar errores previos
+            document.querySelectorAll('.form-group.error').forEach(el => {
+                el.classList.remove('error');
+            });
 
-            if (isValid) {
+            // Nombre
+            if (name.value.trim().length < 3) {
+                showError(name, 'El nombre debe tener al menos 3 caracteres');
+                isValid = false;
+            }
 
-                const submitBtn = registerForm.querySelector('.btn-submit');
-                submitBtn.classList.add('loading');
+            // Email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-                try {
+            if (!emailRegex.test(email.value.trim())) {
+                showError(email, 'Ingresa un email válido');
+                isValid = false;
+            }
 
-                    const csrfToken = document
-                        .querySelector('meta[name="csrf-token"]')
-                        .getAttribute('content');
+            // Contraseña
+            if (password.value.length < 6) {
+                showError(password, 'La contraseña debe tener al menos 6 caracteres');
+                isValid = false;
+            }
 
-                    const response = await fetch('/register', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': csrfToken,
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            name: name.value,
-                            email: email.value,
-                            password: password.value
-                        })
-                    });
+            // Confirmación
+            if (password.value !== confirmPassword.value) {
+                showError(confirmPassword, 'Las contraseñas no coinciden');
+                isValid = false;
+            }
 
-                    const data = await response.json();
+            if (!isValid) {
+                return;
+            }
 
-                    console.log(data);
+            const submitBtn = registerForm.querySelector('.btn-submit');
+            submitBtn.classList.add('loading');
 
-                    showSuccess('Usuario creado correctamente');
+            try {
 
-                    registerForm.reset();
+                const csrfToken = document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute('content');
 
-                } catch (error) {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name.value.trim(),
+                        email: email.value.trim(),
+                        password: password.value,
+                        password_confirmation: confirmPassword.value
+                    })
+                });
 
-                    console.log(error);
+                const data = await response.json();
 
-                } finally {
+                console.log(data);
 
-                    submitBtn.classList.remove('loading');
+                if (!response.ok) {
 
+                    if (data.errors?.email) {
+                        showError(email, data.errors.email[0]);
+                    }
+
+                    if (data.errors?.password) {
+                        showError(password, data.errors.password[0]);
+                    }
+
+                    if (data.errors?.name) {
+                        showError(name, data.errors.name[0]);
+                    }
+
+                    return;
                 }
+
+                showSuccess('Usuario creado correctamente');
+                registerForm.reset();
+
+            } catch (error) {
+
+                console.error(error);
+
+                showError(
+                    email,
+                    'Ocurrió un error inesperado'
+                );
+
+            } finally {
+
+                submitBtn.classList.remove('loading');
+
             }
         });
-
         // ========== Limpiar errores al escribir ==========
         const allInputs = document.querySelectorAll('.form-input');
         allInputs.forEach(input => {

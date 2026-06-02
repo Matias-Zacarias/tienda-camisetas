@@ -28,46 +28,10 @@
 
 
     </main>
-    <button onclick="testCreateProduct()" class="btn btn-success">
-        Probar POST /products (admin)
-    </button>
+
 
     <script>
-        async function testCreateProduct() {
-            console.log(localStorage.getItem('token'));
 
-            const token = localStorage.getItem('token');
-
-            try {
-                const response = await fetch('/api/products', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        name: 'Producto test',
-                        price: 100
-                    })
-                });
-
-                const data = await response.json();
-
-                console.log('STATUS:', response.status);
-                console.log('DATA:', data);
-
-                if (!response.ok) {
-                    throw new Error(data.message || 'Error');
-                }
-
-                alert('Producto creado');
-
-            } catch (error) {
-                console.error(error.message);
-                alert(error.message);
-            }
-        }
         // ================================================
         // THEME TOGGLE
         // ================================================
@@ -187,21 +151,11 @@
 
         }
 
-        // ================================================
-        // GLOBAL FUNCTION
-        // ================================================
-        window.showAddProduct = function () {
 
-            const addTab = document.querySelector(
-                '[data-tab="add"]'
-            );
-
-            if (addTab) {
-                addTab.click();
-            }
-
-        };
     </script>
+    <script src="/js/admin.js"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TalleController;
@@ -10,6 +9,7 @@ use App\Http\Controllers\EncabezadoPedidoController;
 use App\Http\Controllers\DetallePedidoController;
 use App\Http\Controllers\CarritoItemController;
 use App\Http\Controllers\PasswordResetTokenController;
+use App\Http\Controllers\DashboardAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +80,11 @@ Route::middleware(['auth:sanctum', 'admin'])
     
         Route::apiResource('products', ProductController::class)
             ->except(['index', 'show']);
+
+        Route::get(
+            '/admin/dashboard',
+            [DashboardAdminController::class, 'index']
+        );
 
         Route::apiResource('talles', TalleController::class)
             ->except(['index', 'show']);

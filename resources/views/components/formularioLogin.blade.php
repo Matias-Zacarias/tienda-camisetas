@@ -18,16 +18,16 @@
         <span class="form-error">La contraseña es requerida</span>
     </div>
 
-    <div class="form-checkbox-wrapper">
+    <!-- <div class="form-checkbox-wrapper">
         <input type="checkbox" class="form-checkbox" id="rememberMe">
         <label for="rememberMe" class="form-checkbox-label">Recordarme</label>
-    </div>
+    </div> -->
 
     <button type="submit" class="btn-submit">Iniciar Sesión</button>
 
-    <div class="form-links">
+    <!-- <div class="form-links">
         <a href="#" class="form-link">¿Olvidaste tu contraseña?</a>
-    </div>
+    </div> -->
 
     <!-- <div class="divider">
         <span>O continúa con</span>
