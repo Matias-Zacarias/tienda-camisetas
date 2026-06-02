@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Login - GOLEADOR FC</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:wght@300;400;600;700;900&display=swap"
@@ -210,23 +211,25 @@
 
                 try {
 
-                    const response = await fetch('/api/login', {
+                    const csrfToken = document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute('content');
+
+                    const response = await fetch('/auth/login', {
 
                         method: 'POST',
 
                         headers: {
                             'Content-Type': 'application/json',
-                            'Accept': 'application/json'
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
                         },
 
                         body: JSON.stringify({
-
                             email: email.value,
-
                             password: password.value
                         })
                     });
-
                     const data = await response.json();
 
                     console.log(data);
@@ -310,10 +313,15 @@
 
                 try {
 
-                    const response = await fetch('/api/register', {
+                    const csrfToken = document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute('content');
+
+                    const response = await fetch('/register', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
                             'Accept': 'application/json'
                         },
                         body: JSON.stringify({

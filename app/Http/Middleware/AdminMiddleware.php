@@ -13,16 +13,14 @@ class AdminMiddleware
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle($request, Closure $next)
-    {
-        if (!auth()->check()) {
-            return response()->json(['message' => 'No autenticado'], 401);
-        }
 
+    public function handle(Request $request, Closure $next)
+    {
         if (auth()->user()->role !== 'admin') {
-            return response()->json(['message' => 'No autorizado'], 403);
+            abort(403, 'No autorizado');
         }
 
         return $next($request);
     }
+
 }

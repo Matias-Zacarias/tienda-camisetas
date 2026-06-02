@@ -11,17 +11,6 @@ use App\Http\Controllers\DetallePedidoController;
 use App\Http\Controllers\CarritoItemController;
 use App\Http\Controllers\PasswordResetTokenController;
 
-
-Route::post('/register', [
-    AuthController::class,
-    'register'
-]);
-
-Route::post('/login', [
-    AuthController::class,
-    'login'
-]);
-
 /*
 |--------------------------------------------------------------------------
 | RUTAS PUBLICAS
@@ -61,10 +50,7 @@ Route::get('/talles/{id}', [
 Route::middleware('auth:sanctum')
     ->group(function () {
 
-        Route::post('/logout', [
-            AuthController::class,
-            'logout'
-        ]);
+
 
         Route::apiResource(
             'encabezados-pedidos',
@@ -98,5 +84,6 @@ Route::middleware(['auth:sanctum', 'admin'])
         Route::apiResource('talles', TalleController::class)
             ->except(['index', 'show']);
 
-        Route::apiResource('users', UserController::class);
+        Route::apiResource('users', UserController::class)
+            ->except(['index', 'show']);
     });

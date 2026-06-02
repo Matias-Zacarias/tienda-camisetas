@@ -33,36 +33,29 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-
             'email' => 'required|email',
-
-            'password' => 'required',
+            'password' => 'required'
         ]);
 
         if (!Auth::attempt($credentials)) {
-
             return response()->json([
-
                 'message' => 'Credenciales inválidas'
-
             ], 401);
         }
 
         $user = Auth::user();
 
-        $token = $user->createToken('auth_token')
-            ->plainTextToken;
+        // 🔐 sesión web (lo que ya tenías)
+        $request->session()->regenerate();
+
+        // 🔥 token para API (NUEVO)
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-
-            'message' => 'Login exitoso',
-
-            'token' => $token,
-
-            'user' => $user
+            'user' => $user,
+            'token' => $token
         ]);
     }
-
     /**
      * Logout
      */
