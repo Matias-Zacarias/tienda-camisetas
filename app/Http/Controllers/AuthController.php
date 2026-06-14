@@ -14,17 +14,30 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'email', 'unique:users,email'],
+                'password' => ['required', 'min:6'],
+            ],
+            [
+                'email.unique' => 'Este correo ya está registrado.',
+                'email.required' => 'El correo es obligatorio.',
+                'email.email' => 'Debes ingresar un correo válido.',
+            ]
+        );
+
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'user',
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => 'user',
         ]);
 
         return response()->json([
             'message' => 'Usuario registrado',
             'user' => $user
-        ]);
+        ], 201);
     }
 
     /**
@@ -33,36 +46,29 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-
             'email' => 'required|email',
-
-            'password' => 'required',
+            'password' => 'required'
         ]);
 
         if (!Auth::attempt($credentials)) {
-
             return response()->json([
-
                 'message' => 'Credenciales inválidas'
-
             ], 401);
         }
 
         $user = Auth::user();
 
-        $token = $user->createToken('auth_token')
-            ->plainTextToken;
+        // 🔐 sesión web (lo que ya tenías)
+        $request->session()->regenerate();
+
+        // 🔥 token para API (NUEVO)
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-
-            'message' => 'Login exitoso',
-
-            'token' => $token,
-
-            'user' => $user
+            'user' => $user,
+            'token' => $token
         ]);
     }
-
     /**
      * Logout
      */

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Talle;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TalleController extends Controller
 {
@@ -18,8 +19,8 @@ class TalleController extends Controller
                 'product',
                 'detallesPedidos'
             ])
-            ->latest()
-            ->get()
+                ->latest()
+                ->get()
 
         );
     }
@@ -33,7 +34,18 @@ class TalleController extends Controller
 
             'product_id' => 'required|exists:products,id',
 
-            'name' => 'required|string|max:50',
+            'name' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('talle')
+                    ->where(function ($query) use ($request) {
+                        return $query->where(
+                            'product_id',
+                            $request->product_id
+                        );
+                    }),
+            ],
 
             'stock' => 'required|integer|min:0',
         ]);
@@ -42,10 +54,7 @@ class TalleController extends Controller
 
         return response()->json([
             'message' => 'Talle creado correctamente',
-
-            'data' => $talle->load([
-                'product'
-            ])
+            'data' => $talle->load('product')
         ], 201);
     }
 

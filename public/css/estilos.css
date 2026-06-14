@@ -105,6 +105,8 @@ img {
 }
 
 
+
+
 .bg-surface {
   background-color: var(--color-surface) !important;
 }
@@ -474,7 +476,7 @@ img {
   border-color: var(--color-gray);
   color: var(--color-white);
   opacity: 0.6;
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 /* ---------- SECCIÓN GENÉRICA ---------- */

@@ -13,7 +13,6 @@ class CarritoItem extends Model
     protected $table = 'carrito_items';
 
     protected $fillable = [
-        'carrito_id',
         'product_id',
         'talle_id',
         'cantidad',
@@ -24,14 +23,6 @@ class CarritoItem extends Model
     ];
 
     // RELACIONES
-
-    public function carrito(): BelongsTo
-    {
-        return $this->belongsTo(
-            Carrito::class,
-            'carrito_id'
-        );
-    }
 
     public function product(): BelongsTo
     {

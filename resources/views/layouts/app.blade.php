@@ -21,56 +21,94 @@
 
   <x-footer />
   <script>
-    const elements = document.querySelectorAll('.reveal, .reveal2');
+  // ================================================
+  // ANIMACIONES
+  // ================================================
+  const elements = document.querySelectorAll('.reveal, .reveal2');
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, {
-      threshold: 0.3
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
     });
+  }, {
+    threshold: 0.3
+  });
 
-    elements.forEach(el => observer.observe(el));
-  </script>
-  <!-- Bootstrap 5 JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const form = document.getElementById('contact-form');
-    const success = document.getElementById('form-success');
+  elements.forEach(el => observer.observe(el));
 
-    // Reglas de validación
+  // ================================================
+  // FORMULARIO
+  // ================================================
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+
+  if (form && success) {
+
     const rules = {
-      nombre: { required: true, label: 'El nombre es obligatorio' },
-      apellido: { required: true, label: 'El apellido es obligatorio' },
-      email: { required: true, label: 'El email es obligatorio', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMsg: 'Ingresá un email válido' },
-      asunto: { required: true, label: 'Seleccioná un asunto' },
-      mensaje: { required: true, label: 'El mensaje es obligatorio' },
+      nombre: {
+        required: true,
+        label: 'El nombre es obligatorio'
+      },
+      apellido: {
+        required: true,
+        label: 'El apellido es obligatorio'
+      },
+      email: {
+        required: true,
+        label: 'El email es obligatorio',
+        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        patternMsg: 'Ingresá un email válido'
+      },
+      asunto: {
+        required: true,
+        label: 'Seleccioná un asunto'
+      },
+      mensaje: {
+        required: true,
+        label: 'El mensaje es obligatorio'
+      },
     };
 
     function validateField(name, value) {
       const rule = rules[name];
+
       if (!rule) return null;
-      if (rule.required && !value.trim()) return rule.label;
-      if (rule.pattern && value && !rule.pattern.test(value)) return rule.patternMsg;
+
+      if (rule.required && !value.trim()) {
+        return rule.label;
+      }
+
+      if (rule.pattern && value && !rule.pattern.test(value)) {
+        return rule.patternMsg;
+      }
+
       return null;
     }
 
     function showError(name, msg) {
-      const el = document.querySelector(`[data-field="${name}"]`);
+      const errorEl = document.querySelector(`[data-field="${name}"]`);
       const input = document.getElementById(name);
-      if (el) el.textContent = msg || '';
-      if (input) input.classList.toggle('is-invalid', !!msg);
+
+      if (errorEl) {
+        errorEl.textContent = msg || '';
+      }
+
+      if (input) {
+        input.classList.toggle('is-invalid', !!msg);
+      }
     }
 
-    function resetForm() {
+    function resetForm () {
       form.reset();
-      // Limpiar errores visuales
-      document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
-      document.querySelectorAll('.form-control-gf').forEach(el => el.classList.remove('is-invalid'));
-      // Mostrar formulario y ocultar éxito
+
+      document.querySelectorAll('.form-error')
+        .forEach(el => el.textContent = '');
+
+      document.querySelectorAll('.form-control-gf')
+        .forEach(el => el.classList.remove('is-invalid'));
+
       success.style.display = 'none';
       form.style.display = 'block';
     }
@@ -80,33 +118,41 @@
 
       let valid = true;
 
-      // Validar cada campo con regla
       Object.keys(rules).forEach(name => {
         const input = document.getElementById(name);
+
         if (!input) return;
+
         const error = validateField(name, input.value);
+
         showError(name, error);
-        if (error) valid = false;
+
+        if (error) {
+          valid = false;
+        }
       });
 
       if (!valid) return;
 
-      // Todo OK → ocultar form y mostrar éxito
       form.style.display = 'none';
       success.style.display = 'block';
 
-      // Scroll suave al mensaje
-      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      success.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
     });
 
-    // Validación en tiempo real al salir del campo
     Object.keys(rules).forEach(name => {
       const input = document.getElementById(name);
+
       if (!input) return;
+
       input.addEventListener('blur', () => {
         const error = validateField(name, input.value);
         showError(name, error);
       });
+
       input.addEventListener('input', () => {
         if (input.classList.contains('is-invalid')) {
           const error = validateField(name, input.value);
@@ -114,184 +160,155 @@
         }
       });
     });
-  </script>
-  <script>
-    const form = document.getElementById('contact-form');
-    const success = document.getElementById('form-success');
+  }
 
-    // Reglas de validación
-    const rules = {
-      nombre: { required: true, label: 'El nombre es obligatorio' },
-      apellido: { required: true, label: 'El apellido es obligatorio' },
-      email: { required: true, label: 'El email es obligatorio', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMsg: 'Ingresá un email válido' },
-      asunto: { required: true, label: 'Seleccioná un asunto' },
-      mensaje: { required: true, label: 'El mensaje es obligatorio' },
-    };
+  // ================================================
+  // CARRITO
+  // ================================================
+  let cart = JSON.parse(localStorage.getItem('gf_cart') || '[]');
 
-    function validateField(name, value) {
-      const rule = rules[name];
-      if (!rule) return null;
-      if (rule.required && !value.trim()) return rule.label;
-      if (rule.pattern && value && !rule.pattern.test(value)) return rule.patternMsg;
-      return null;
-    }
+  function saveCart() {
+    localStorage.setItem('gf_cart', JSON.stringify(cart));
+  }
 
-    function showError(name, msg) {
-      const el = document.querySelector(`[data-field="${name}"]`);
-      const input = document.getElementById(name);
-      if (el) el.textContent = msg || '';
-      if (input) input.classList.toggle('is-invalid', !!msg);
-    }
+  function updateBadges() {
+    const total = cart.reduce((sum, item) => sum + item.qty, 0);
 
-    function resetForm() {
-      form.reset();
-      // Limpiar errores visuales
-      document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
-      document.querySelectorAll('.form-control-gf').forEach(el => el.classList.remove('is-invalid'));
-      // Mostrar formulario y ocultar éxito
-      success.style.display = 'none';
-      form.style.display = 'block';
-    }
+    document.querySelectorAll('.cart-badge').forEach(badge => {
+      badge.textContent = total;
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+      badge.classList.remove('pop');
+      void badge.offsetWidth;
 
-      let valid = true;
-
-      // Validar cada campo con regla
-      Object.keys(rules).forEach(name => {
-        const input = document.getElementById(name);
-        if (!input) return;
-        const error = validateField(name, input.value);
-        showError(name, error);
-        if (error) valid = false;
-      });
-
-      if (!valid) return;
-
-      // Todo OK → ocultar form y mostrar éxito
-      form.style.display = 'none';
-      success.style.display = 'block';
-
-      // Scroll suave al mensaje
-      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-
-    // Validación en tiempo real al salir del campo
-    Object.keys(rules).forEach(name => {
-      const input = document.getElementById(name);
-      if (!input) return;
-      input.addEventListener('blur', () => {
-        const error = validateField(name, input.value);
-        showError(name, error);
-      });
-      input.addEventListener('input', () => {
-        if (input.classList.contains('is-invalid')) {
-          const error = validateField(name, input.value);
-          showError(name, error);
-        }
-      });
-    });
-
-    // ================================================
-    // CARRITO — lógica simple sin backend
-    // ================================================
-    let cart = JSON.parse(localStorage.getItem('gf_cart') || '[]');
-
-    function saveCart() {
-      localStorage.setItem('gf_cart', JSON.stringify(cart));
-    }
-
-    function updateBadges() {
-      const total = cart.reduce((sum, i) => sum + i.qty, 0);
-      document.querySelectorAll('.cart-badge').forEach(b => {
-        b.textContent = total;
-        // animación pop
-        b.classList.remove('pop');
-        void b.offsetWidth;
-        if (total > 0) b.classList.add('pop');
-        setTimeout(() => b.classList.remove('pop'), 300);
-      });
-    }
-
-    function updateTotal() {
-      const total = cart.reduce((sum, i) => {
-        const price = parseFloat(i.precio.replace(/\./g, '').replace(',', '.'));
-        return sum + price * i.qty;
-      }, 0);
-      const formatted = total.toLocaleString('es-AR');
-      document.getElementById('cart-total').textContent = `$${formatted}`;
-    }
-
-    function renderCart() {
-      const list = document.getElementById('cart-list');
-      const empty = document.getElementById('cart-empty');
-      const footer = document.getElementById('cart-footer');
-
-      if (cart.length === 0) {
-        list.style.display = 'none';
-        empty.style.display = 'flex';
-        footer.style.display = 'none';
-        return;
+      if (total > 0) {
+        badge.classList.add('pop');
       }
 
-      empty.style.display = 'none';
-      list.style.display = 'flex';
-      footer.style.display = 'block';
+      setTimeout(() => {
+        badge.classList.remove('pop');
+      }, 300);
+    });
+  }
 
-      list.innerHTML = cart.map((item, idx) => `
-    <li class="cart-item">
-      <img class="cart-item-img"
-           src="${item.imagen}"
-           alt="${item.nombre}"
-           onerror="this.style.background='var(--color-border)';this.src=''">
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.nombre}</div>
-        <div class="cart-item-liga">${item.liga}</div>
-      </div>
-      <div class="cart-item-price">$${item.precio}</div>
-      <button class="cart-item-remove"
-              onclick="removeFromCart(${idx})"
-              aria-label="Eliminar">
-        <i class="bi bi-trash3"></i>
-      </button>
-    </li>
-  `).join('');
+  function updateTotal() {
+    const total = cart.reduce((sum, item) => {
 
-      updateTotal();
-    }
-
-    function addToCart(product) {
-      const exists = cart.findIndex(i => i.nombre === product.nombre);
-      if (exists >= 0) {
-        cart[exists].qty += 1;
-      } else {
-        cart.push({ ...product, qty: 1 });
-      }
-      saveCart();
-      updateBadges();
-      renderCart();
-
-      // Abrir el offcanvas automáticamente
-      const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(
-        document.getElementById('cartOffcanvas')
+      const price = parseFloat(
+        item.precio
+          .replace(/\./g, '')
+          .replace(',', '.')
       );
+
+      return sum + (price * item.qty);
+
+    }, 0);
+
+    const totalEl = document.getElementById('cart-total');
+
+    if (totalEl) {
+      totalEl.textContent = `$${total.toLocaleString('es-AR')}`;
+    }
+  }
+
+  function renderCart() {
+
+    const list = document.getElementById('cart-list');
+    const empty = document.getElementById('cart-empty');
+    const footer = document.getElementById('cart-footer');
+
+    if (!list || !empty || !footer) return;
+
+    if (cart.length === 0) {
+      list.style.display = 'none';
+      empty.style.display = 'flex';
+      footer.style.display = 'none';
+      return;
+    }
+
+    empty.style.display = 'none';
+    list.style.display = 'flex';
+    footer.style.display = 'block';
+
+    list.innerHTML = cart.map((item, idx) => `
+      <li class="cart-item">
+        <img
+          class="cart-item-img"
+          src="${item.imagen}"
+          alt="${item.nombre}"
+          onerror="this.style.background='var(--color-border)';this.src=''"
+        >
+
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.nombre}</div>
+          <div class="cart-item-liga">${item.liga}</div>
+        </div>
+
+        <div class="cart-item-price">
+          $${item.precio}
+        </div>
+
+        <button
+          class="cart-item-remove"
+          onclick="removeFromCart(${idx})"
+          aria-label="Eliminar"
+        >
+          <i class="bi bi-trash3"></i>
+        </button>
+      </li>
+    `).join('');
+
+    updateTotal();
+  }
+
+  // ================================================
+  // FUNCIONES GLOBALES
+  // ================================================
+  function addToCart (product) {
+
+    const exists = cart.findIndex(
+      item => item.nombre === product.nombre
+    );
+
+    if (exists >= 0) {
+      cart[exists].qty += 1;
+    } else {
+      cart.push({
+        ...product,
+        qty: 1
+      });
+    }
+
+    saveCart();
+    updateBadges();
+    renderCart();
+
+    const cartOffcanvas = document.getElementById('cartOffcanvas');
+
+    if (cartOffcanvas) {
+      const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(cartOffcanvas);
       offcanvas.show();
     }
+  }
 
-    function removeFromCart(idx) {
-      cart.splice(idx, 1);
-      saveCart();
-      updateBadges();
-      renderCart();
-    }
+  function removeFromCart (idx) {
+    cart.splice(idx, 1);
 
-    // Init al cargar la página
-    document.addEventListener('DOMContentLoaded', function () {
-      updateBadges();
-      renderCart();
-    });
-  </script>
+    saveCart();
+    updateBadges();
+    renderCart();
+  }
+
+  // ================================================
+  // INIT
+  // ================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    updateBadges();
+    renderCart();
+  });
+</script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

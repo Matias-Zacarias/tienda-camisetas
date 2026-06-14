@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('detalles_pedidos', function (Blueprint $table) {
@@ -24,7 +23,7 @@ return new class extends Migration
             // NUEVO
             $table->foreignId('talle_id')
                 ->nullable()
-                ->constrained('talles')
+                ->constrained('talle')
                 ->nullOnDelete();
 
             // Snapshot histórico

@@ -46,7 +46,7 @@ class UserController extends Controller
 
             'password' => Hash::make($validated['password']),
 
-            'role' => $validated['role'] ?? 'client',
+            'role' => $validated['role'] ?? 'user',
         ]);
 
         return response()->json([

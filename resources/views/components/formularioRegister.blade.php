@@ -39,7 +39,7 @@
         <label class="form-label">Confirmar Contraseña</label>
         <div class="input-wrapper">
             <input type="password" name="password_confirmation" class="form-input" placeholder="••••••••"
-                id="registerPasswordConfirm" required>
+                id="confirmPassword" required>
             <i class="fas fa-lock input-icon"></i>
             <i class="fas fa-eye toggle-password" data-target="registerPasswordConfirm"></i>
         </div>
@@ -55,7 +55,7 @@
 
     <button type="submit" class="btn-submit">Crear Cuenta</button>
 
-   <!--  <div class="divider">
+    <!--  <div class="divider">
         <span>O regístrate con</span>
     </div> -->
 

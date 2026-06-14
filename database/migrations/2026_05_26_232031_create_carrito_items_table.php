@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,11 +13,6 @@ return new class extends Migration
         Schema::create('carrito_items', function (Blueprint $table) {
 
             $table->id();
-
-            // Relación con carrito
-            $table->foreignId('carrito_id')
-                ->constrained('carritos')
-                ->onDelete('cascade');
 
             // Producto
             $table->foreignId('product_id')
