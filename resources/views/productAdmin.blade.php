@@ -2,15 +2,12 @@
 
 @section('section')
 
-
     <div class="page-header">
         <div>
             <h1 class="page-title">Productos</h1>
             <p class="page-subtitle">Administra tu catálogo de productos</p>
         </div>
-        <!-- <button class="btn btn-primary" data-tab="add">
-                        <span>+</span> Agregar Producto
-                    </button> -->
+
     </div>
 
     <div class="tabs">
@@ -21,63 +18,17 @@
 
     <!-- Product List -->
     <div class="tab-content active" id="list">
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="product-image">👕</div>
-                <div class="product-info">
-                    <div class="product-name">Remera Básica</div>
-                    <div class="product-price">$29.99</div>
-                    <div class="product-meta">
-                        <span>Stock: 45</span>
-                        <span>SKU: REM001</span>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="action-btn edit" title="Editar">✏️</button>
-                        <button class="action-btn view" title="Ver">👁️</button>
-                        <button class="action-btn delete" title="Eliminar">🗑️</button>
-                    </div>
-                </div>
-            </div>
+        <div id="productsContainer" class="product-grid">
 
-            <div class="product-card">
-                <div class="product-image">👖</div>
-                <div class="product-info">
-                    <div class="product-name">Jean Clásico</div>
-                    <div class="product-price">$79.99</div>
-                    <div class="product-meta">
-                        <span>Stock: 28</span>
-                        <span>SKU: JEA001</span>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="action-btn edit" title="Editar">✏️</button>
-                        <button class="action-btn view" title="Ver">👁️</button>
-                        <button class="action-btn delete" title="Eliminar">🗑️</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">👟</div>
-                <div class="product-info">
-                    <div class="product-name">Zapatillas Sport</div>
-                    <div class="product-price">$129.99</div>
-                    <div class="product-meta">
-                        <span>Stock: 15</span>
-                        <span>SKU: ZAP001</span>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="action-btn edit" title="Editar">✏️</button>
-                        <button class="action-btn view" title="Ver">👁️</button>
-                        <button class="action-btn delete" title="Eliminar">🗑️</button>
-                    </div>
-                </div>
-            </div>
         </div>
+
+
     </div>
+
+
 
     <!-- Add Product Form -->
 
-    
     <div class="tab-content" id="add">
         <div class="card">
             <div class="card-header">
@@ -127,13 +78,59 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Imágenes del Producto</label>
-                    <div class="image-upload">
+                <div class="form-grid">
+
+                    <label for="productImage" class="image-upload">
                         <div class="image-upload-icon">📷</div>
                         <p>Haz clic o arrastra imágenes aquí</p>
-                        <input type="file" multiple accept="image/*" style="display: none;">
+                    </label>
+                    <input id="productImage" type="file" accept="image/*" style="display:none;">
+
+
+
+                    <div id="imagePreviewContainer"></div>
+
+                </div>
+
+                <div class="action-buttons">
+                    <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                    <!-- <button type="button" class="btn btn-secondary">Cancelar</button> -->
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="tab-content" id="add-talle">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Información del Producto</h3>
+            </div>
+
+            <form id="talleForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Producto</label>
+                        <select id="talleProduct" class="form-select">
+                            <option value="">Seleccione un producto</option>
+                        </select>
                     </div>
+                    <div class="form-group">
+                        <label class="form-label">Talle</label>
+                        <select id="talleName" class="form-select">
+                            <option>S</option>
+                            <option>M</option>
+                            <option>L</option>
+                            <option>XL</option>
+                            <option>XXL</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-label">Stock:</label>
+                    <input id="talleStock" type="number" class="form-input" placeholder="0" step="0">
                 </div>
 
                 <div class="action-buttons">
@@ -145,60 +142,102 @@
     </div>
 
 
-    <div class="tab-content" id="add-talle">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Información del Producto</h3>
+    <div id="productModal" class="custom-modal">
+
+        <div class="custom-modal-content">
+
+            <div class="custom-modal-header">
+
+                <h3>Editar Producto</h3>
+
+                <button type="button" onclick="closeProductModal()">
+                    ✖
+                </button>
             </div>
 
-            <form>
+            <form id="editProductForm">
+
+                <input type="hidden" id="editProductId">
+
+                <div class="form-group">
+                    <label>Nombre</label>
+
+                    <input id="editProductName" class="form-input">
+                </div>
                 <div class="form-grid">
+
+
                     <div class="form-group">
-                        <label class="form-label">Producto</label>
-                        <select class="form-select">
-                            <option>argentina 2026</option>
-                            <option>francia </option>
-                            <option>españa</option>
-                            <option>brasil</option>
-                        </select>
+                        <label>Precio</label>
+
+                        <input id="editProductPrice" type="text" class="form-input">
                     </div>
+
                     <div class="form-group">
-                        <label class="form-label">SLUG</label>
-                        <input type="text" class="form-input" placeholder="ARGXL">
+                        <label>Descuento</label>
+                        <input id="editProductDiscountPrice" type="text" class="form-input">
+
                     </div>
                 </div>
 
                 <div class="form-grid">
                     <div class="form-group">
-                        <label class="form-label">Stock:</label>
-                        <input type="number" class="form-input" placeholder="0" step="0">
+
+                        <label>Descripción</label>
+
+                        <textarea id="editProductDescription" class="form-textarea"></textarea>
+
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Talle</label>
-                        <select class="form-select">
-                            <option>S</option>
-                            <option>M</option>
-                            <option>L</option>
-                            <option>XL</option>
-                            <option>XXL</option>
-                        </select>
+
+                        <label>Descripción corta</label>
+
+                        <textarea id="editProductShortDescription" class="form-textarea"></textarea>
+
                     </div>
                 </div>
 
+                <div class="form-grid">
+                    <div class="form-group">
+
+                        <label>Imagen actual</label>
+
+                        <img id="editImagePreview"
+                            style=" width:200px;display:block;margin-bottom:10px;border-radius:8px; ">
+
+                        <input id="editProductImage" type="file" accept="image/*" class="form-input">
+
+                    </div>
+                </div>
                 <div class="action-buttons">
-                    <button type="submit" class="btn btn-primary">Guardar Producto</button>
-                    <button type="button" class="btn btn-secondary">Cancelar</button>
+
+                    <button type="submit" class="btn btn-primary">
+
+                        Guardar Cambios
+
+                    </button>
+
                 </div>
+
             </form>
+
         </div>
+
     </div>
+
+
 
 @endsection
 
 @push('scripts')
-<script>
-    initProductTabs();
-    initProductForm();
-</script>
+    <script>
+        initProductTabs();
+        initProductForm();
+        initEditProductForm();
+        initTalleForm();
+        initImagePreview();
+        initEditImagePreview();
+        loadProducts();
+    </script>
 @endpush

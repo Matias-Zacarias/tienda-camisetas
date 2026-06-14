@@ -26,8 +26,6 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
 
-            'slug' => 'nullable|string|max:255|unique:products,slug',
-
             'description' => 'nullable|string',
 
             'short_description' => 'nullable|string|max:500',
@@ -51,10 +49,6 @@ class ProductController extends Controller
             'is_featured' => 'boolean',
         ]);
 
-        // Generar slug automáticamente
-        $validated['slug'] = isset($validated['slug'])
-            ? Str::slug($validated['slug'])
-            : Str::slug($validated['name']);
 
         $product = Product::create([
             ...$validated,
@@ -75,10 +69,10 @@ class ProductController extends Controller
     /**
      * Mostrar producto
      */
-    public function show(string $slug)
+    public function show(string $id)
     {
         return Product::with('talles')
-            ->where('slug', $slug)
+            ->where('id', $id)
             ->firstOrFail();
     }
 

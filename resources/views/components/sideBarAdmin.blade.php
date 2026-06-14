@@ -37,11 +37,11 @@
             <span>Consultas</span>
             <span class="badge">5</span>
         </a>
-        <!-- <a class="nav-item {{ request()->is('panel-admin-stock') ? 'active' : '' }}" href="/panel-admin-stock"
+        <a class="nav-item {{ request()->is('panel-admin-stock') ? 'active' : '' }}" href="/panel-admin-stock"
             data-section="stock">
             <span class="nav-icon">📏</span>
             <span>Stock de Talles</span>
-        </a> -->
+        </a>
     </nav>
 
     <nav class="nav-section">
