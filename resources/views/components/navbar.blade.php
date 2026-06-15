@@ -10,8 +10,8 @@
     {{-- Mobile: carrito + toggler (siempre visibles) --}}
     <div id="mobileCartContainer" class="d-flex align-items-center gap-2 d-lg-none">
 
-      <button id="carritoMobile" class="navbar-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"
-        aria-label="Ver carrito">
+      <button id="carritoMobile" class="navbar-cart-btn" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#cartOffcanvas" aria-label="Ver carrito">
 
         <i class="bi bi-bag"></i>
 
@@ -59,11 +59,15 @@
           </a>
         </li>
 
+        <li id="logoutContainer"></li>
+
+        <li id="loginContainer"></li>
+
         {{-- Desktop: carrito al final de los links --}}
         <li id="desktopCartContainer" class="nav-item d-none d-lg-flex align-items-center ms-2">
 
-          <button id="carritoDesktop" class="navbar-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"
-            aria-label="Ver carrito">
+          <button id="carritoDesktop" class="navbar-cart-btn" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#cartOffcanvas" aria-label="Ver carrito">
 
             <i class="bi bi-bag"></i>
 
@@ -75,7 +79,7 @@
 
         </li>
 
-        <li id="logoutContainer"></li>
+
 
       </ul>
     </div>
