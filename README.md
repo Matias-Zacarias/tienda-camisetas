@@ -100,24 +100,124 @@ COMANDO PARA CREAR PRIMER USUARIO
     'role' => 'admin'
 ]);
 
-no se puede comprar sin registro
+preguntar por si tener varios layout
+preguntar por login que redirige segun usuario
+
+preguntar por si se puede comprar sin registro
+preguntar por usar sanctum y el middleware 
+
+preguntar por readme 
+
+preguntar por crear el primer usuario mediante comando 
+
+preguntar por cambiar la contraseña enviando un mail por n8n
+
+
+eliminar tabla de carrito
+
+para comprar hay que estar registrado
 
 falta boton de logout
 
-vista para ver mis pedidos 
 
-vista para ver el detalle
+for ($i = 1; $i <= 10; $i++) {
 
-una vista que sea una especie de resumen del pedido y ahi confimar el pedido
+    $producto = Product::inRandomOrder()->first();
 
-implementar cloudinary para cargar productos
+    $talle = Talle::where(
+        'product_id',
+        $producto->id
+    )->inRandomOrder()->first();
 
-ver de bajar los modulos de que ocupemos de bootstrap
+    $cantidad = rand(1, 3);
 
-ver de como destacar mas la marca
+    $precio = $producto->discount_price
+        ?? $producto->price;
 
-no se puede ver el carrito si no estas logueado ni logout
+    $subtotal = $precio * $cantidad;
 
-si no estas logueado y queres comprar que te mande a registrar
+    $pedido = EncabezadoPedido::create([
 
-si estas logueado no podes ver contacto
+        'user_id' => null,
+
+        'cliente_telefono' =>
+            '37940000' . rand(100, 999),
+
+        'direccion_envio' =>
+            'Dirección de prueba ' . $i,
+
+        'metodo_pago' =>
+            collect([
+                'Transferencia',
+                'Mercado Pago',
+                'Efectivo'
+            ])->random(),
+
+        'estado' =>
+            collect([
+                'Pendiente',
+                'En Proceso',
+                'Enviado',
+                'Completado'
+            ])->random(),
+
+        'subtotal' => $subtotal,
+
+        'total' => $subtotal,
+
+        'observaciones' =>
+            'Pedido generado desde Tinker'
+    ]);
+
+    DetallePedido::create([
+
+        'pedido_id' =>
+            $pedido->id,
+
+        'product_id' =>
+            $producto->id,
+
+        'talle_id' =>
+            $talle->id,
+
+        'producto_nombre' =>
+            $producto->name,
+
+        'talle_nombre' =>
+            $talle->name,
+
+        'precio_unitario' =>
+            $precio,
+
+        'cantidad' =>
+            $cantidad,
+
+        'subtotal' =>
+            $subtotal
+    ]);
+}
+
+
+Talle::create([
+    'product_id' => $product1->id,
+    'name' => 'M',
+    'stock' => 10
+]);
+
+Talle::create([
+    'product_id' => $product1->id,
+    'name' => 'L',
+    'stock' => 5
+]);
+
+Talle::create([
+    'product_id' => $product2->id,
+    'name' => 'S',
+    'stock' => 8
+]);
+
+Talle::create([
+    'product_id' => $product2->id,
+    'name' => 'XL',
+    'stock' => 4
+]);
