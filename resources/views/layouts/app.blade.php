@@ -316,6 +316,11 @@
           'consultasLink'
         );
 
+      const loginOpcion =
+        document.getElementById(
+          'loginContainer'
+        );
+
       const contacto =
         document.getElementById(
           'contactoLink'
@@ -362,7 +367,20 @@
         </a>
     `;
 
+        loginOpcion.innerHTML = '';
+
       } else {
+
+        loginOpcion.innerHTML = `
+        <a
+            href="/login"
+            class="nav-link-gf"
+
+        >
+            <i class="bi bi-box-arrow-right"></i>
+            iniciar sesión
+        </a>
+    `;
 
         consultas?.closest('.nav-item')
           .classList.add('d-none');
