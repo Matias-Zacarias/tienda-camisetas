@@ -21,215 +21,215 @@
 
   <x-footer />
   <script>
-  // ================================================
-  // ANIMACIONES
-  // ================================================
-  const elements = document.querySelectorAll('.reveal, .reveal2');
+    // ================================================
+    // ANIMACIONES
+    // ================================================
+    const elements = document.querySelectorAll('.reveal, .reveal2');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.3
     });
-  }, {
-    threshold: 0.3
-  });
 
-  elements.forEach(el => observer.observe(el));
+    elements.forEach(el => observer.observe(el));
 
-  // ================================================
-  // FORMULARIO
-  // ================================================
-  const form = document.getElementById('contact-form');
-  const success = document.getElementById('form-success');
+    // ================================================
+    // FORMULARIO
+    // ================================================
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
 
-  if (form && success) {
+    if (form && success) {
 
-    const rules = {
-      nombre: {
-        required: true,
-        label: 'El nombre es obligatorio'
-      },
-      apellido: {
-        required: true,
-        label: 'El apellido es obligatorio'
-      },
-      email: {
-        required: true,
-        label: 'El email es obligatorio',
-        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        patternMsg: 'Ingresá un email válido'
-      },
-      asunto: {
-        required: true,
-        label: 'Seleccioná un asunto'
-      },
-      mensaje: {
-        required: true,
-        label: 'El mensaje es obligatorio'
-      },
-    };
+      const rules = {
+        nombre: {
+          required: true,
+          label: 'El nombre es obligatorio'
+        },
+        apellido: {
+          required: true,
+          label: 'El apellido es obligatorio'
+        },
+        email: {
+          required: true,
+          label: 'El email es obligatorio',
+          pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          patternMsg: 'Ingresá un email válido'
+        },
+        asunto: {
+          required: true,
+          label: 'Seleccioná un asunto'
+        },
+        mensaje: {
+          required: true,
+          label: 'El mensaje es obligatorio'
+        },
+      };
 
-    function validateField(name, value) {
-      const rule = rules[name];
+      function validateField(name, value) {
+        const rule = rules[name];
 
-      if (!rule) return null;
+        if (!rule) return null;
 
-      if (rule.required && !value.trim()) {
-        return rule.label;
+        if (rule.required && !value.trim()) {
+          return rule.label;
+        }
+
+        if (rule.pattern && value && !rule.pattern.test(value)) {
+          return rule.patternMsg;
+        }
+
+        return null;
       }
 
-      if (rule.pattern && value && !rule.pattern.test(value)) {
-        return rule.patternMsg;
+      function showError(name, msg) {
+        const errorEl = document.querySelector(`[data-field="${name}"]`);
+        const input = document.getElementById(name);
+
+        if (errorEl) {
+          errorEl.textContent = msg || '';
+        }
+
+        if (input) {
+          input.classList.toggle('is-invalid', !!msg);
+        }
       }
 
-      return null;
-    }
+      function resetForm() {
+        form.reset();
 
-    function showError(name, msg) {
-      const errorEl = document.querySelector(`[data-field="${name}"]`);
-      const input = document.getElementById(name);
+        document.querySelectorAll('.form-error')
+          .forEach(el => el.textContent = '');
 
-      if (errorEl) {
-        errorEl.textContent = msg || '';
+        document.querySelectorAll('.form-control-gf')
+          .forEach(el => el.classList.remove('is-invalid'));
+
+        success.style.display = 'none';
+        form.style.display = 'block';
       }
 
-      if (input) {
-        input.classList.toggle('is-invalid', !!msg);
-      }
-    }
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-    function resetForm () {
-      form.reset();
+        let valid = true;
 
-      document.querySelectorAll('.form-error')
-        .forEach(el => el.textContent = '');
+        Object.keys(rules).forEach(name => {
+          const input = document.getElementById(name);
 
-      document.querySelectorAll('.form-control-gf')
-        .forEach(el => el.classList.remove('is-invalid'));
+          if (!input) return;
 
-      success.style.display = 'none';
-      form.style.display = 'block';
-    }
+          const error = validateField(name, input.value);
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+          showError(name, error);
 
-      let valid = true;
+          if (error) {
+            valid = false;
+          }
+        });
+
+        if (!valid) return;
+
+        form.style.display = 'none';
+        success.style.display = 'block';
+
+        success.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      });
 
       Object.keys(rules).forEach(name => {
         const input = document.getElementById(name);
 
         if (!input) return;
 
-        const error = validateField(name, input.value);
-
-        showError(name, error);
-
-        if (error) {
-          valid = false;
-        }
-      });
-
-      if (!valid) return;
-
-      form.style.display = 'none';
-      success.style.display = 'block';
-
-      success.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-    });
-
-    Object.keys(rules).forEach(name => {
-      const input = document.getElementById(name);
-
-      if (!input) return;
-
-      input.addEventListener('blur', () => {
-        const error = validateField(name, input.value);
-        showError(name, error);
-      });
-
-      input.addEventListener('input', () => {
-        if (input.classList.contains('is-invalid')) {
+        input.addEventListener('blur', () => {
           const error = validateField(name, input.value);
           showError(name, error);
-        }
+        });
+
+        input.addEventListener('input', () => {
+          if (input.classList.contains('is-invalid')) {
+            const error = validateField(name, input.value);
+            showError(name, error);
+          }
+        });
       });
-    });
-  }
+    }
 
-  // ================================================
-  // CARRITO
-  // ================================================
-  let cart = JSON.parse(localStorage.getItem('gf_cart') || '[]');
+    // ================================================
+    // CARRITO
+    // ================================================
+    let cart = JSON.parse(localStorage.getItem('gf_cart') || '[]');
 
-  function saveCart() {
-    localStorage.setItem('gf_cart', JSON.stringify(cart));
-  }
+    function saveCart() {
+      localStorage.setItem('gf_cart', JSON.stringify(cart));
+    }
 
-  function updateBadges() {
-    const total = cart.reduce((sum, item) => sum + item.qty, 0);
+    function updateBadges() {
+      const total = cart.reduce((sum, item) => sum + item.qty, 0);
 
-    document.querySelectorAll('.cart-badge').forEach(badge => {
-      badge.textContent = total;
+      document.querySelectorAll('.cart-badge').forEach(badge => {
+        badge.textContent = total;
 
-      badge.classList.remove('pop');
-      void badge.offsetWidth;
+        badge.classList.remove('pop');
+        void badge.offsetWidth;
 
-      if (total > 0) {
-        badge.classList.add('pop');
+        if (total > 0) {
+          badge.classList.add('pop');
+        }
+
+        setTimeout(() => {
+          badge.classList.remove('pop');
+        }, 300);
+      });
+    }
+
+    function updateTotal() {
+      const total = cart.reduce((sum, item) => {
+
+        const price = parseFloat(
+          item.precio
+            .replace(/\./g, '')
+            .replace(',', '.')
+        );
+
+        return sum + (price * item.qty);
+
+      }, 0);
+
+      const totalEl = document.getElementById('cart-total');
+
+      if (totalEl) {
+        totalEl.textContent = `$${total.toLocaleString('es-AR')}`;
+      }
+    }
+
+    function renderCart() {
+
+      const list = document.getElementById('cart-list');
+      const empty = document.getElementById('cart-empty');
+      const footer = document.getElementById('cart-footer');
+
+      if (!list || !empty || !footer) return;
+
+      if (cart.length === 0) {
+        list.style.display = 'none';
+        empty.style.display = 'flex';
+        footer.style.display = 'none';
+        return;
       }
 
-      setTimeout(() => {
-        badge.classList.remove('pop');
-      }, 300);
-    });
-  }
+      empty.style.display = 'none';
+      list.style.display = 'flex';
+      footer.style.display = 'block';
 
-  function updateTotal() {
-    const total = cart.reduce((sum, item) => {
-
-      const price = parseFloat(
-        item.precio
-          .replace(/\./g, '')
-          .replace(',', '.')
-      );
-
-      return sum + (price * item.qty);
-
-    }, 0);
-
-    const totalEl = document.getElementById('cart-total');
-
-    if (totalEl) {
-      totalEl.textContent = `$${total.toLocaleString('es-AR')}`;
-    }
-  }
-
-  function renderCart() {
-
-    const list = document.getElementById('cart-list');
-    const empty = document.getElementById('cart-empty');
-    const footer = document.getElementById('cart-footer');
-
-    if (!list || !empty || !footer) return;
-
-    if (cart.length === 0) {
-      list.style.display = 'none';
-      empty.style.display = 'flex';
-      footer.style.display = 'none';
-      return;
-    }
-
-    empty.style.display = 'none';
-    list.style.display = 'flex';
-    footer.style.display = 'block';
-
-    list.innerHTML = cart.map((item, idx) => `
+      list.innerHTML = cart.map((item, idx) => `
       <li class="cart-item">
         <img
           class="cart-item-img"
@@ -257,58 +257,151 @@
       </li>
     `).join('');
 
-    updateTotal();
-  }
+      updateTotal();
+    }
 
-  // ================================================
-  // FUNCIONES GLOBALES
-  // ================================================
-  function addToCart (product) {
+    // ================================================
+    // FUNCIONES GLOBALES
+    // ================================================
+    function addToCart(product) {
 
-    const exists = cart.findIndex(
-      item => item.nombre === product.nombre
+      const exists = cart.findIndex(
+        item => item.nombre === product.nombre
+      );
+
+      if (exists >= 0) {
+        cart[exists].qty += 1;
+      } else {
+        cart.push({
+          ...product,
+          qty: 1
+        });
+      }
+
+      saveCart();
+      updateBadges();
+      renderCart();
+
+      const cartOffcanvas = document.getElementById('cartOffcanvas');
+
+      if (cartOffcanvas) {
+        const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(cartOffcanvas);
+        offcanvas.show();
+      }
+    }
+
+    function removeFromCart(idx) {
+      cart.splice(idx, 1);
+
+      saveCart();
+      updateBadges();
+      renderCart();
+    }
+
+    // ================================================
+    // INIT
+    // ================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      updateBadges();
+      renderCart();
+    });
+
+    function initNavbarAuth() {
+
+      const loggedIn =
+        !!localStorage.getItem('token');
+
+      const consultas =
+        document.getElementById(
+          'consultasLink'
+        );
+
+      const contacto =
+        document.getElementById(
+          'contactoLink'
+        );
+
+      const mobileCart =
+        document.getElementById(
+          'carritoMobile'
+        );
+
+      const desktopCart =
+        document.getElementById(
+          'carritoDesktop'
+        );
+
+
+      const logoutContainer =
+        document.getElementById('logoutContainer');
+
+
+
+      if (loggedIn) {
+
+        consultas?.closest('.nav-item')
+          .classList.remove('d-none');
+
+        contacto?.closest('.nav-item')
+          .classList.add('d-none');
+
+        mobileCart?.classList.remove('d-none');
+        mobileCart?.classList.add('d-flex');
+
+        desktopCart?.classList.remove('d-none');
+        desktopCart?.classList.add('d-lg-flex');
+
+        logoutContainer.innerHTML = `
+        <a
+            href="#"
+            class="nav-link-gf"
+            onclick="logout(event)"
+        >
+            <i class="bi bi-box-arrow-right"></i>
+            Salir
+        </a>
+    `;
+
+      } else {
+
+        consultas?.closest('.nav-item')
+          .classList.add('d-none');
+
+        contacto?.closest('.nav-item')
+          .classList.remove('d-none');
+
+        mobileCart?.classList.add('d-none');
+        mobileCart?.classList.remove('d-flex');
+
+        desktopCart?.classList.add('d-none');
+
+        logoutContainer.innerHTML = '';
+      }
+    }
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      initNavbarAuth
     );
 
-    if (exists >= 0) {
-      cart[exists].qty += 1;
-    } else {
-      cart.push({
-        ...product,
-        qty: 1
-      });
+
+
+    function logout(event) {
+
+      event.preventDefault();
+
+      localStorage.removeItem('token');
+
+      localStorage.removeItem('user');
+
+      localStorage.removeItem('gf_cart');
+
+      window.location.href = '/login';
     }
+  </script>
 
-    saveCart();
-    updateBadges();
-    renderCart();
-
-    const cartOffcanvas = document.getElementById('cartOffcanvas');
-
-    if (cartOffcanvas) {
-      const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(cartOffcanvas);
-      offcanvas.show();
-    }
-  }
-
-  function removeFromCart (idx) {
-    cart.splice(idx, 1);
-
-    saveCart();
-    updateBadges();
-    renderCart();
-  }
-
-  // ================================================
-  // INIT
-  // ================================================
-  document.addEventListener('DOMContentLoaded', () => {
-    updateBadges();
-    renderCart();
-  });
-</script>
-
-<!-- Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

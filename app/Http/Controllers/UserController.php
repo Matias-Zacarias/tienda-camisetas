@@ -12,15 +12,22 @@ class UserController extends Controller
      * Mostrar todos los usuarios
      */
     public function index()
-    {
-        return response()->json(
+{
+    return response()->json(
 
-            User::with('pedidos')
-                ->latest()
-                ->get()
+        User::withCount('pedidos')
+            ->select(
+                'id',
+                'name',
+                'email',
+                'role',
+                'created_at'
+            )
+            ->latest()
+            ->get()
 
-        );
-    }
+    );
+}
 
     /**
      * Crear usuario
@@ -98,6 +105,24 @@ class UserController extends Controller
             'message' => 'Usuario actualizado correctamente',
 
             'data' => $user->load('pedidos')
+        ]);
+    }
+
+
+    public function updateRole(Request $request, string $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validated = $request->validate([
+            'role' => 'required|string|max:50'
+        ]);
+
+        $user->update([
+            'role' => $validated['role']
+        ]);
+
+        return response()->json([
+            'message' => 'Rol actualizado correctamente'
         ]);
     }
 

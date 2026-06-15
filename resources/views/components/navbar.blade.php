@@ -8,17 +8,24 @@
     </div>
 
     {{-- Mobile: carrito + toggler (siempre visibles) --}}
-    <div class="d-flex align-items-center gap-2 d-lg-none">
+    <div id="mobileCartContainer" class="d-flex align-items-center gap-2 d-lg-none">
 
-      <button class="navbar-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"
+      <button id="carritoMobile" class="navbar-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"
         aria-label="Ver carrito">
+
         <i class="bi bi-bag"></i>
-        <span class="cart-badge" id="cart-badge-mobile">0</span>
+
+        <span class="cart-badge" id="cart-badge-mobile">
+          0
+        </span>
+
       </button>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
         aria-controls="navMenu" aria-expanded="false" aria-label="Menú">
+
         <span class="navbar-toggler-icon"></span>
+
       </button>
 
     </div>
@@ -41,20 +48,34 @@
             href="/comercializacion">Comercialización</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link-gf {{ request()->is('consultas') ? 'active' : '' }}" href="/consultas">Consultas</a>
+          <a class="nav-link-gf {{ request()->is('consultas') ? 'active' : '' }}" href="/consultas" id="consultasLink">
+            Consultas
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link-gf {{ request()->is('contacto') ? 'active' : '' }}" href="/contacto">Contacto</a>
+          <a class="nav-link-gf {{ request()->is('contacto') ? 'active' : '' }}" href="/contacto" id="contactoLink">
+            Contacto
+          </a>
         </li>
 
         {{-- Desktop: carrito al final de los links --}}
-        <li class="nav-item d-none d-lg-flex align-items-center ms-2">
-          <button class="navbar-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"
+        <li id="desktopCartContainer" class="nav-item d-none d-lg-flex align-items-center ms-2">
+
+          <button id="carritoDesktop" class="navbar-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"
             aria-label="Ver carrito">
+
             <i class="bi bi-bag"></i>
-            <span class="cart-badge" id="cart-badge-desktop">0</span>
+
+            <span class="cart-badge" id="cart-badge-desktop">
+              0
+            </span>
+
           </button>
+
         </li>
+
+        <li id="logoutContainer"></li>
 
       </ul>
     </div>
