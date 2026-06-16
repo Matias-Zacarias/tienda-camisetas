@@ -18,6 +18,13 @@ class ProductController extends Controller
             ->get();
     }
 
+    public function catalog()
+    {
+        return Product::with('talles')
+            ->where('is_active', true)
+            ->latest()
+            ->get();
+    }
     /**
      * Crear producto
      */
@@ -136,10 +143,12 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        $product->delete();
+        $product->is_active = false;
+
+        $product->save();
 
         return response()->json([
-            'message' => 'Producto eliminado'
+            'message' => 'Producto desactivado'
         ]);
     }
 }

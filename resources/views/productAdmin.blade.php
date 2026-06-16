@@ -178,6 +178,14 @@
                         <input id="editProductDiscountPrice" type="text" class="form-input">
 
                     </div>
+
+                    <div class="form-group">
+                        <label>Destacado</label>
+                        <select id="editProductFeatured" class="form-input">
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-grid">

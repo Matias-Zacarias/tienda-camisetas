@@ -79,25 +79,18 @@ class TalleController extends Controller
         $talle = Talle::findOrFail($id);
 
         $validated = $request->validate([
-
-            'product_id' => 'sometimes|required|exists:products,id',
-
-            'name' => 'sometimes|required|string|max:50',
-
-            'stock' => 'sometimes|required|integer|min:0',
+            'product_id' => 'sometimes|exists:products,id',
+            'name' => 'sometimes|string|max:50',
+            'stock' => 'sometimes|integer|min:0',
         ]);
 
         $talle->update($validated);
 
         return response()->json([
             'message' => 'Talle actualizado correctamente',
-
-            'data' => $talle->load([
-                'product'
-            ])
+            'data' => $talle->load('product')
         ]);
     }
-
     /**
      * Eliminar talle
      */

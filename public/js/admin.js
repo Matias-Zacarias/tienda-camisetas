@@ -1,3 +1,5 @@
+/* dashboard */
+
 async function loadDashboard() {
 
     const token = localStorage.getItem('token');
@@ -88,6 +90,8 @@ function initProductTabs() {
     });
 
 }
+
+/* producto */
 
 function initEditImagePreview() {
 
@@ -197,6 +201,8 @@ async function updateProduct(event) {
                             ).value,
 
                         price: price,
+
+                        is_featured: document.getElementById('editProductFeatured').value === '1',
 
                         discount_price:
                             isNaN(discountPrice)
@@ -450,6 +456,8 @@ async function loadProducts() {
         renderProducts(products);
         fillProductsSelect(products);
 
+        console.log('Productos cargados:', products);
+
     } catch (error) {
 
         console.error(error);
@@ -496,27 +504,28 @@ function renderProducts(products) {
                         </span>
                     </div>
 
-                    <div class="action-buttons">
+                 <div class="action-buttons">
 
-                        <button
-                            class="action-btn edit"
-                            title="Editar"
-                            onclick="editProduct(${product.id})"
-                            ✏️
-                        </button>
+    <button
+        class="action-btn edit"
+        title="Editar"
+        onclick="editProduct(${product.id})">
+        <i class="bi bi-pencil-square"></i>
+    </button>
 
-                        <button
-                            class="action-btn view"
-                            title="Ver">
-                            👁️
-                        </button>
+    <button
+        class="action-btn status"
+        title="${product.is_active ? 'Desactivar' : 'Activar'}"
+        onclick="toggleProductStatus(${product.id}, ${product.is_active})">
 
-                        <button
-                            class="action-btn delete"
-                            title="Eliminar"
-                            onclick="deleteProduct(${product.id})">
-                            🗑️
-                        </button>
+        <i class="bi ${product.is_active
+                ? 'bi-check-circle-fill'
+                : 'bi-x-circle-fill'
+            }"></i>
+
+    </button>
+
+</div>
 
                     </div>
 
@@ -527,6 +536,56 @@ function renderProducts(products) {
 
     });
 
+}
+
+async function toggleProductStatus(id, isActive) {
+
+    try {
+
+        const token =
+            localStorage.getItem('token');
+
+        const response =
+            await fetch(
+                `/api/products/${id}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        is_active: !isActive
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.message ||
+                'Error al actualizar el estado'
+            );
+        }
+
+        await loadProducts();
+
+    } catch (error) {
+
+        console.error(
+            'Error al cambiar estado:',
+            error
+        );
+
+        alert(
+            error.message ||
+            'No se pudo actualizar el producto'
+        );
+
+    }
 }
 
 function fillProductsSelect(products) {
@@ -748,6 +807,10 @@ async function editProduct(id) {
         .getElementById('productModal')
         .classList.add('show');
 
+
+
+    document.getElementById('editProductFeatured').value = product.is_featured ? '1' : '0';
+
 }
 
 function closeProductModal() {
@@ -757,6 +820,8 @@ function closeProductModal() {
         .classList.remove('show');
 
 }
+
+/* pedidos */
 
 function renderOrders(orders) {
 
@@ -1069,4 +1134,564 @@ async function changeOrderStatus(id, estado) {
 
     }
 
+}
+
+/* usuario */
+
+
+let users = [];
+
+document.addEventListener(
+    'DOMContentLoaded',
+    async () => {
+
+        await loadUsers();
+
+        document
+            .getElementById('roleFilter')
+            ?.addEventListener(
+                'change',
+                filterUsers
+            );
+    }
+);
+
+async function loadUsers() {
+    try {
+
+        const token =
+            localStorage.getItem('token');
+
+        const response =
+            await fetch(
+                '/api/users',
+                {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.message ||
+                'Error al cargar usuarios'
+            );
+        }
+
+        users = data;
+
+        renderUsers(users);
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+}
+
+function renderUsers(usersList) {
+    const tbody =
+        document.getElementById(
+            'usersTableBody'
+        );
+
+    if (!tbody) return;
+
+    tbody.innerHTML = '';
+
+    usersList.forEach(user => {
+
+        tbody.innerHTML += `
+            <tr>
+
+                <td>
+                    ${user.name}
+                </td>
+
+                <td>
+                    ${user.email}
+                </td>
+
+                <td>
+    <select
+        class="form-select form-select-sm"
+        onchange="changeUserRole(
+            ${user.id},
+            this.value
+        )"
+    >
+        <option
+            value="user"
+            ${user.role === 'user'
+                ? 'selected'
+                : ''
+            }
+        >
+            Usuario
+        </option>
+
+        <option
+            value="admin"
+            ${user.role === 'admin'
+                ? 'selected'
+                : ''
+            }
+        >
+            Administrador
+        </option>
+
+    </select>
+</td>
+
+                <td>
+                    ${user.orders_count ?? 0}
+                </td>
+
+                <td>
+                    ${formatDate(
+                user.created_at
+            )}
+                </td>
+
+                <td>
+
+    <div class="action-buttons">
+
+        ${user.role === 'user'
+                ? `
+                <button
+                    class="action-btn delete"
+                    title="Eliminar"
+                    onclick="deleteUser(${user.id})">
+
+                    <i class="bi bi-trash"></i>
+
+                </button>
+            `
+                : ''
+            }
+
+    </div>
+
+</td>
+
+                    </div>
+
+                </td>
+
+            </tr>
+        `;
+    });
+}
+
+function filterUsers() {
+    const role =
+        document
+            .getElementById(
+                'roleFilter'
+            )
+            .value;
+
+    if (!role) {
+
+        renderUsers(users);
+
+        return;
+    }
+
+    const filtered =
+        users.filter(
+            user =>
+                user.role === role
+        );
+
+    renderUsers(filtered);
+}
+
+function formatDate(date) {
+    return new Date(date)
+        .toLocaleDateString(
+            'es-AR'
+        );
+}
+
+async function deleteUser(id) {
+    try {
+
+        if (
+            !confirm(
+                '¿Eliminar este usuario?'
+            )
+        ) {
+            return;
+        }
+
+        const token =
+            localStorage.getItem(
+                'token'
+            );
+
+        const response =
+            await fetch(
+                `/api/users/${id}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Accept':
+                            'application/json',
+                        'Authorization':
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.message ||
+                'Error al eliminar usuario'
+            );
+        }
+
+        await loadUsers();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            error.message ||
+            'No se pudo eliminar el usuario'
+        );
+    }
+}
+async function changeUserRole(
+    userId,
+    role
+) {
+    try {
+
+        const token =
+            localStorage.getItem(
+                'token'
+            );
+
+        const response =
+            await fetch(
+                `/api/users/${userId}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type':
+                            'application/json',
+                        'Accept':
+                            'application/json',
+                        'Authorization':
+                            `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        role: role
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.message ||
+                'Error al actualizar rol'
+            );
+        }
+
+        await loadUsers();
+
+    } catch (error) {
+
+        console.error(
+            'Error al cambiar rol:',
+            error
+        );
+
+        alert(
+            error.message ||
+            'No se pudo actualizar el rol'
+        );
+
+        await loadUsers();
+    }
+}
+
+
+/* stock */
+// ── Estado ────────────────────────────────────────────────────
+let productos = [];
+let productoActivo = null;
+
+// ── Init ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    loadProductos();
+});
+
+// ── Cargar productos ──────────────────────────────────────────
+async function loadProductos() {
+    const lista = document.getElementById('productos-lista');
+
+    lista.innerHTML = `
+        <div style="text-align:center;padding:3rem 0">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+        </div>`;
+
+    try {
+        const token = localStorage.getItem('token');
+
+        const res = await fetch('/api/products', {
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.message || 'Error al cargar productos');
+
+        productos = data;
+        renderProductos();
+
+    } catch (error) {
+        console.error('Error cargando productos:', error);
+        lista.innerHTML = `
+            <div class="card" style="text-align:center;padding:2rem;color:#e53e3e">
+                <p>No se pudieron cargar los productos: ${error.message}</p>
+            </div>`;
+    }
+}
+
+// ── Render lista de productos ─────────────────────────────────
+function renderProductos() {
+    const lista = document.getElementById('productos-lista');
+
+    if (!productos.length) {
+        lista.innerHTML = `
+            <div class="card" style="text-align:center;padding:2rem">
+                <p>No hay productos cargados.</p>
+            </div>`;
+        return;
+    }
+
+    lista.innerHTML = `
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Productos</h3>
+            <span style="font-size:.85rem;opacity:.6">${productos.length} producto${productos.length !== 1 ? 's' : ''}</span>
+        </div>
+        <div style="overflow-x:auto;margin:0 -1.75rem;padding:0 1.75rem">
+            <table style="width:100%;border-collapse:collapse;min-width:600px">
+                <thead>
+                    <tr style="border-bottom:1px solid var(--border-color);text-align:left">
+                        <th style="padding:.75rem 1rem;font-size:.8rem;opacity:.6;font-weight:600">PRODUCTO</th>
+                        <th style="padding:.75rem 1rem;font-size:.8rem;opacity:.6;font-weight:600">PRECIO</th>
+                        <th style="padding:.75rem 1rem;font-size:.8rem;opacity:.6;font-weight:600">TALLES</th>
+                        <th style="padding:.75rem 1rem;font-size:.8rem;opacity:.6;font-weight:600">STOCK TOTAL</th>
+                        <th style="padding:.75rem 1rem;font-size:.8rem;opacity:.6;font-weight:600"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${productos.map(p => renderProductoRow(p)).join('')}
+                </tbody>
+            </table>
+        </div>
+    </div>`;
+}
+
+function renderProductoRow(p) {
+    const talles = p.talles ?? [];
+    const stockTotal = talles.reduce((sum, t) => sum + (t.stock ?? 0), 0);
+    const sinStock = talles.filter(t => (t.stock ?? 0) === 0).length;
+    const bajStock = talles.filter(t => (t.stock ?? 0) > 0 && (t.stock ?? 0) <= 10).length;
+
+    let statusBadge = `<span class="status success">OK</span>`;
+    if (sinStock > 0) statusBadge = `<span class="status danger">${sinStock} sin stock</span>`;
+    else if (bajStock) statusBadge = `<span class="status warning">${bajStock} bajo stock</span>`;
+
+    return `
+        <tr style="border-bottom:1px solid var(--border-color);transition:background .2s"
+            onmouseover="this.style.background='rgba(255,255,255,.03)'"
+            onmouseout="this.style.background=''">
+            <td style="padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem">
+                <img src="${p.image ?? ''}" alt="${p.name}"
+                    style="width:44px;height:44px;object-fit:cover;border-radius:6px;background:#333;flex-shrink:0">
+                <div>
+                    <div style="font-weight:600;font-size:.9rem">${p.name}</div>
+                    <div style="font-size:.75rem;opacity:.5">${p.short_description ?? '—'}</div>
+                </div>
+            </td>
+            <td style="padding:.85rem 1rem;font-size:.9rem">$${Number(p.price).toLocaleString('es-AR')}</td>
+            <td style="padding:.85rem 1rem">
+                <div style="display:flex;gap:.3rem;flex-wrap:wrap">
+                    ${talles.map(t => `<span style="background:rgba(255,255,255,.08);border-radius:4px;padding:.15rem .5rem;font-size:.75rem">${t.name}</span>`).join('')}
+                    ${!talles.length ? '<span style="opacity:.4;font-size:.8rem">Sin talles</span>' : ''}
+                </div>
+            </td>
+            <td style="padding:.85rem 1rem">
+                <div style="display:flex;align-items:center;gap:.6rem">
+                    <span style="font-weight:700">${stockTotal}</span>
+                    ${statusBadge}
+                </div>
+            </td>
+            <td style="padding:.85rem 1rem;text-align:right">
+                <button class="btn btn-primary" style="font-size:.8rem;padding:.4rem .9rem"
+                    onclick="abrirStockPanel(${p.id})">
+                    Gestionar Stock
+                </button>
+            </td>
+        </tr>`;
+}
+
+// ── Abrir panel de stock ──────────────────────────────────────
+function abrirStockPanel(id) {
+    productoActivo = productos.find(p => p.id === id);
+    if (!productoActivo) return;
+
+    document.getElementById('stock-panel-titulo').textContent =
+        `${productoActivo.name} — SKU #${String(productoActivo.id).padStart(4, '0')}`;
+
+    renderTalles(productoActivo.talles ?? []);
+    actualizarStats(productoActivo.talles ?? []);
+
+    const panel = document.getElementById('stock-panel');
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Render talles en el panel ─────────────────────────────────
+function renderTalles(talles) {
+    const lista = document.getElementById('stock-talles-lista');
+
+    if (!talles.length) {
+        lista.innerHTML = `<p style="padding:1rem;opacity:.5">Este producto no tiene talles cargados.</p>`;
+        return;
+    }
+
+    lista.innerHTML = talles.map(t => {
+        const stock = t.stock ?? 0;
+        const status = stock === 0
+            ? { cls: 'danger', label: 'Sin Stock' }
+            : stock <= 10
+                ? { cls: 'warning', label: 'Bajo Stock' }
+                : { cls: 'success', label: 'En Stock' };
+
+        return `
+            <div class="size-row" data-talle-id="${t.id}">
+                <div class="form-group" style="margin:0">
+                    <label class="form-label">Talle</label>
+                    <input type="text" class="form-input" value="${t.name}" readonly>
+                </div>
+                <div class="form-group" style="margin:0">
+                    <label class="form-label">Stock Disponible</label>
+                    <input type="number" class="form-input stock-input" value="${stock}" min="0"
+                        onchange="onStockChange(this, ${t.id})">
+                </div>
+                <div style="display:flex;align-items:flex-end">
+                    <span class="status ${status.cls}" id="status-talle-${t.id}">${status.label}</span>
+                </div>
+            </div>`;
+    }).join('');
+}
+
+// ── Actualizar badge de estado en tiempo real ─────────────────
+function onStockChange(input, talleId) {
+    const val = parseInt(input.value) || 0;
+    const badge = document.getElementById(`status-talle-${talleId}`);
+    const status = val === 0
+        ? { cls: 'danger', label: 'Sin Stock' }
+        : val <= 10
+            ? { cls: 'warning', label: 'Bajo Stock' }
+            : { cls: 'success', label: 'En Stock' };
+
+    badge.className = `status ${status.cls}`;
+    badge.textContent = status.label;
+
+    // actualizar stats en vivo
+    const tallesActuales = getTallesDesdeInputs();
+    actualizarStats(tallesActuales);
+}
+
+// ── Guardar stock ─────────────────────────────────────────────
+async function guardarStock() {
+    const token = localStorage.getItem('token');
+    const rows = document.querySelectorAll('#stock-talles-lista .size-row');
+    const updates = [];
+
+    rows.forEach(row => {
+        const talleId = row.dataset.talleId;
+        const stock = parseInt(row.querySelector('.stock-input').value) || 0;
+        updates.push({ id: talleId, stock });
+    });
+
+    try {
+        await Promise.all(updates.map(u =>
+            fetch(`/api/talles/${u.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ stock: u.stock }),
+            })
+        ));
+
+        // reflejar cambios en el array local
+        updates.forEach(u => {
+            const talle = productoActivo.talles.find(t => t.id == u.id);
+            if (talle) talle.stock = u.stock;
+        });
+
+        // re-renderizar la fila del producto en la tabla
+        const row = document.querySelector(`[onclick="abrirStockPanel(${productoActivo.id})"]`)?.closest('tr');
+        if (row) row.outerHTML = renderProductoRow(productoActivo);
+
+        alert('Stock actualizado correctamente.');
+
+    } catch (error) {
+        console.error('Error guardando stock:', error);
+        alert('Ocurrió un error al guardar. Revisá la consola.');
+    }
+}
+
+// ── Cerrar panel ──────────────────────────────────────────────
+function cerrarStockPanel() {
+    document.getElementById('stock-panel').style.display = 'none';
+    productoActivo = null;
+}
+
+// ── Stats ─────────────────────────────────────────────────────
+function actualizarStats(talles) {
+    const total = talles.reduce((sum, t) => sum + (parseInt(t.stock) || 0), 0);
+    const bajo = talles.filter(t => (parseInt(t.stock) || 0) > 0 && (parseInt(t.stock) || 0) <= 10).length;
+    const sin = talles.filter(t => (parseInt(t.stock) || 0) === 0).length;
+
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-bajo').textContent = bajo;
+    document.getElementById('stat-sin').textContent = sin;
+}
+
+function getTallesDesdeInputs() {
+    const rows = document.querySelectorAll('#stock-talles-lista .size-row');
+    return Array.from(rows).map(row => ({
+        stock: parseInt(row.querySelector('.stock-input').value) || 0
+    }));
 }

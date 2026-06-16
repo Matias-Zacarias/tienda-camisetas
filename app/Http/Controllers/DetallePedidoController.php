@@ -19,8 +19,8 @@ class DetallePedidoController extends Controller
                 'product',
                 'talle'
             ])
-            ->latest()
-            ->get()
+                ->latest()
+                ->get()
 
         );
     }
@@ -126,6 +126,22 @@ class DetallePedidoController extends Controller
 
         return response()->json([
             'message' => 'Detalle de pedido eliminado correctamente'
+        ]);
+    }
+
+
+    public function porEncabezado(string $pedidoId)
+    {
+        $detalles = DetallePedido::with([
+            'product',
+            'talle'
+        ])
+            ->where('pedido_id', $pedidoId)
+            ->get();
+
+        return response()->json([
+            'id' => (int) $pedidoId,
+            'detalles' => $detalles,
         ]);
     }
 }

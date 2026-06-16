@@ -13,3 +13,8 @@
 
 @endsection
 
+@push('scripts')
+  <script>
+    loadFeaturedProducts() 
+  </script>
+@endpush

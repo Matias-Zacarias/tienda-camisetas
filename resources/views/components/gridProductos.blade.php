@@ -122,47 +122,14 @@
       <!-- <p style="color:var(--color-muted);font-size:.82rem;margin:0">Temporada 2024/25</p> -->
     </div>
 
-    <div class="row g-4">
 
 
-      @foreach($productos as $p)
-        <x-productCard :nombre="$p['nombre']" :liga="$p['liga']" :precio="$p['precio']" :imagen="$p['imagen']"
-          :badge="$p['badge'] ?? null" :precioOld="$p['precioOld'] ?? null" :badgeStyle="$p['badgeStyle'] ?? ''" />
-      @endforeach
+
+    <div id="featured-products" class="row g-4"></div>
 
 
-    </div>
 
-    <!-- Paginación decorativa  (PROXIMANENTE)-->
-    <!-- <nav class="mt-5 d-flex justify-content-center" aria-label="Paginación">
-        <ul class="pagination" style="gap:.5rem">
-          <li class="page-item">
-            <a class="page-link"
-               style="background:var(--color-surface);border-color:var(--color-border);color:var(--color-muted);border-radius:var(--radius)"
-               href="#">«</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link"
-               style="background:var(--color-red);border-color:var(--color-red);color:#fff;border-radius:var(--radius)"
-               href="#">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link"
-               style="background:var(--color-surface);border-color:var(--color-border);color:var(--color-muted);border-radius:var(--radius)"
-               href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link"
-               style="background:var(--color-surface);border-color:var(--color-border);color:var(--color-muted);border-radius:var(--radius)"
-               href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link"
-               style="background:var(--color-surface);border-color:var(--color-border);color:var(--color-muted);border-radius:var(--radius)"
-               href="#">»</a>
-          </li>
-        </ul>
-      </nav> -->
+
 
   </div>
 </section>

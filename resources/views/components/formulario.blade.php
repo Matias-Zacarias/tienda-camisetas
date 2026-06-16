@@ -68,22 +68,7 @@
             autocomplete="tel" />
         </div>
 
-        @if(request()->is('consultas'))
 
-          <div class="col-12">
-            <label class="form-label-gf" for="asunto">Asunto</label>
-            <select class="form-control-gf" id="asunto" name="asunto">
-              <option value="" disabled selected>Seleccioná un asunto</option>
-              <option value="pedido">Consulta sobre pedido</option>
-              <option value="producto">Consulta sobre producto</option>
-              <option value="envio">Información de envío</option>
-              <option value="devolucion">Devolución / cambio</option>
-              <option value="otro">Otro</option>
-            </select>
-            <span class="form-error" data-field="asunto"></span>
-          </div>
-
-        @endif
 
 
         <div class="col-12">

@@ -178,6 +178,8 @@ h5 {
     bottom: -7px;
 }
 
+
+
 .search-bar {
     display: flex;
     align-items: center;
@@ -897,6 +899,62 @@ tbody tr:hover {
     border-radius: 3px 3px 0 0;
 }
 
+.consultas-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+}
+
+.message-item {
+    cursor: pointer;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+}
+
+.message-sender {
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+    display: inline-block;
+}
+
+.message-subject {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.2rem 0;
+}
+
+.message-preview {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.message-time {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+
 /* Messages */
 .message-list {
     display: flex;
@@ -904,14 +962,14 @@ tbody tr:hover {
     gap: 1rem;
 }
 
-.message-item {
+/* .message-item {
     padding: 1.25rem;
     background: var(--bg-tertiary);
     border-radius: 12px;
     border-left: 4px solid var(--accent-primary);
     transition: all 0.2s;
     cursor: pointer;
-}
+} */
 
 .message-item:hover {
     transform: translateX(4px);
@@ -979,6 +1037,7 @@ tbody tr:hover {
     }
 
     .sidebar {
+        width: 260px !important;
         transform: translateX(-100%);
     }
 
@@ -1015,9 +1074,16 @@ tbody tr:hover {
         grid-template-columns: 1fr;
     }
 
+
     .size-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: .75rem;
     }
+
+    .size-row>div:last-child {
+        grid-column: 1 / -1;
+    }
+
 
     .user-info {
         display: none;
@@ -1029,6 +1095,10 @@ tbody tr:hover {
 
     table {
         min-width: 600px;
+    }
+
+    .consultas-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1121,6 +1191,8 @@ tbody tr:hover {
     z-index: 150;
     display: none;
 }
+
+
 
 .overlay.active {
     display: block;
