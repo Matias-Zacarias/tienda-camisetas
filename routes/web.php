@@ -51,6 +51,19 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
+Route::get('/detalle/{id}', function ($id) {
+    return view('detalle');
+});
+
+Route::get('/confirmar-compra', function () {
+    return view('confirmarCompra');
+});
+
+Route::get('/pedidos', function () {
+    return view('pedidos');
+});
+
+
 
 
 

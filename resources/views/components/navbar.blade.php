@@ -41,7 +41,8 @@
           <a class="nav-link-gf {{ request()->is('about') ? 'active' : '' }}" href="/about">Quiénes Somos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link-gf {{ request()->is('catalogo') ? 'active' : '' }}" href="/catalogo">Catálogo</a>
+          <a class="nav-link-gf {{ request()->is('catalogo') ? 'active' : (request()->is('detalle/*') ? 'active' : '') }}"
+            href="/catalogo">Catálogo</a>
         </li>
         <li class="nav-item">
           <a class="nav-link-gf {{ request()->is('comercializacion') ? 'active' : '' }}"
@@ -53,9 +54,11 @@
           </a>
         </li>
 
+
+
         <li class="nav-item">
-          <a class="nav-link-gf {{ request()->is('contacto') ? 'active' : '' }}" href="/contacto" id="contactoLink">
-            Contacto
+          <a class="nav-link-gf {{ request()->is('contacto') ? 'active' : '' }}" href="/pedidos" id="misPedidosLink">
+            Mis pedidos
           </a>
         </li>
 
@@ -115,21 +118,21 @@ OFFCANVAS — Panel del carrito
       </div>
 
       {{-- Items se renderizan acá con JS --}}
-      <ul id="cart-list" class="cart-list" style="display:none"></ul>
+      <ul id="cart-list" class="cart-list detail-label " style="display:none"></ul>
     </div>
 
   </div>
 
   {{-- Footer con total --}}
   <div class="cart-offcanvas-footer" id="cart-footer" style="display:none">
-    <div class="cart-total">
+    <div class="detail-label">
       <span>Total</span>
-      <span class="cart-total-price" id="cart-total">$0</span>
+      <span class="detail-label" id="cart-total">$0</span>
     </div>
-    <button class="btn-primary-gf w-100 mt-3" type="button" style="text-align:center">
-      <i class="bi bi-lock me-2"></i>Finalizar compra
-      <small style="display:block;font-size:.7rem;opacity:.7;font-family:var(--font-body);letter-spacing:0">Próximamente
-        disponible</small>
+    <button onclick="window.location.href = '/confirmar-compra'" class="btn-primary-gf w-100 mt-3" type="button"
+      style="text-align:center">
+      Finalizar compra
+
     </button>
   </div>
 

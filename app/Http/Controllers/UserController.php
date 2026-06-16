@@ -12,22 +12,23 @@ class UserController extends Controller
      * Mostrar todos los usuarios
      */
     public function index()
-{
-    return response()->json(
+    {
+        return response()->json(
 
-        User::withCount('pedidos')
-            ->select(
-                'id',
-                'name',
-                'email',
-                'role',
-                'created_at'
-            )
-            ->latest()
-            ->get()
+            User::withCount('pedidos')
+                ->select(
+                    'id',
+                    'name',
+                    'email',
+                    'role',
+                    'created_at',
+                    'created_at'
+                )
+                ->latest()
+                ->get()
 
-    );
-}
+        );
+    }
 
     /**
      * Crear usuario

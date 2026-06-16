@@ -1,7 +1,7 @@
 <aside class="sidebar" id="sidebar">
     <div class="logo">
-        <div class="logo-icon">E</div>
-        <div class="logo-text">EcomAdmin</div>
+        <!-- <div class="logo-icon">AD</div> -->
+        <div class="logo-text">Tienda</div>
     </div>
 
     <nav class="nav-section">
@@ -20,7 +20,7 @@
             data-section="orders">
             <span class="nav-icon">🛒</span>
             <span>Pedidos</span>
-            <span class="badge">12</span>
+            <!--  <span class="badge">12</span> -->
         </a>
     </nav>
 
@@ -35,7 +35,7 @@
             data-section="messages">
             <span class="nav-icon">💬</span>
             <span>Consultas</span>
-            <span class="badge">5</span>
+            <!-- <span class="badge">5</span> -->
         </a>
         <a class="nav-item {{ request()->is('panel-admin-stock') ? 'active' : '' }}" href="/panel-admin-stock"
             data-section="stock">
@@ -45,12 +45,12 @@
     </nav>
 
     <nav class="nav-section">
-        <div class="nav-title">Contenido</div>
-        <a class="nav-item {{ request()->is('panel-admin-estadisticas') ? 'active' : '' }}"
+        <div class="nav-title">Observar</div>
+        <!-- <a class="nav-item {{ request()->is('panel-admin-estadisticas') ? 'active' : '' }}"
             href="/panel-admin-estadisticas" data-section="statistics">
             <span class="nav-icon">📈</span>
             <span>Estadísticas</span>
-        </a>
+        </a> -->
         <a class="nav-item" href="/" target="_blank">
             <span class="nav-icon">🌐</span>
             <span>Ver como Visitante</span>

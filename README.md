@@ -1,223 +1,172 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# GOLEADOR FC ⚽
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistema de e-commerce para venta de camisetas de fútbol desarrollado con Laravel.
 
-## About Laravel
+## Características
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Catálogo de productos
+- Gestión de talles y stock
+- Carrito de compras
+- Registro e inicio de sesión
+- Autenticación mediante Laravel Sanctum
+- Gestión de pedidos
+- Panel de administración
+- Control de roles (Administrador / Cliente)
+- Gestión de consultas de clientes
+- Control de stock por talle
+- Historial de pedidos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Tecnologías
 
-## Learning Laravel
+- PHP 8+
+- Laravel 12
+- SQLITE
+- Bootstrap 5
+- JavaScript Vanilla
+- Laravel Sanctum
+- Eloquent
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Instalación
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+1- Clonar repositorio
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+2- Ingresar al proyecto
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+cd nombre del proyecto
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Instalar dependencias
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Copiar variables de entorno
 
-## Code of Conduct
+```bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Generar clave
 
-## Security Vulnerabilities
+```bash
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Configurar base de datos en `.env`
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-
-## Instrucciones de sanctum para token
-
-Esto permite que los datos del usuario viajen en un token generado por sanctum que da mas seguridad al sistema
-para que no pueda ser falsificado el tipo de usuario
-
-Ejecutar: 
--composer require laravel/sanctum
--php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
-
--php artisan migrate:fresh
-
-El primer usuario admin deberia ser creado manualmente.
-
-Crea el middleware para verificar si es administrador
-php artisan make:middleware AdminMiddleware, nos creo la carpeta en http
-Esto va a proteger que no cualquier usuario pueda eliminar productos o modificar cosas sensibles 
-
-
-Dejar de exponer el token de reset de session
-POST /forgot-password
-POST /reset-password
-
-cambiar en .env (no vamos a guardar sesiones en base de datos porque usamos token)
+```env
+DB_CONNECTION=sqlite
 SESSION_DRIVER=file
 CACHE_STORE=file
 QUEUE_CONNECTION=database
-
-activar worker para que soporte carga pesada 
-php artisan queue:work
+```
 
 
-PARA EJECUTAR COMANDOS SQL 
+
+---
+
+# Autenticación con Sanctum
+
+Instalar Sanctum
+
+```bash
+composer require laravel/sanctum
+```
+
+Publicar configuración
+
+```bash
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+```
+
+Ejecutar migraciones
+
+```bash
+php artisan migrate
+```
+
+Sanctum se utiliza para generar tokens seguros que identifican al usuario autenticado.
+
+---
+
+Iniciar servidor
+
+```bash
+php artisan serve
+```
+
+
+
+# Configuración recomendada
+
+En `.env`
+
+```env
+SESSION_DRIVER=file
+CACHE_STORE=file
+QUEUE_CONNECTION=database
+```
+
+---
+
+# Crear primer administrador
+
+Ejecutar:
+
+```bash
 php artisan tinker
+```
 
-COMANDO PARA CREAR PRIMER USUARIO
+Luego:
+
+```php
 \App\Models\User::create([
-    'name' => 'Matias Admin',
+    'name' => 'Administrador',
     'email' => 'admin@test.com',
-    'password' => '123456',
+    'password' => bcrypt('123456'),
     'role' => 'admin'
 ]);
+```
 
-preguntar por si tener varios layout
-preguntar por login que redirige segun usuario
+---
 
-preguntar por si se puede comprar sin registro
-preguntar por usar sanctum y el middleware 
+# Comandos útiles
 
-preguntar por readme 
+Abrir Tinker
 
-preguntar por crear el primer usuario mediante comando 
+```bash
+php artisan tinker
+```
 
-preguntar por cambiar la contraseña enviando un mail por n8n
+Limpiar caché
 
+```bash
+php artisan optimize:clear
+```
 
-eliminar tabla de carrito
+Ejecutar migraciones desde cero
 
-para comprar hay que estar registrado
+```bash
+php artisan migrate:fresh
+```
 
-falta boton de logout
+---
 
+# Reglas de negocio
 
-for ($i = 1; $i <= 10; $i++) {
+- El usuario debe estar registrado para comprar.
+- El stock se controla por talle.
+- Solo administradores pueden acceder al panel administrativo.
+- Los pedidos se registran con estado inicial "Pendiente".
 
-    $producto = Product::inRandomOrder()->first();
+---
 
-    $talle = Talle::where(
-        'product_id',
-        $producto->id
-    )->inRandomOrder()->first();
+# Autor
 
-    $cantidad = rand(1, 3);
-
-    $precio = $producto->discount_price
-        ?? $producto->price;
-
-    $subtotal = $precio * $cantidad;
-
-    $pedido = EncabezadoPedido::create([
-
-        'user_id' => null,
-
-        'cliente_telefono' =>
-            '37940000' . rand(100, 999),
-
-        'direccion_envio' =>
-            'Dirección de prueba ' . $i,
-
-        'metodo_pago' =>
-            collect([
-                'Transferencia',
-                'Mercado Pago',
-                'Efectivo'
-            ])->random(),
-
-        'estado' =>
-            collect([
-                'Pendiente',
-                'En Proceso',
-                'Enviado',
-                'Completado'
-            ])->random(),
-
-        'subtotal' => $subtotal,
-
-        'total' => $subtotal,
-
-        'observaciones' =>
-            'Pedido generado desde Tinker'
-    ]);
-
-    DetallePedido::create([
-
-        'pedido_id' =>
-            $pedido->id,
-
-        'product_id' =>
-            $producto->id,
-
-        'talle_id' =>
-            $talle->id,
-
-        'producto_nombre' =>
-            $producto->name,
-
-        'talle_nombre' =>
-            $talle->name,
-
-        'precio_unitario' =>
-            $precio,
-
-        'cantidad' =>
-            $cantidad,
-
-        'subtotal' =>
-            $subtotal
-    ]);
-}
-
-
-Talle::create([
-    'product_id' => $product1->id,
-    'name' => 'M',
-    'stock' => 10
-]);
-
-Talle::create([
-    'product_id' => $product1->id,
-    'name' => 'L',
-    'stock' => 5
-]);
-
-Talle::create([
-    'product_id' => $product2->id,
-    'name' => 'S',
-    'stock' => 8
-]);
-
-Talle::create([
-    'product_id' => $product2->id,
-    'name' => 'XL',
-    'stock' => 4
-]);
+Desarrollado por Matias Zacarias y Gustavo Montes Palavecino.

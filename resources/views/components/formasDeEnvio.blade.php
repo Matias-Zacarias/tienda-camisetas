@@ -95,32 +95,27 @@
                         </thead>
                         <tbody>
                             <tr style="border-bottom:1px solid var(--color-border)">
-                                <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">CORRIENTES CAPITAL.</td>
+                                <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">OCA</td>
+                                <td
+                                    style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">
+                                    $10
+                                </td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--color-border)">
+                                <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Correo Argentino
+                                </td>
                                 <td
                                     style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">
                                     $3
                                 </td>
                             </tr>
                             <tr style="border-bottom:1px solid var(--color-border)">
-                                <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Interior provincia Corrientes.
-                                </td>
+                                <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Retiro en local</td>
                                 <td
                                     style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">
-                                    $5
-                                </td>
+                                    GRATIS</td>
                             </tr>
-                            <tr style="border-bottom:1px solid var(--color-border)">
-                                <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Resto del país</td>
-                                <td
-                                    style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">
-                                    $10</td>
-                            </tr>
-                            <tr>
-                                <td style="padding:.7rem 0;font-size:.9rem;color:#ccc">Patagonia / NOA / NEA</td>
-                                <td
-                                    style="padding:.7rem 0;font-size:.9rem;color:var(--color-red);text-align:right;font-weight:700">
-                                    $15</td>
-                            </tr>
+
                         </tbody>
                     </table>
 

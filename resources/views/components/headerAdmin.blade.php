@@ -13,16 +13,16 @@
             <span class="theme-option active" data-theme="light">☀️</span>
             <span class="theme-option" data-theme="dark">🌙</span>
         </div>
-        <button class="icon-btn notification">
+        <!-- <button class="icon-btn notification">
             <span>🔔</span>
-        </button>
+        </button> -->
         <!--  <button class="icon-btn">
                 <span>⚙️</span>
             </button> -->
         <div class="user-profile">
             <div class="user-avatar">AM</div>
             <div class="user-info">
-                <div class="user-name">Admin</div>
+                <!-- <div class="user-name">Admin</div> -->
                 <div class="user-role">Administrador</div>
             </div>
         </div>

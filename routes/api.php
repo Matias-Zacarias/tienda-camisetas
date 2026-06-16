@@ -10,6 +10,8 @@ use App\Http\Controllers\DetallePedidoController;
 use App\Http\Controllers\CarritoItemController;
 use App\Http\Controllers\PasswordResetTokenController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\ProductoDestacadoController;
+use App\Http\Controllers\ConsultaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,11 @@ use App\Http\Controllers\DashboardAdminController;
 
 Route::get('/products', [
     ProductController::class,
+    'index'
+]);
+
+Route::get('/products/destacados', [
+    ProductoDestacadoController::class,
     'index'
 ]);
 
@@ -40,6 +47,19 @@ Route::get('/talles/{id}', [
     TalleController::class,
     'show'
 ]);
+
+Route::get(
+    '/catalog/products',
+    [ProductController::class, 'catalog']
+);
+
+
+
+// ← Primero la ruta custom
+Route::patch('/consultas/{id}/respondida', [ConsultaController::class, 'marcarRespondida']);
+
+// ← Después el apiResource
+Route::apiResource('consultas', ConsultaController::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +92,13 @@ Route::middleware('auth:sanctum')
             PasswordResetTokenController::class
         );
 
+        Route::delete(
+            '/carrito/user/{userId}',
+            [CarritoItemController::class, 'destroyByUserId']
+        );
+
+        Route::get('/detalles-pedidos/encabezado/{pedidoId}', [DetallePedidoController::class, 'porEncabezado']);
+
     });
 
 Route::middleware(['auth:sanctum', 'admin'])
@@ -90,5 +117,5 @@ Route::middleware(['auth:sanctum', 'admin'])
             ->except(['index', 'show']);
 
         Route::apiResource('users', UserController::class)
-            ->except(['index', 'show']);
+            ->except(['show']);
     });

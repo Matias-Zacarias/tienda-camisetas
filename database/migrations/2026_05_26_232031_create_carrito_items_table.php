@@ -14,6 +14,11 @@ return new class extends Migration {
 
             $table->id();
 
+            // Usuario
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
+
             // Producto
             $table->foreignId('product_id')
                 ->nullable()
@@ -26,9 +31,8 @@ return new class extends Migration {
                 ->constrained('talle')
                 ->nullOnDelete();
 
-            // Cantidad del producto
-            $table->integer('cantidad')
-                ->default(1);
+            // Cantidad
+            $table->integer('cantidad')->default(1);
 
             $table->timestamps();
         });

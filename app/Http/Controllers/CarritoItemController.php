@@ -7,109 +7,135 @@ use Illuminate\Http\Request;
 
 class CarritoItemController extends Controller
 {
-    /**
-     * Mostrar todos los items del carrito
-     */
     public function index()
     {
         return response()->json(
 
             CarritoItem::with([
-                'carrito',
                 'product',
                 'talle'
             ])
-            ->latest()
-            ->get()
+                ->where(
+                    'user_id',
+                    auth()->id()
+                )
+                ->get()
 
         );
     }
 
-    /**
-     * Crear item del carrito
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
-
-            'carrito_id' => 'required|exists:carritos,id',
-
             'product_id' => 'required|exists:products,id',
-
             'talle_id' => 'nullable|exists:talle,id',
-
-            'cantidad' => 'required|integer|min:1',
+            'cantidad' => 'required|integer|min:1'
         ]);
 
-        $item = CarritoItem::create($validated);
+        $item = CarritoItem::where(
+            'user_id',
+            auth()->id()
+        )
+            ->where(
+                'product_id',
+                $validated['product_id']
+            )
+            ->where(
+                'talle_id',
+                $validated['talle_id'] ?? null
+            )
+            ->first();
+
+        if ($item) {
+
+            $item->increment(
+                'cantidad',
+                $validated['cantidad']
+            );
+
+        } else {
+
+            $item = CarritoItem::create([
+                'user_id' => auth()->id(),
+                'product_id' => $validated['product_id'],
+                'talle_id' => $validated['talle_id'] ?? null,
+                'cantidad' => $validated['cantidad']
+            ]);
+        }
 
         return response()->json([
-            'message' => 'Item agregado al carrito correctamente',
-
+            'message' => 'Producto agregado al carrito',
             'data' => $item->load([
-                'carrito',
                 'product',
                 'talle'
             ])
-        ], 201);
+        ]);
     }
 
-    /**
-     * Mostrar item específico
-     */
     public function show(string $id)
     {
         $item = CarritoItem::with([
-            'carrito',
             'product',
             'talle'
-        ])->findOrFail($id);
+        ])
+            ->where(
+                'user_id',
+                auth()->id()
+            )
+            ->findOrFail($id);
 
         return response()->json($item);
     }
-
-    /**
-     * Actualizar item del carrito
-     */
     public function update(Request $request, string $id)
     {
-        $item = CarritoItem::findOrFail($id);
-
         $validated = $request->validate([
-
-            'carrito_id' => 'sometimes|required|exists:carritos,id',
-
-            'product_id' => 'sometimes|required|exists:products,id',
-
-            'talle_id' => 'nullable|exists:talle,id',
-
-            'cantidad' => 'sometimes|required|integer|min:1',
+            'cantidad' => 'required|integer|min:1'
         ]);
 
-        $item->update($validated);
+        $item = CarritoItem::where(
+            'user_id',
+            auth()->id()
+        )->where(
+                'id',
+                $id
+            )->firstOrFail();
+
+        $item->update([
+            'cantidad' => $validated['cantidad']
+        ]);
 
         return response()->json([
-            'message' => 'Item del carrito actualizado correctamente',
-
-            'data' => $item->load([
-                'carrito',
+            'message' => 'Cantidad actualizada',
+            'data' => $item->fresh()->load([
                 'product',
                 'talle'
             ])
         ]);
     }
-
-    /**
-     * Eliminar item del carrito
-     */
-    public function destroy(string $id)
+    public function destroy(CarritoItem $carrito_item)
     {
-        $item = CarritoItem::findOrFail($id);
+        if ($carrito_item->user_id !== auth()->id()) {
+            abort(403);
+        }
 
-        $item->delete();
+        $carrito_item->delete();
 
         return response()->json([
-            'message' => 'Item eliminado del carrito correctamente'
+            'message' => 'Producto eliminado'
+        ]);
+    }
+
+    public function destroyByUserId($userId)
+    {
+        // seguridad: solo el propio usuario o admin
+        if (auth()->id() != $userId) {
+            abort(403, 'No autorizado');
+        }
+
+        CarritoItem::where('user_id', $userId)->delete();
+
+        return response()->json([
+            'message' => 'Carrito vaciado correctamente'
         ]);
     }
 }

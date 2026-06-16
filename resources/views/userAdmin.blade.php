@@ -8,9 +8,7 @@
             <h1 class="page-title">Usuarios</h1>
             <p class="page-subtitle">Administra los usuarios de tu tienda</p>
         </div>
-        <button class="btn btn-primary">
-            <span>+</span> Agregar Usuario
-        </button>
+
     </div>
 
     <div class="card">
@@ -19,8 +17,8 @@
             <select id="roleFilter" class="form-select" style="width: auto;">
                 <option value="">Todos los roles</option>
                 <option value="admin">Administrador</option>
-                <option value="editor">Editor</option>
-                <option value="cliente">Cliente</option>
+
+                <option value="user">usuario</option>
             </select>
         </div>
         <div class="table-container">
@@ -32,7 +30,7 @@
                         <th>Rol</th>
                         <th>Pedidos</th>
                         <th>Registro</th>
-                        <th>Estado</th>
+
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -48,6 +46,6 @@
 
 @push('scripts')
     <script>
-
+        loadUsers();
     </script>
 @endpush
