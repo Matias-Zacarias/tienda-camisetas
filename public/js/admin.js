@@ -141,12 +141,12 @@ async function updateProduct(event) {
             .replace(',', '.')
     );
 
-    const discountPrice = parseFloat(
-        document
-            .getElementById('editProductDiscountPrice')
-            .value
-            .replace(',', '.')
-    );
+    /*  const discountPrice = parseFloat(
+         document
+             .getElementById('editProductDiscountPrice')
+             .value
+             .replace(',', '.')
+     ); */
 
     event.preventDefault();
 
@@ -204,10 +204,7 @@ async function updateProduct(event) {
 
                         is_featured: document.getElementById('editProductFeatured').value === '1',
 
-                        discount_price:
-                            isNaN(discountPrice)
-                                ? null
-                                : discountPrice,
+
 
                         description:
                             document.getElementById(
@@ -354,13 +351,13 @@ async function createProduct(event) {
                     document.getElementById('productPrice').value
                 ),
 
-            discount_price:
+            /* discount_price:
                 Number(
                     document.getElementById('productDiscountPrice').value
-                ) || null,
+                ) || null, */
 
-            featured:
-                document.getElementById('productFeatured').value === 'Si',
+            /* featured:
+                document.getElementById('productFeatured').value === 'Si', */
 
             description:
                 document.getElementById('productDescription').value.trim(),
@@ -788,9 +785,9 @@ async function editProduct(id) {
         'editProductPrice'
     ).value = product.price ?? '';
 
-    document.getElementById(
-        'editProductDiscountPrice'
-    ).value = product.discount_price ?? '';
+    /*  document.getElementById(
+         'editProductDiscountPrice'
+     ).value = product.discount_price ?? ''; */
 
     document.getElementById(
         'editProductDescription'

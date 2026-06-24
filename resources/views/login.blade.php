@@ -272,7 +272,14 @@
 
                         } else {
 
-                            window.location.href = '/';
+                            const redirect = localStorage.getItem('redirect_after_login');
+
+                            if (redirect) {
+                                localStorage.removeItem('redirect_after_login');
+                                window.location.href = redirect;
+                            } else {
+                                window.location.href = '/';
+                            }
 
                         }
 
@@ -409,7 +416,7 @@
             });
         });
 
-        
+
     </script>
 </body>
 

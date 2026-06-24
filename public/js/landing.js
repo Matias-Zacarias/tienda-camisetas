@@ -167,6 +167,8 @@ function renderProducts(products) {
 
 }
 
+
+/* detalle producto  */
 let talleActual = null;
 let stockActual = 0;
 let productoDetalle = null;

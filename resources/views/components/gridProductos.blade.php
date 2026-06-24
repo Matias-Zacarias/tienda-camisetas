@@ -117,8 +117,8 @@
 
     <!-- Contador de resultados -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <p style="color:var(--color-muted);font-size:.88rem;margin:0">Mostrando <strong
-          style="color:var(--color-white)">12 productos</strong></p>
+      <!-- <p style="color:var(--color-muted);font-size:.88rem;margin:0">Mostrando <strong
+          style="color:var(--color-white)">12 productos</strong></p> -->
       <!-- <p style="color:var(--color-muted);font-size:.82rem;margin:0">Temporada 2024/25</p> -->
     </div>
 

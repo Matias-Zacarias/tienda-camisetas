@@ -49,19 +49,19 @@
                         <label class="form-label">Precio</label>
                         <input id="productPrice" type="number" class="form-input" placeholder="0.00" step="0.01">
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Precio en descuento:</label>
-                        <input id="productDiscountPrice" type="number" class="form-input" placeholder="0.00" step="0.01">
-                    </div>
+                    <!--  <div class="form-group">
+                                                        <label class="form-label">Precio en descuento:</label>
+                                                        <input id="productDiscountPrice" type="number" class="form-input" placeholder="0.00" step="0.01">
+                                                    </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Producto destacado</label>
-                        <select id="productFeatured" class="form-select">
-                            <option>Si</option>
-                            <option>no</option>
+                                                    <div class="form-group">
+                                                        <label class="form-label">Producto destacado</label>
+                                                        <select id="productFeatured" class="form-select">
+                                                            <option>Si</option>
+                                                            <option>no</option>
 
-                        </select>
-                    </div>
+                                                        </select>
+                                                    </div> -->
                 </div>
 
                 <div class="form-grid">
@@ -173,11 +173,11 @@
                         <input id="editProductPrice" type="text" class="form-input">
                     </div>
 
-                    <div class="form-group">
-                        <label>Descuento</label>
-                        <input id="editProductDiscountPrice" type="text" class="form-input">
+                    <!-- <div class="form-group">
+                                                        <label>Descuento</label>
+                                                        <input id="editProductDiscountPrice" type="text" class="form-input">
 
-                    </div>
+                                                    </div> -->
 
                     <div class="form-group">
                         <label>Destacado</label>

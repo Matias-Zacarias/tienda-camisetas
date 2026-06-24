@@ -472,80 +472,93 @@
 
     async function addToCart() {
 
-      if (!productoDetalle.talle_id) {
+      // ── Verificar sesión ──────────────────────────────────────
+      const token = localStorage.getItem('token');
 
-        alert(
-          'Seleccioná un talle'
-        );
-
+      if (!token) {
+        // Guardar la URL actual para volver después del login
+        localStorage.setItem('redirect_after_login', window.location.href);
+        window.location.href = '/login';
         return;
       }
 
-      const token =
-        localStorage.getItem(
-          'token'
-        );
+      // ── Verificar que haya talle seleccionado ─────────────────
+      if (!productoDetalle?.talle_id) return;
+
+      const btn = document.getElementById('btn-agregar');
 
       try {
 
-        const response =
-          await fetch(
-            '/api/carrito-items',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
-              },
-              body: JSON.stringify({
+        btn.disabled = true;
+        btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Agregando...`;
 
-                product_id:
-                  productoDetalle.product_id,
+        const response = await fetch('/api/carrito-items', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            product_id: productoDetalle.product_id,
+            talle_id: productoDetalle.talle_id,
+            cantidad: productoDetalle.cantidad,
+          }),
+        });
 
-                talle_id:
-                  productoDetalle.talle_id,
+        // Token expirado o inválido
+        if (response.status === 401) {
+          localStorage.removeItem('token');
+          localStorage.setItem('redirect_after_login', window.location.href);
+          window.location.href = '/login';
+          return;
+        }
 
-                cantidad:
-                  productoDetalle.cantidad
-
-              })
-            }
-          );
-
-        const data =
-          await response.json();
+        const data = await response.json();
 
         if (!response.ok) {
-
-          throw new Error(
-            data.message ||
-            'Error al agregar producto'
-          );
-
+          throw new Error(data.message || 'Error al agregar al carrito');
         }
 
-        await loadCart();
+        // Éxito — feedback visual
+        btn.innerHTML = `<i class="bi bi-check-lg me-2"></i>¡Agregado!`;
+        btn.style.background = '#22c55e';
+        btn.style.borderColor = '#22c55e';
 
-        const cartOffcanvas =
-          document.getElementById(
-            'cartOffcanvas'
-          );
-
-        if (cartOffcanvas) {
-
-          bootstrap
-            .Offcanvas
-            .getOrCreateInstance(
-              cartOffcanvas
-            )
-            .show();
-
+        // Actualizar badge del carrito en el navbar
+        if (typeof updateBadges === 'function') {
+          updateBadges();
         }
+
+        // Restaurar botón después de 2 segundos
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = `<i class="bi bi-bag-plus me-2"></i>Agregar al carrito`;
+          btn.style.background = '';
+          btn.style.borderColor = '';
+        }, 2000);
 
       } catch (error) {
 
-        console.error(error);
+        console.error('Error:', error);
+
+        btn.disabled = false;
+        btn.innerHTML = `<i class="bi bi-bag-plus me-2"></i>Agregar al carrito`;
+
+        // Mostrar error debajo del botón
+        let errDiv = document.getElementById('cart-add-error');
+        if (!errDiv) {
+          errDiv = document.createElement('p');
+          errDiv.id = 'cart-add-error';
+          errDiv.style.cssText = `
+                color: var(--color-red);
+                font-size: .82rem;
+                text-align: center;
+                margin-top: .5rem;
+            `;
+          btn.parentElement.appendChild(errDiv);
+        }
+        errDiv.textContent = `⚠ ${error.message}`;
 
       }
     }
